@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Etna';
+    src: url('../webfonts/Etna.woff2') format('woff2'),
+         url('../webfonts/Etna.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body{
+    font-family: 'Etna';
+}
+
+/* Header Styling */
+header {
+    background-color: #ff7043; /* Un tono más suave de naranja */
+    color: white;
+    padding: 1rem 2rem; /* Aumento el padding para dar más espacio */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    border-bottom: 3px solid #ff5722; /* Línea divisoria al fondo */
+}
+
+/* Logo Styling */
+header img {
+   
+    max-height: 90px; /* Un tamaño mayor para que el logo sea más visible */
+    width: auto; /* Mantener la proporción del logo */
+    margin: 0;
+}
+
+/* Hover Effects on Logo */
+header .logo:hover {
+    transform: scale(1.1); /* Le da un ligero zoom al logo */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+    filter: brightness(1.1); /* Efecto de brillo para resaltar al hacer hover */
+}
+
+.logo{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    padding: 0.3em;
+}
+
+.texto_logo{
+    font-family: 'Etna';
+    color: #ff7043;
+    font-size: 2em;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    justify-content: flex-end; /* Alineación de los links a la derecha */
+}
+
+/* Navigation Links Styling */
+nav a {
+    color: white;
+    margin: 0 1.5em; /* Aumento el espacio entre enlaces, 24px en vez de 15px */
+    padding: 1em 2em; /* Aumento el padding para más amplitud, 16px en vez de 12px y 32px en vez de 20px */
+    border-radius: 2.5em; /* Bordes más redondeados, 40px en vez de 25px */
+    font-weight: 500; /* Peso de fuente más ligero */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.4rem; /* Aumento del tamaño de la fuente, 1.5rem en vez de 1.1rem */
+    letter-spacing: 0.0625em; /* Espaciado de letras más abierto, 1px en vez de 0.5px */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones mejoradas */
+}
+
+/* Hover Effects */
+nav a:hover {
+    background-color: white; /* Color de fondo más fuerte */
+    color: #ff5722;
+    transform: translateY(-0.375em); /* Efecto de elevación con movimiento, 6px en vez de 4px */
+    box-shadow: 0 0.375em 0.75em rgba(0, 0, 0, 0.2); /* Sombra más amplia, 6px en vez de 4px y 12px en vez de 8px */
+}
+
+/* Icon Styling */
+nav a i {
+    margin-left: 1em; /* Espaciado más amplio para los íconos, 16px en vez de 8px */
+    transition: transform 0.3s, margin-left 0.3s; /* Transiciones para íconos */
+}
+
+/* Icon Hover Effects */
+nav a:hover i {
+    transform: rotate(15deg); /* Menos rotación para no exagerar */
+    margin-left: 1.5em; /* Espaciado mayor al hacer hover, 24px en vez de 12px */
+}
+
