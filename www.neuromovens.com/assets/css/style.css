@@ -1,3 +1,15 @@
+:root {
+    --color-principal: #ff460e;
+    --color-suave: #ff5722;
+    --color-secundario: #ff2222;
+    --color-blanco: white;
+    --color-gris-claro: #f8f9fa;
+    --color-oscuro: #2c3e50;
+    --color-gris-suave: #7f8c8d;
+    --color-sombra: rgba(0, 0, 0, 0.1);
+    --color-sombra-intensa: rgba(0, 0, 0, 0.2);
+}
+
 @font-face {
     font-family: 'Etna';
     src: url('../webfonts/Etna.woff2') format('woff2'),
@@ -7,131 +19,141 @@
     font-display: swap;
 }
 
-body{
+body {
     font-family: 'Etna';
 }
 
-/* Header Styling */
 header {
-    background-color: #ff7043; /* Un tono más suave de naranja */
-    color: white;
-    padding: 1rem 2rem; /* Aumento el padding para dar más espacio */
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
-    border-bottom: 3px solid #ff5722; /* Línea divisoria al fondo */
+    box-shadow: 0 4px 10px var(--color-sombra);
+    border-bottom: 3px solid var(--color-secundario);
 }
 
-/* Logo Styling */
 header img {
-   
-    max-height: 90px; /* Un tamaño mayor para que el logo sea más visible */
-    width: auto; /* Mantener la proporción del logo */
+    max-height: 90px;
+    width: auto;
     margin: 0;
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
-/* Hover Effects on Logo */
 header .logo:hover {
-    transform: scale(1.1); /* Le da un ligero zoom al logo */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
-    filter: brightness(1.1); /* Efecto de brillo para resaltar al hacer hover */
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--color-sombra-intensa);
+    filter: brightness(1.1);
 }
 
-header .logo img:hover{
+header .logo img:hover {
     transform: rotate(5deg);
 }
 
-.logo{
-    background-color: white;
+.logo {
+    background-color: var(--color-blanco);
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--color-sombra);
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
     padding: 0.3em;
 }
 
-.texto_logo{
+.texto_logo {
     font-family: 'Etna';
-    color: #ff7043;
+    color: var(--color-principal);
     font-size: 2em;
 }
 
-/* Navigation Styling */
 nav {
     display: flex;
-    justify-content: flex-end; /* Alineación de los links a la derecha */
+    justify-content: flex-end;
 }
 
-/* Navigation Links Styling */
 nav a {
-    color: white;
-    border: white 2px solid;
-    margin: 0 1.5em; /* Aumento el espacio entre enlaces, 24px en vez de 15px */
-    padding: 1em 2em; /* Aumento el padding para más amplitud, 16px en vez de 12px y 32px en vez de 20px */
-    border-radius: 2.5em; /* Bordes más redondeados, 40px en vez de 25px */
-    font-weight: 500; /* Peso de fuente más ligero */
+    color: var(--color-blanco);
+    border: var(--color-blanco) 2px solid;
+    margin: 0 1.5em;
+    padding: 1em 2em;
+    border-radius: 2.5em;
+    font-weight: 500;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-size: 1.4rem; /* Aumento del tamaño de la fuente, 1.5rem en vez de 1.1rem */
-    letter-spacing: 0.0625em; /* Espaciado de letras más abierto, 1px en vez de 0.5px */
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones mejoradas */
+    font-size: 1.4rem;
+    letter-spacing: 0.0625em;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-/* Hover Effects */
 nav a:hover {
-    background-color: white; /* Color de fondo más fuerte */
-    color: #ff5722;
-    transform: translateY(-0.375em); /* Efecto de elevación con movimiento, 6px en vez de 4px */
-    box-shadow: 0 0.375em 0.75em rgba(0, 0, 0, 0.2); /* Sombra más amplia, 6px en vez de 4px y 12px en vez de 8px */
+    background-color: var(--color-blanco);
+    color: var(--color-suave);
+    transform: translateY(-0.375em);
+    box-shadow: 0 0.375em 0.75em var(--color-sombra-intensa);
 }
 
-/* Icon Styling */
 nav a i {
-    margin-left: 1em; /* Espaciado más amplio para los íconos, 16px en vez de 8px */
-    transition: transform 0.3s, margin-left 0.3s; /* Transiciones para íconos */
+    margin-left: 1em;
+    transition: transform 0.3s, margin-left 0.3s;
 }
 
-/* Icon Hover Effects */
 nav a:hover i {
-    transform: rotate(15deg); /* Menos rotación para no exagerar */
-    margin-left: 1.5em; /* Espaciado mayor al hacer hover, 24px en vez de 12px */
+    transform: rotate(15deg);
+    margin-left: 1.5em;
 }
 
 .title {
-    color: #ff5722;
-    font-size: 3em;
+    color: var(--color-principal);
+    font-size: 5em;
     text-align: center;
-    margin: 20px;
-    transition: color 0.3s ease, transform 0.3s ease; /* Animación suave */
+    margin-bottom: 1em;
+    text-transform: uppercase; /* Opcional, para darle un toque más fuerte */
+    letter-spacing: 2px; /* Un poco de espacio entre letras para mayor impacto */
+    background: linear-gradient(45deg, var(--color-principal), #ff6f61); /* Un gradiente atractivo */
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease;
 }
 
-/* Cambios al hacer hover */
 .title:hover {
-    transform: scale(1.1); /* Aumenta el tamaño */
+    transform: scale(1.1) rotate(-2deg); /* Añade rotación ligera para dinamismo */
+    color: var(--color-principal); /* Cambia el color al hacer hover */
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8); /* Sombra más marcada al pasar el mouse */
 }
+
+@media screen and (max-width: 768px) {
+    .title{
+        font-size: 3em;
+    }
+}
+
 
 main {
     margin: 0 auto;
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    section{
+        padding: 4px;
+    }
+}
+
 .equipo {
-    background-color: #ff7043; /* Mantener color original, pero con un toque más suave */
-    border-radius: 15px; /* Bordes redondeados más marcados */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra más suave */
-    transition: all 0.3s ease; /* Suavizado en los cambios */
+    background-color: var(--color-principal);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px var(--color-sombra);
+    transition: all 0.3s ease;
 }
 
 .equipo:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Aumentar sombra al pasar el ratón */
-    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 6px 20px var(--color-sombra-intensa);
+    transform: translateY(-5px);
 }
 
 .imagen_equipo {
-    border-radius: 15px; /* Imagen con bordes redondeados */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px var(--color-sombra-intensa);
     transition: 0.3s;
 }
 
@@ -140,37 +162,38 @@ main {
 }
 
 #imagen_equipo {
-    transition: opacity 0.5s ease-in-out; /* Transición de opacidad */
+    transition: opacity 0.5s ease-in-out;
 }
 
-
 h2 {
-    font-size: 2rem; /* Tamaño de fuente más grande y destacada */
-    color: #2c3e50; /* Color de texto más oscuro para mejor contraste */
-    font-weight: 600; /* Mayor peso en el título */
+    font-size: 2rem;
+    color: var(--color-oscuro);
+    font-weight: 600;
 }
 
 p.lead {
-    font-size: 1.125rem; /* Mejor tamaño de fuente para párrafos de introducción */
-    color: #7f8c8d; /* Color gris suave para el texto */
-    line-height: 1.6; /* Espaciado entre líneas */
+    font-size: 1.125rem;
+    color: var(--color-gris-suave);
+    line-height: 1.6;
 }
 
 ul {
     font-size: 1rem;
     line-height: 1.5;
-    color: #2c3e50; /* Color de texto más oscuro */
+    color: var(--color-oscuro);
 }
 
 ul li {
     margin-bottom: 10px;
+    text-align: left;
+    margin-left: 8em;
 }
 
 ul li strong {
-    color: #e67e22; /* Resaltar los nombres con un color cálido */
+    color: var(--color-principal);
+    letter-spacing: 1px;
 }
 
-/* Estilos generales para las tarjetas */
 .tarjeta {
     border: none;
     border-radius: 1.2em;
@@ -179,15 +202,15 @@ ul li strong {
 }
 
 .card-body-1 {
-    background-color: #ff7043;
-    color: white;
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
     padding: .5rem;
     border-radius: 1.2em 1.2em 0 0;
 }
 
 .card-body-1 i {
     font-size: 2rem;
-    color: white;
+    color: var(--color-blanco);
     margin-bottom: .2rem;
 }
 
@@ -195,12 +218,11 @@ ul li strong {
     font-size: 1.6rem;
     letter-spacing: 2px;
     font-weight: bold;
-    color: white;
+    color: var(--color-blanco);
 }
 
-/* Estilo para la segunda parte de la tarjeta */
 .card-body-2 {
-    background-color: #f8f9fa;
+    background-color: var(--color-gris-claro);
     padding: 1.5rem;
     color: #495057;
 }
@@ -210,11 +232,11 @@ ul li strong {
     line-height: 1.6;
 }
 
-/* Efecto de hover en la tarjeta */
 .tarjeta:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px var(--color-sombra);
 }
+
 
 
 
