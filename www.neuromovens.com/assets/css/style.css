@@ -134,27 +134,30 @@ main {
 }
 
 @media screen and (max-width: 768px) {
-    section{
-        padding: 4px;
+    section {
+        padding: 10px;
+    }
+    .equipo {
+        padding: 20px;
     }
 }
 
 .equipo {
     background-color: var(--color-principal);
-    border-radius: 15px;
-    box-shadow: 0 4px 12px var(--color-sombra);
+    border-radius: 1em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
 .equipo:hover {
-    box-shadow: 0 6px 20px var(--color-sombra-intensa);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
 }
 
 .imagen_equipo {
     border-radius: 15px;
-    box-shadow: 0 4px 12px var(--color-sombra-intensa);
-    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .imagen_equipo:hover {
@@ -178,13 +181,13 @@ p.lead {
 }
 
 ul {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.125rem;
+    line-height: 1.6;
     color: var(--color-oscuro);
 }
 
 ul li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-align: left;
     margin-left: 3em;
 }
@@ -192,6 +195,13 @@ ul li {
 ul li strong {
     color: var(--color-principal);
     letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Animaciones */
+.equipo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .tarjeta {
