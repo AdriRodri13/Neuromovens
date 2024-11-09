@@ -34,6 +34,11 @@ header {
     border-bottom: 3px solid var(--color-secundario);
 }
 
+header .logo:hover img {
+    transform: rotate(5deg);
+}
+
+/* Otros estilos para la imagen */
 header img {
     max-height: 90px;
     width: auto;
@@ -41,14 +46,11 @@ header img {
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
+/* Efectos al pasar el cursor por el contenedor */
 header .logo:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px var(--color-sombra-intensa);
     filter: brightness(1.1);
-}
-
-header .logo img:hover {
-    transform: rotate(5deg);
 }
 
 .logo {
