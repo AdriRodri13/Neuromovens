@@ -40,7 +40,7 @@ header .logo:hover {
 }
 
 header .logo img:hover{
-    transform: rotate(10deg);
+    transform: rotate(5deg);
 }
 
 .logo{
@@ -66,6 +66,7 @@ nav {
 /* Navigation Links Styling */
 nav a {
     color: white;
+    border: white 2px solid;
     margin: 0 1.5em; /* Aumento el espacio entre enlaces, 24px en vez de 15px */
     padding: 1em 2em; /* Aumento el padding para más amplitud, 16px en vez de 12px y 32px en vez de 20px */
     border-radius: 2.5em; /* Bordes más redondeados, 40px en vez de 25px */
@@ -97,4 +98,126 @@ nav a:hover i {
     transform: rotate(15deg); /* Menos rotación para no exagerar */
     margin-left: 1.5em; /* Espaciado mayor al hacer hover, 24px en vez de 12px */
 }
+
+.title {
+    color: #ff5722;
+    font-size: 3em;
+    text-align: center;
+    margin: 20px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Animación suave */
+}
+
+/* Cambios al hacer hover */
+.title:hover {
+    transform: scale(1.1); /* Aumenta el tamaño */
+}
+
+main {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.equipo {
+    background-color: #ff7043; /* Mantener color original, pero con un toque más suave */
+    border-radius: 15px; /* Bordes redondeados más marcados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    transition: all 0.3s ease; /* Suavizado en los cambios */
+}
+
+.equipo:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Aumentar sombra al pasar el ratón */
+    transform: translateY(-5px); /* Efecto de elevación */
+}
+
+.imagen_equipo {
+    border-radius: 15px; /* Imagen con bordes redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+    transition: 0.3s;
+}
+
+.imagen_equipo:hover {
+    transform: scale(1.05);
+}
+
+#imagen_equipo {
+    transition: opacity 0.5s ease-in-out; /* Transición de opacidad */
+}
+
+
+h2 {
+    font-size: 2rem; /* Tamaño de fuente más grande y destacada */
+    color: #2c3e50; /* Color de texto más oscuro para mejor contraste */
+    font-weight: 600; /* Mayor peso en el título */
+}
+
+p.lead {
+    font-size: 1.125rem; /* Mejor tamaño de fuente para párrafos de introducción */
+    color: #7f8c8d; /* Color gris suave para el texto */
+    line-height: 1.6; /* Espaciado entre líneas */
+}
+
+ul {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2c3e50; /* Color de texto más oscuro */
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li strong {
+    color: #e67e22; /* Resaltar los nombres con un color cálido */
+}
+
+/* Estilos generales para las tarjetas */
+.tarjeta {
+    border: none;
+    border-radius: 1.2em;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-body-1 {
+    background-color: #ff7043;
+    color: white;
+    padding: .5rem;
+    border-radius: 1.2em 1.2em 0 0;
+}
+
+.card-body-1 i {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: .2rem;
+}
+
+.card-body-1 h2 {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Estilo para la segunda parte de la tarjeta */
+.card-body-2 {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    color: #495057;
+}
+
+.card-body-2 p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Efecto de hover en la tarjeta */
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
 

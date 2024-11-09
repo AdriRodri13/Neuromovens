@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neuromuvens</title>
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Bootstrap CSS -->
@@ -16,44 +16,106 @@
 <body>
     <header class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center p-3">
         <div class="logo d-flex flex-column align-items-center">
-            <img src="assets/images/neuronaBuena.png" alt="Logo Neuromuvens" class="mb-3 mb-md-0">
+            <img src="assets/images/neuronaBuena.png" alt="Logo Neuromuvens" class="mb-3 mb-md">
             <p class="texto_logo">NeuroMovens</p>
         </div>
-        
-    
+
+
         <!-- Navegación alineada a la derecha -->
-        <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap">
-            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Quiénes Somos<i
+        <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
+            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1 ">Quiénes Somos<i
                     class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Investigación<i class="fa-solid fa-flask"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Productos<i class="fa-solid fa-wheelchair"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Contacto<i class="fa-solid fa-phone"></i></a>
+            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Investigación<i
+                    class="fa-solid fa-flask"></i></a>
+            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Productos<i
+                    class="fa-solid fa-wheelchair"></i></a>
+            <a href="#" class="d-flex align-items-center justify-content-center mx-2 my-1">Contacto<i
+                    class="fa-solid fa-phone"></i></a>
         </nav>
     </header>
-    <main>
-        <h1>NeuroMovens Labs</h1>
-        <section>
-            <img src="#" alt="Foto Equipo Neuromuvens">
-            <p></p>
+    <main class="container py-5">
+        <h1 class="title">NeuroMovens Lab</h1>
+    
+        <!-- Sección de equipo -->
+        <section class="row justify-content-center mb-5">
+            <div class="col-12 col-md-10">
+                <div class="row align-items-center p-4 rounded shadow-lg equipo">
+                    <!-- Imagen a la izquierda en pantallas grandes -->
+                    <div class="col-md-5 mb-4 mb-md-0">
+                        <img src="assets/images/imagen_personal.jpg" alt="Foto Equipo Neuromuvens"
+                            class="img-fluid rounded shadow-sm imagen_equipo" id="imagen_equipo">
+                    </div>
+                    <!-- Texto a la derecha en pantallas grandes, ocupa el 80% en pantallas medianas y el 100% en móviles -->
+                    <div class="col-12 col-md-7">
+                        <div class="p-4 bg-white rounded">
+                            <h2 class="mb-3 text-dark font-weight-bold">Equipo NeuroMovens</h2>
+                            <p class="lead text-muted mb-4">
+                                En nuestro laboratorio, contamos con un equipo de profesionales altamente capacitados y
+                                comprometidos para llevar a cabo un excelente tratamiento remielinizante:
+                            </p>
+                            <ul class="list-unstyled text-dark">
+                                <li><strong>Dr. Paola Suárez (PAOC)</strong> - Patóloga en jefe.</li>
+                                <li><strong>Manolo García</strong> - Coordinador de laboratorio.</li>
+                                <li><strong>Jorge Méndez</strong> - Técnico en hematología.</li>
+                                <li><strong>Laura Fernández</strong> - Técnica en microbiología.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section>
-            <div>
-                <i></i>
-                <h2></h2>
-                <p></p>
-            </div>
-            <div>
-                <i></i>
-                <h2></h2>
-                <p></p>
-            </div>
-            <div>
-                <i></i>
-                <h2></h2>
-                <p></p>
+    
+        <!-- Sección de tarjetas -->
+        <section class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <!-- Tarjetas dispuestas en fila en pantallas medianas y grandes -->
+                <div class="row g-4">
+                    <!-- Tarjeta 1 -->
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center tarjeta shadow">
+                            <div class="card-body card-body-1">
+                                <i class="fa-solid fa-bullseye fa-2x"></i>
+                                <h2 class="mt-3">Misión</h2>
+                            </div>
+                            <div class="card-body card-body-2">
+                                <p>Contenido de la primera sección. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel, mollitia esse ullam alias voluptates repudiandae saepe repellat reprehenderit provident deserunt accusantium ipsam neque, quis autem nostrum.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 2 -->
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center tarjeta shadow">
+                            <div class="card-body card-body-1">
+                                <i class="fa-solid fa-eye fa-2x"></i>
+                                <h2 class="mt-3">Visión</h2>
+                            </div>
+                            <div class="card-body card-body-2">
+                                <p>Contenido de la segunda sección. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut quas molestiae repellat modi enim consequatur. Incidunt atque nisi veritatis nam provident deserunt accusantium ipsam neque, quis autem nostrum.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 3 -->
+                    <div class="col-12 col-md-4">
+                        <div class="card text-center tarjeta shadow">
+                            <div class="card-body card-body-1">
+                                <i class="fa-regular fa-heart fa-2x"></i>
+                                <h2 class="mt-3">Valores</h2>
+                            </div>
+                            <div class="card-body card-body-2">
+                                <p>Contenido de la tercera sección. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos vel nam ad nobis impedit ratione consectetur, architecto consequatur voluptas provident deserunt accusantium ipsam neque, quis autem nostrum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+        
+        
+    
     </main>
+    
+
+
     <footer>
         <div>
             <a href=""></a>
@@ -67,6 +129,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
