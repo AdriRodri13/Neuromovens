@@ -247,6 +247,16 @@ ul li strong {
     box-shadow: 0 10px 20px var(--color-sombra);
 }
 
+.destacado {
+    color: #ff440c; /* Color de énfasis */
+    font-weight: bold;
+    background-color: #ffc374; /* Color de fondo suave */
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
 
 
 
