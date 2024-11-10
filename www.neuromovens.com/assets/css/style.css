@@ -13,7 +13,7 @@
 @font-face {
     font-family: 'Etna';
     src: url('../webfonts/Etna.woff2') format('woff2'),
-         url('../webfonts/Etna.woff') format('woff');
+        url('../webfonts/Etna.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -117,22 +117,28 @@ nav a.active {
     font-size: 5em;
     text-align: center;
     margin-bottom: 1em;
-    text-transform: uppercase; /* Opcional, para darle un toque más fuerte */
-    letter-spacing: 2px; /* Un poco de espacio entre letras para mayor impacto */
-    background: linear-gradient(45deg, var(--color-principal), #ff6f61); /* Un gradiente atractivo */
+    text-transform: uppercase;
+    /* Opcional, para darle un toque más fuerte */
+    letter-spacing: 2px;
+    /* Un poco de espacio entre letras para mayor impacto */
+    background: linear-gradient(45deg, var(--color-principal), #ff6f61);
+    /* Un gradiente atractivo */
     -webkit-background-clip: text;
     background-clip: text;
     transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease;
 }
 
 .title:hover {
-    transform: scale(1.1) rotate(-2deg); /* Añade rotación ligera para dinamismo */
-    color: var(--color-principal); /* Cambia el color al hacer hover */
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8); /* Sombra más marcada al pasar el mouse */
+    transform: scale(1.1) rotate(-2deg);
+    /* Añade rotación ligera para dinamismo */
+    color: var(--color-principal);
+    /* Cambia el color al hacer hover */
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8);
+    /* Sombra más marcada al pasar el mouse */
 }
 
 @media screen and (max-width: 768px) {
-    .title{
+    .title {
         font-size: 3em;
     }
 }
@@ -147,6 +153,7 @@ main {
     section {
         padding: 10px;
     }
+
     .equipo {
         padding: 20px;
     }
@@ -255,12 +262,14 @@ ul li strong {
 }
 
 .destacado {
-    color: #ff440c; /* Color de énfasis */
+    color: #ff440c;
+    /* Color de énfasis */
     font-weight: bold;
-    background-color: #ffc374; /* Color de fondo suave */
+    background-color: #ffc374;
+    /* Color de fondo suave */
     padding: 1px 3px;
     border-radius: 3px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .section-container {
@@ -283,15 +292,18 @@ ul li strong {
 }
 
 .section-container:hover h2 {
-    color: var(--color-secundario); /* Cambia a un color diferente al pasar el mouse */
+    color: var(--color-secundario);
+    /* Cambia a un color diferente al pasar el mouse */
 }
 
 .section-1 {
-    background-color: #f8f9fa; /* Color de fondo claro */
+    background-color: #f8f9fa;
+    /* Color de fondo claro */
 }
 
 .section-2 {
-    background-color: #e9ecef; /* Color de fondo diferente */
+    background-color: #e9ecef;
+    /* Color de fondo diferente */
 }
 
 .section-content {
@@ -309,7 +321,37 @@ ul li strong {
 }
 
 .section-content img:hover {
-    transform: scale(1.05); /* Zoom suave en la imagen */
+    transform: scale(1.05);
+    /* Zoom suave en la imagen */
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+/* Configura las secciones para que aparezcan deslizándose */
+.section-container {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 1s ease-out;
+}
+
+/* Desplazamiento inicial a la izquierda o derecha */
+.section-container.slide-in-left {
+    transform: translateX(-100%);
+    /* Fuera de la pantalla, a la izquierda */
+}
+
+.section-container.slide-in-right {
+    transform: translateX(100%);
+    /* Fuera de la pantalla, a la derecha */
+}
+
+/* Cuando el elemento es visible, deslízalo a su posición */
+.section-container.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+    /* Vuelve a la posición original */
 }
 
 .text-container {
@@ -324,7 +366,7 @@ ul li strong {
     background-color: #f1f1f1;
 }
 
-.category-section h2{
+.category-section h2 {
     color: var(--color-principal);
 }
 
@@ -360,7 +402,7 @@ ul li strong {
     flex: 1;
 }
 
-.product-info h3{
+.product-info h3 {
     color: var(--color-principal);
 }
 
@@ -373,11 +415,12 @@ ul li strong {
 
 @media (max-width: 768px) {
     .product-card {
-        flex-direction: column; /* Vuelve a fila en pantallas grandes */
+        flex-direction: column;
+        /* Vuelve a fila en pantallas grandes */
         align-items: center;
         text-align: center;
     }
-    
+
 }
 
 .contact-section {
@@ -419,9 +462,12 @@ ul li strong {
         justify-content: center;
         gap: 20px;
     }
-    .contact-info, .contact-map {
+
+    .contact-info,
+    .contact-map {
         flex: 1;
     }
+
     .contact-map iframe {
         height: 400px;
     }
@@ -436,7 +482,7 @@ ul li strong {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.contact-form h2{
+.contact-form h2 {
     color: var(--color-principal);
 }
 
@@ -460,11 +506,3 @@ ul li strong {
         padding: 15px;
     }
 }
-
-
-
-
-
-
-
-
