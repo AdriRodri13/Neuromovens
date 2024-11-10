@@ -21,7 +21,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, {
     root: null,
-    threshold: 0.1
+    threshold: 0.08
 });
 
 // Observa cada sección
