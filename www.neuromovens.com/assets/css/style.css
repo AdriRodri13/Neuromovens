@@ -530,25 +530,3 @@ html {
     }
 }
 
-.contenedor {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Estilos y animación de rotación para ambas imágenes */
-  .rotacion {
-    width: 200px;
-    height: 200px;
-    animation: rotar 2s linear infinite;
-  }
-
-  /* Definición de la animación */
-  @keyframes rotar {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
