@@ -35,4 +35,7 @@ echo '<footer class="bg-secondary text-white py-4">
                 </div>
             </div>
         </div>
-    </footer>';
+    </footer>
+    </body>
+
+</html>';

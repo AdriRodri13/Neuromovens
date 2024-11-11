@@ -66,6 +66,3 @@
     </section>
     </main>
     <?php include_once '../Compartido/footer.php'?>
-</body>
-
-</html>
