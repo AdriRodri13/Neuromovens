@@ -24,15 +24,15 @@
 
         <!-- Navegación alineada a la derecha -->
         <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
-            <a href="index.html" class="d-flex align-items-center justify-content-center mx-2 my-1 active">Quiénes
+            <a href="index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 active">Quiénes
                 Somos<i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="assets/pages/investigacion.html"
+            <a href="assets/Vistas/investigacion.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Investigación<i
                     class="fa-solid fa-flask"></i></a>
-            <a href="assets/pages/productos.html"
+            <a href="assets/Vistas/productos.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Productos<i
                     class="fa-solid fa-wheelchair"></i></a>
-            <a href="assets/pages/contacto.html"
+            <a href="assets/Vistas/contacto.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Contacto<i
                     class="fa-solid fa-phone"></i></a>
         </nav>
@@ -165,7 +165,7 @@
                 <div class="col-md-4 text-md-right">
                     <h3 class="mb-3">Información Legal</h3>
                     <div class="mb-2">
-                        <a href="#" class="text-white">Términos y </a>
+                        <a href="#" class="text-white">Términos y Condiciones</a>
                     </div>
                     <div class="mb-2">
                         <a href="#" class="text-white">Política de Privacidad</a>
