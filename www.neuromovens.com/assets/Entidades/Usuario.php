@@ -7,8 +7,8 @@ class Usuario
 
     public function __construct(
         private string $nombre_usuario,
-        private string $email,
-        private string $contra
+        private string $contra,
+        private string $email = "pordefecto@gmail.com"
     )
     {}
 

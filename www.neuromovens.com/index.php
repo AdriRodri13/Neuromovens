@@ -1,8 +1,13 @@
 <?php
 
 session_start();
+$sesion_usuario = false;
 
-if(!isset($_SESSION['usuario'])){}
+if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
+    $sesion_usuario = $_SESSION['usuario'];
+    $nombre_usuario = $_SESSION['nombre_usuario'];
+
+}
 
 
 ?>
@@ -44,6 +49,17 @@ if(!isset($_SESSION['usuario'])){}
             <a href="assets/Vistas/contacto.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Contacto<i
                     class="fa-solid fa-phone"></i></a>
+            <?php
+
+            if(!$sesion_usuario){
+                echo '<a href="assets/Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesion
+                        <i class="fa-solid fa-user"></i></a>';
+            } else {
+                echo '<a href="assets/Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">' . $nombre_usuario . '<i class="fa-solid fa-user"></i></a>';
+            }
+
+            ?>
+
         </nav>
     </header>
     <main class="container py-5">

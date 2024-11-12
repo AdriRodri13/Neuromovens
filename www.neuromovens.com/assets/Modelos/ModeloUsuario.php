@@ -13,7 +13,7 @@ class ModeloUsuario
         private PDO $conexion
     ) {}
 
-    private function comprobarUsuario(Usuario $usuario): bool {
+    public function comprobarUsuario(Usuario $usuario): bool {
         // Consulta SQL con los parámetros marcados correctamente
         $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :nombre AND contraseña = :contra";
 

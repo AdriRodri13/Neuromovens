@@ -65,6 +65,3 @@
     <script src="../js/aparicion.js"></script>
 
     <?php include_once '../Compartido/footer.php'?>
-</body>
-
-</html>
