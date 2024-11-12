@@ -40,7 +40,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
         <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
             <a href="index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 active">Quiénes
                 Somos<i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="assets/Vistas/investigacion.php"
+            <a href="assets/Controlador/ControladorPostInvestigacion.php?accion=listar.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Investigación<i
                     class="fa-solid fa-flask"></i></a>
             <a href="assets/Vistas/productos.php"

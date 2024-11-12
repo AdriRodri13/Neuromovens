@@ -6,6 +6,7 @@ $current_page = match ($current_page) {
     "productos.php" => "Productos",
     "contacto.php" => "Contacto",
     "iniciarSesion.php" => "Iniciar sesion",
+    default => "Pruebas"
 };
 
 session_start();

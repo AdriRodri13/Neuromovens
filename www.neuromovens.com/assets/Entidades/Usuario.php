@@ -2,7 +2,7 @@
 
 namespace Entidades;
 
-class Usuario
+class Usuario implements Entidad
 {
 
     public function __construct(

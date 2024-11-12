@@ -6,19 +6,16 @@ use Entidades\Usuario;
 use PDO;
 
 
-class ModeloUsuario
+class ModeloUsuario extends Modelo
 {
 
-    public function __construct(
-        private PDO $conexion
-    ) {}
 
     public function comprobarUsuario(Usuario $usuario): bool {
         // Consulta SQL con los parámetros marcados correctamente
         $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :nombre AND contraseña = :contra";
 
         // Preparar la consulta
-        $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->getConexion()->prepare($sql);
 
         // Vincular los parámetros a las variables
         $stmt->bindValue(':nombre', $usuario->getNombreUsuario(), PDO::PARAM_STR);
@@ -35,4 +32,23 @@ class ModeloUsuario
         return false; // Usuario no encontrado
     }
 
+    public function add()
+    {
+        // Sin funcionalidad todavia
+    }
+
+    public function modificar()
+    {
+        // Sin funcionalidad todavia
+    }
+
+    public function eliminar()
+    {
+        // Sin funcionalidad todavia
+    }
+
+    public function obtener()
+    {
+        // Sin funcionalidad todavia
+    }
 }
