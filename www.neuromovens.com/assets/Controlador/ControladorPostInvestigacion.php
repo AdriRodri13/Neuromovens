@@ -32,8 +32,16 @@ class ControladorPostInvestigacion
     }
 
     private function listarPost(){
+        // Obtener los posts
         $posts = $this->modeloPostInvestigacion->obtener();
-        View::render('../Vistas/investigacion.php', ['posts' => $posts]);
+
+        // Almacenar los datos en la sesión
+        session_start();
+        $_SESSION['posts'] = serialize($posts);
+
+        // Redirigir a la página de investigación
+        header('Location: ../Vistas/investigacion.php');
+        exit();
     }
 
     private function insertarPost(){
@@ -82,16 +90,52 @@ class ControladorPostInvestigacion
     }
 
     private function actualizarPost(){
-        if(isset($_POST['post'])){
+        if (isset($_POST['post'])) {
             $id = $_POST['post']['id'];
             $titulo = $_POST['post']['titulo'];
             $descripcion = $_POST['post']['descripcion'];
-            $imagen = $_POST['post']['imagen_url'];
-            $post = new PostInvestigacion( $titulo, $descripcion, $imagen, $id);
+            $imagenUrl = "";
+
+            // Recuperar el post actual desde la base de datos
+            $post = $this->modeloPostInvestigacion->obtenerPorId($id);
+
+            // Comprobar si se sube una nueva imagen
+            if (isset($_FILES['imagen_url']) && $_FILES['imagen_url']['error'] === UPLOAD_ERR_OK) {
+                // Si se sube una nueva imagen, primero eliminamos la imagen anterior
+                $imagenAnterior = $post->getImagenUrl();
+
+                // Verificar si existe el archivo de imagen anterior y eliminarlo
+                if (file_exists( $imagenAnterior)) {
+                    unlink($imagenAnterior);  // Eliminar el archivo de la imagen anterior
+                }
+
+                // Aquí va la lógica para subir la nueva imagen, igual que en el método de insertarPost
+                $fileTmpPath = $_FILES['imagen_url']['tmp_name'];
+                $fileName = $_FILES['imagen_url']['name'];
+                $newFileName = 'imagen_' . time() . '.jpg';
+                $uploadDir = '../images/';
+                $destPath = $uploadDir . $newFileName;
+
+                if (move_uploaded_file($fileTmpPath, $destPath)) {
+                    // Modificar la URL para que contenga el prefijo ../
+                    $imagenUrl = '../images/' . $newFileName;
+                } else {
+                    // Manejar error de subida
+                    echo "Hubo un problema al subir la imagen.";
+                }
+            } else {
+                // Si no se sube nueva imagen, usamos la URL anterior
+                $imagenUrl = $_POST['post']['imagen_url'];
+            }
+
+            // Crear el objeto post y actualizar en la base de datos
+            $post = new PostInvestigacion($titulo, $descripcion, $imagenUrl, $id);
             $this->modeloPostInvestigacion->modificar($post);
             $this->listarPost();
         }
     }
+
+
 
     private function eliminarPost(){
         if(isset($_GET['id'])){
