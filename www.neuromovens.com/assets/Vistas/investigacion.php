@@ -33,6 +33,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
                             <img src="<?php echo $post->getImagenUrl(); ?>" alt="Imagen de Post de Investigación">
                         </div>
 
+
                         <!-- Información del Post -->
                         <div class="col-md-6 text-container">
                             <h2><?php echo $post->getTitulo(); ?></h2>
