@@ -84,4 +84,9 @@ class ModeloProducto extends Modelo
         }
         return $productos;
     }
+
+    public function obtenerPorId(string $id)
+    {
+        // TODO: Implement obtenerPorId() method.
+    }
 }

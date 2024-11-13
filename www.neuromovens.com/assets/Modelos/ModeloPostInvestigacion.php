@@ -85,4 +85,24 @@ class ModeloPostInvestigacion extends Modelo
         }
         return $posts;
     }
+
+    public function obtenerPorId(string $id)
+    {
+        $sql = "SELECT * FROM post_investigacion WHERE id = :id";
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            return new PostInvestigacion(
+                $fila['titulo'],
+                $fila['contenido'],
+                $fila['imagen_url'],
+                $fila['id']
+            );
+        }
+
+        return null; // Devuelve null si no se encuentra el post con el ID especificado
+    }
 }

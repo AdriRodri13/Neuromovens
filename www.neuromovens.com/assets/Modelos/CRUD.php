@@ -13,4 +13,6 @@ interface CRUD
     public function eliminar(string $id);
 
     public function obtener();
+
+    public function obtenerPorId(string $id);
 }

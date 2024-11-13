@@ -2,9 +2,12 @@
 
 namespace Modelos;
 
+use Entidades\Entidad;
 use Entidades\Usuario;
 use PDO;
 
+require 'Modelo.php';
+require '../Entidades/Entidad.php';
 
 class ModeloUsuario extends Modelo
 {
@@ -32,22 +35,27 @@ class ModeloUsuario extends Modelo
         return false; // Usuario no encontrado
     }
 
-    public function add()
+    public function add(Entidad $entidad)
     {
         // Sin funcionalidad todavia
     }
 
-    public function modificar()
+    public function modificar(Entidad $entidad)
     {
         // Sin funcionalidad todavia
     }
 
-    public function eliminar()
+    public function eliminar(string $id)
     {
         // Sin funcionalidad todavia
     }
 
     public function obtener()
+    {
+        // Sin funcionalidad todavia
+    }
+
+    public function obtenerPorId(string $id)
     {
         // Sin funcionalidad todavia
     }
