@@ -49,8 +49,8 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
     <!-- Navegación alineada a la derecha -->
     <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
         <a href="../../index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'index.php' ? 'active' : ''); ?>">Quiénes Somos<i class="fa-solid fa-magnifying-glass"></i></a>
-        <a href="investigacion.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Investigacion' ? 'active' : ''); ?>">Investigación<i class="fa-solid fa-flask"></i></a>
-        <a href="productos.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Productos' ? 'active' : ''); ?>">Productos<i class="fa-solid fa-wheelchair"></i></a>
+        <a href="../Controlador/ControladorPostInvestigacion.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Investigacion' ? 'active' : ''); ?>">Investigación<i class="fa-solid fa-flask"></i></a>
+        <a href="../Controlador/ControladorProductos.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Productos' ? 'active' : ''); ?>">Productos<i class="fa-solid fa-wheelchair"></i></a>
         <a href="contacto.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Contacto' ? 'active' : ''); ?>">Contacto<i class="fa-solid fa-phone"></i></a>
         <?php
         if(!$sesion_usuario){

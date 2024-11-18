@@ -19,6 +19,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
     <?php
     // Deserializar los posts desde la sesión
     $posts = isset($_SESSION['posts']) ? unserialize($_SESSION['posts']) : [];
+
     ?>
 
     <?php if (!empty($posts)): ?>

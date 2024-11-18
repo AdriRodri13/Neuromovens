@@ -1,66 +1,56 @@
-<?php include '../Compartido/header.php'?>
+<?php
+use Entidades\Producto;
+
+include '../Compartido/header.php';
+require '../Entidades/Producto.php';
+require '../Entidades/Categoria.php';
+
+// Verificación de sesión de usuario
+$sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
+?>
 
     <h1 class="title">Nuestros productos</h1>
 
-    <section class="category-section">
-        <h2>Productos ortoprotésicos</h2>
+    <main>
+        <!-- Si el usuario está logueado, mostrar enlace para insertar nuevo producto -->
+        <?php if ($sesion_usuario): ?>
+            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn-insert">Insertar Nuevo Producto</a>
+        <?php endif; ?>
 
-        <!-- Tarjeta de Producto -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/200" alt="Producto Electrónico">
-                <div class="product-price">€199.99</div>
-            </div>
-            <div class="product-info">
-                <h3>Nombre del Producto 1</h3>
-                <p>Descripción breve del producto 1 en la categoría de electrónica. Aquí puedes explicar las características y beneficios principales.</p>
-            </div>
-        </div>
+        <?php
+        // Deserializar los productos organizados por categoría desde la sesión
+        $productosPorCategoria = isset($_SESSION['productos_por_categoria']) ? unserialize($_SESSION['productos_por_categoria']) : [];
+        ?>
 
-        <!-- Otra Tarjeta de Producto -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/200" alt="Producto Electrónico">
-                <div class="product-price">€149.99</div>
-            </div>
-            <div class="product-info">
-                <h3>Nombre del Producto 2</h3>
-                <p>Descripción breve del producto 2 en la categoría de electrónica. Agrega aquí detalles interesantes y útiles para el cliente.</p>
-            </div>
-        </div>
-    </section>
+        <!-- Iterar sobre las categorías para mostrar sus productos -->
+        <?php if (!empty($productosPorCategoria)): ?>
+            <?php foreach ($productosPorCategoria as $idCategoria => $categoriaData): ?>
+                <section class="category-section">
+                    <h2><?php echo htmlspecialchars($categoriaData['nombre_categoria']); ?></h2>
 
-    <!-- Sección de Categoría 2 -->
-    <section class="category-section">
-        <h2>Merchandising benéfico</h2>
+                    <?php foreach ($categoriaData['productos'] as $producto): ?>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="<?php echo htmlspecialchars($producto->getImagenUrl()); ?>" alt="Imagen del Producto">
+                                <div class="product-price">€<?php echo number_format($producto->getPrecio(), 2); ?></div>
+                            </div>
+                            <div class="product-info">
+                                <h3><?php echo htmlspecialchars($producto->getNombre()); ?></h3>
+                                <p><?php echo htmlspecialchars($producto->getDescripcion()); ?></p>
+                            </div>
 
-        <!-- Tarjeta de Producto -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/200" alt="Producto de Ropa">
-                <div class="product-price">€49.99</div>
-            </div>
-            <div class="product-info">
-                <h3>Nombre del Producto 3</h3>
-                <p>Descripción breve del producto 3 en la categoría de ropa. Aquí puedes destacar materiales, diseño y estilos.</p>
-            </div>
-        </div>
+                            <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
+                            <?php if ($sesion_usuario): ?>
+                                <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>" class="btn-edit">Editar</a>
+                                <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>" class="btn-delete">Eliminar</a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </section>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No hay productos disponibles.</p>
+        <?php endif; ?>
+    </main>
 
-        <!-- Otra Tarjeta de Producto -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/200" alt="Producto de Ropa">
-                <div class="product-price">€39.99</div>
-            </div>
-            <div class="product-info">
-                <h3>Nombre del Producto 4</h3>
-                <p>Descripción breve del producto 4 en la categoría de ropa. Describe aquí los beneficios y estilos que ofrece esta prenda.</p>
-            </div>
-        </div>
-    </section>
-
-    <?php include_once '../Compartido/footer.php'?>
-
-</body>
-
-</html>
+<?php include_once '../Compartido/footer.php'; ?>

@@ -2,10 +2,10 @@
 
 function establecerConexion(): PDO {
 
-    $host = '127.0.0.1';  // Dirección del servidor
-    $db = 'neuromovens';  // Nombre de la base de datos
-    $user = 'root';  // Usuario de la base de datos
-    $pass = '';  // Contraseña del usuario
+    $host = 'sql7.freesqldatabase.com';  // Dirección del servidor
+    $db = 'sql7744499';  // Nombre de la base de datos
+    $user = 'sql7744499';  // Usuario de la base de datos
+    $pass = 'i9uRUSZbe6';  // Contraseña del usuario
     $charset = 'utf8mb4';  // Codificación de caracteres
 
     $options = [

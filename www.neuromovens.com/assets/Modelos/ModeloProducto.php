@@ -4,11 +4,13 @@ namespace Modelos;
 use Entidades\Entidad;
 use Entidades\Producto;
 use PDO;
+require '../Entidades/Producto.php';
+require 'Modelo.php';
 
 class ModeloProducto extends Modelo
 {
     private function comprobarProducto(string $nombreProducto){
-        $sql = "SELECT * FROM producto WHERE nombre = :nombreProducto";
+        $sql = "SELECT * FROM productos WHERE nombre = :nombreProducto";
         $stmt = $this->getConexion()->prepare($sql);
 
         $stmt->bindValue(':nombreProducto', $nombreProducto);
@@ -82,11 +84,51 @@ class ModeloProducto extends Modelo
                 $fila['id']
             );
         }
+
+        return $productos;
+    }
+
+    public function obtenerPorCategoria(int $idCategoria)
+    {
+        $sql = "SELECT * FROM productos WHERE categoria_id = :id_categoria";
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->bindValue(':id_categoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $productos = [];
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($filas as $fila) {
+            $productos[] = new Producto(
+                $fila['nombre'],
+                $fila['descripcion'],
+                floatval($fila['precio']) ,
+                $fila['categoria_id'],
+                $fila['imagen_url'],
+                $fila['id']
+            );
+        }
         return $productos;
     }
 
     public function obtenerPorId(string $id)
     {
-        // TODO: Implement obtenerPorId() method.
+        $sql = "SELECT * FROM productos WHERE id = :id";
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            return new Producto(
+                $fila['nombre'],
+                $fila['descripcion'],
+                floatval($fila['precio']) ,
+                $fila['categoria_id'],
+                $fila['imagen_url'],
+                $fila['id']
+            );
+        }
+
+        return null;
     }
 }

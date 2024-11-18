@@ -1,7 +1,7 @@
 <?php
 
 namespace Entidades;
-
+require 'Entidad.php';
 class Producto implements Entidad
 {
 
