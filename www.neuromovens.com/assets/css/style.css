@@ -1,3 +1,5 @@
+/* Estilos Generales */
+
 :root {
     --color-principal: #ff460e;
     --color-suave: #ff5722;
@@ -13,15 +15,69 @@
 @font-face {
     font-family: 'Etna';
     src: url('../webfonts/Etna.woff2') format('woff2'),
-        url('../webfonts/Etna.woff') format('woff');
+    url('../webfonts/Etna.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-body {
-    font-family: 'Etna';
+body,
+html {
+    overflow-x: hidden;
 }
+
+body {
+    font-family: 'Etna', serif;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--color-oscuro);
+    font-weight: 600;
+}
+
+main {
+    margin: 0 auto;
+    text-align: center;
+}
+
+p.lead {
+    font-size: 1.125rem;
+    color: var(--color-gris-suave);
+    line-height: 1.6;
+}
+
+ul {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-oscuro);
+}
+
+ul li {
+    margin-bottom: 15px;
+    text-align: left;
+    margin-left: 3em;
+}
+
+ul li strong {
+    color: var(--color-principal);
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.destacado {
+    color: #ff440c;
+    /* Color de énfasis */
+    font-weight: bold;
+    background-color: #ffc374;
+    /* Color de fondo suave */
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Cabecera */
+
 
 header {
     background-color: var(--color-principal);
@@ -62,7 +118,7 @@ header .logo:hover {
 }
 
 .texto_logo {
-    font-family: 'Etna';
+    font-family: 'Etna', serif;
     color: var(--color-principal);
     font-size: 2em;
 }
@@ -111,6 +167,7 @@ nav a.active {
     transform: none;
 }
 
+/* Titulos */
 
 .title {
     color: var(--color-principal);
@@ -118,11 +175,11 @@ nav a.active {
     text-align: center;
     margin-bottom: 1em;
     text-transform: uppercase;
-    /* Opcional, para darle un toque más fuerte */
+
     letter-spacing: 2px;
-    /* Un poco de espacio entre letras para mayor impacto */
+
     background: linear-gradient(45deg, var(--color-principal), #ff6f61);
-    /* Un gradiente atractivo */
+
     -webkit-background-clip: text;
     background-clip: text;
     transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease;
@@ -130,34 +187,15 @@ nav a.active {
 
 .title:hover {
     transform: scale(1.1) rotate(-2deg);
-    /* Añade rotación ligera para dinamismo */
+
     color: var(--color-principal);
-    /* Cambia el color al hacer hover */
+
     text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8);
-    /* Sombra más marcada al pasar el mouse */
+
 }
 
-@media screen and (max-width: 768px) {
-    .title {
-        font-size: 3em;
-    }
-}
+/* Inicio */
 
-
-main {
-    margin: 0 auto;
-    text-align: center;
-}
-
-@media screen and (max-width: 768px) {
-    section {
-        padding: 10px;
-    }
-
-    .equipo {
-        padding: 20px;
-    }
-}
 
 .equipo {
     background-color: var(--color-principal);
@@ -174,45 +212,10 @@ main {
 .imagen_equipo {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-
-#imagen_equipo {
     transition: opacity 0.5s ease-in-out;
 }
 
-h2 {
-    font-size: 2rem;
-    color: var(--color-oscuro);
-    font-weight: 600;
-}
 
-p.lead {
-    font-size: 1.125rem;
-    color: var(--color-gris-suave);
-    line-height: 1.6;
-}
-
-ul {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: var(--color-oscuro);
-}
-
-ul li {
-    margin-bottom: 15px;
-    text-align: left;
-    margin-left: 3em;
-}
-
-ul li strong {
-    color: var(--color-principal);
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-/* Animaciones */
 .equipo:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
@@ -261,16 +264,7 @@ ul li strong {
     box-shadow: 0 10px 20px var(--color-sombra);
 }
 
-.destacado {
-    color: #ff440c;
-    /* Color de énfasis */
-    font-weight: bold;
-    background-color: #ffc374;
-    /* Color de fondo suave */
-    padding: 1px 3px;
-    border-radius: 3px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+/* Investigacion */
 
 .section-container {
     max-width: 80%;
@@ -278,13 +272,8 @@ ul li strong {
     padding: 20px;
     border-radius: 8px;
     border: 2px solid var(--color-secundario);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .section-container {
-        max-width: 90%;
-    }
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 1s ease-out;
 }
 
 .section-container:hover {
@@ -328,43 +317,27 @@ ul li strong {
 
 .section-content img:hover {
     transform: scale(1.05);
-    /* Zoom suave en la imagen */
 }
 
-body,
-html {
-    overflow-x: hidden;
-}
 
-/* Configura las secciones para que aparezcan deslizándose */
-.section-container {
-    opacity: 0;
-    transition: opacity 0.6s ease-out, transform 1s ease-out;
-}
-
-/* Desplazamiento inicial a la izquierda o derecha */
 .section-container.slide-in-left {
     transform: translateX(-100%);
-    /* Fuera de la pantalla, a la izquierda */
 }
 
 .section-container.slide-in-right {
     transform: translateX(100%);
-    /* Fuera de la pantalla, a la derecha */
 }
 
-/* Cuando el elemento es visible, deslízalo a su posición */
 .section-container.slide-in {
     opacity: 1;
     transform: translateX(0);
-    /* Vuelve a la posición original */
 }
 
 .text-container {
     padding: 20px;
 }
 
-
+/* Productos */
 
 .category-section {
     max-width: 80%;
@@ -421,15 +394,7 @@ html {
     margin-top: 10px;
 }
 
-@media (max-width: 768px) {
-    .product-card {
-        flex-direction: column;
-        /* Vuelve a fila en pantallas grandes */
-        align-items: center;
-        text-align: center;
-    }
-
-}
+/* Contacto */
 
 .contact-section {
     max-width: 80%;
@@ -454,7 +419,6 @@ html {
 }
 
 .contact-map {
-    /* Centrar el mapa y darle espacio */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -463,46 +427,20 @@ html {
 }
 
 .contact-map iframe {
-    /* Ajustes generales */
     width: 100%;
     max-width: 800px;
     height: 450px;
-
-    /* Bordes redondeados */
     border-radius: 15px;
-    border: 2px solid var(--color-principal); /* Color de borde atractivo */
-
-    /* Sombra */
+    border: 2px solid var(--color-principal);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    /* Animación sutil al hacer hover */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-map iframe:hover {
-    /* Zoom suave y aumento de sombra al hacer hover */
     transform: scale(1.02);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Ajustes en pantallas grandes */
-@media (min-width: 768px) {
-    .contact-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .contact-info,
-    .contact-map {
-        flex: 1;
-    }
-
-    .contact-map iframe {
-        height: 400px;
-    }
-}
 
 .contact-form {
     max-width: 80%;
@@ -531,12 +469,146 @@ html {
     font-size: 1.1em;
 }
 
-/* Responsive ajuste de formulario en pantallas pequeñas */
-@media (max-width: 576px) {
+/* Iniciar sesion */
+
+.login-container {
+    max-width: 40em;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-blanco);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.login-header {
+    color: var(--color-principal);
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group .form-control {
+    padding-left: 2.5rem;
+}
+
+.form-group i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: var(--color-suave);
+}
+
+.form-control {
+    padding: 1em;
+}
+
+.form-control:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 0.2rem rgba(255, 87, 34, 0.25);
+}
+
+.btn-login {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border: none;
+    font-weight: bold;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: var(--color-suave);
+}
+
+/* Moviles y pantallas pequeñas */
+
+@media screen and (max-width: 768px) {
+    section {
+        padding: 10px;
+    }
+
+    .equipo {
+        padding: 20px;
+    }
+
+    .section-container {
+        max-width: 90%;
+    }
+
+    .category-section {
+        max-width: 95%;
+
+    }
+
+    .product-card {
+        flex-direction: column;
+        /* Vuelve a fila en pantallas grandes */
+        align-items: center;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 3em;
+    }
+
+    nav a {
+        margin: 0 0.75em;
+        padding: 0.5em 1em;
+        border-radius: 1.25em;
+        font-size: 1rem;
+        letter-spacing: 0.03125em;
+    }
+
     .contact-form {
+        max-width: 95%;
         padding: 15px;
     }
+
+    .contact-section {
+        max-width: 95%;
+    }
 }
+
+
+@media (min-width: 768px) {
+    .contact-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .contact-info,
+    .contact-map {
+        flex: 1;
+    }
+
+    .contact-map iframe {
+        height: 400px;
+    }
+}
+
+
+
 
 
 

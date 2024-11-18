@@ -74,7 +74,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
                     <!-- Imagen a la izquierda en pantallas grandes -->
                     <div class="col-md-5 mb-4 mb-md-0">
                         <img src="assets/images/imagen_personal.jpg" alt="Foto Equipo Neuromuvens"
-                            class="img-fluid rounded shadow-sm imagen_equipo" id="imagen_equipo">
+                            class="img-fluid rounded shadow-sm imagen_equipo">
                     </div>
                     <!-- Texto a la derecha en pantallas grandes, ocupa el 80% en pantallas medianas y el 100% en móviles -->
                     <div class="col-12 col-md-7">
