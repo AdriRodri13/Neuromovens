@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+$sesion_usuario = false;
+
+if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
+    $sesion_usuario = $_SESSION['usuario'];
+    $nombre_usuario = $_SESSION['nombre_usuario'];
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,17 +38,28 @@
 
         <!-- Navegación alineada a la derecha -->
         <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
-            <a href="index.html" class="d-flex align-items-center justify-content-center mx-2 my-1 active">Quiénes
+            <a href="index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 active">Quiénes
                 Somos<i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="assets/pages/investigacion.html"
+            <a href="assets/Controlador/ControladorPostInvestigacion.php?accion=listar"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Investigación<i
                     class="fa-solid fa-flask"></i></a>
-            <a href="assets/pages/productos.html"
+            <a href="assets/Controlador/ControladorProductos.php?accion=listar"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Productos<i
                     class="fa-solid fa-wheelchair"></i></a>
-            <a href="assets/pages/contacto.html"
+            <a href="assets/Vistas/contacto.php"
                 class="d-flex align-items-center justify-content-center mx-2 my-1">Contacto<i
                     class="fa-solid fa-phone"></i></a>
+            <?php
+
+            if(!$sesion_usuario){
+                echo '<a href="assets/Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesion
+                        <i class="fa-solid fa-user"></i></a>';
+            } else {
+                echo '<a href="assets/Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">' . $nombre_usuario . '<i class="fa-solid fa-user"></i></a>';
+            }
+
+            ?>
+
         </nav>
     </header>
     <main class="container py-5">
