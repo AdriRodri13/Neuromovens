@@ -2,10 +2,10 @@
 
 function establecerConexion(): PDO {
 
-    $host = 'sql7.freesqldatabase.com';  // Dirección del servidor
-    $db = 'sql7744499';  // Nombre de la base de datos
-    $user = 'sql7744499';  // Usuario de la base de datos
-    $pass = 'i9uRUSZbe6';  // Contraseña del usuario
+    $host = 'srv1582.hstgr.io';  // Dirección del servidor
+    $db = 'u178676236_neuromovens';  // Nombre de la base de datos
+    $user = 'u178676236_adrian';  // Usuario de la base de datos
+    $pass = '257226Aa';  // Contraseña del usuario
     $charset = 'utf8mb4';  // Codificación de caracteres
 
     $options = [
