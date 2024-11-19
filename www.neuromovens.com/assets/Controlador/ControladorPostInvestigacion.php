@@ -125,7 +125,7 @@ class ControladorPostInvestigacion
                 }
             } else {
                 // Si no se sube nueva imagen, usamos la URL anterior
-                $imagenUrl = $_POST['post']['imagen_url'];
+                $imagenUrl = $_POST['imagenAntigua'];
             }
 
             // Crear el objeto post y actualizar en la base de datos

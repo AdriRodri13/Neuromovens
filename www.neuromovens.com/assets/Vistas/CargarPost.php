@@ -97,6 +97,7 @@ include '../Compartido/header.php';
         <div class="form-group image-preview">
             <label>Imagen Actual:</label><br>
             <img src="../images/<?= basename($post->getImagenUrl()); ?>" alt="Imagen Actual">
+            <input type="hidden" name="imagenAntigua" value="<?= basename($post->getImagenUrl()); ?>">
         </div>
 
         <!-- Campo para subir una nueva imagen -->
