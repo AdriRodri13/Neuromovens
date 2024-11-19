@@ -119,7 +119,7 @@ class ControladorProductos {
                     echo "Hubo un problema al subir la imagen.";
                 }
             } else {
-                $imagenUrl = $_POST['producto']['imagen_url'];
+                $imagenUrl = $_POST['imagenAntigua'];
             }
 
             $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl, $id);
