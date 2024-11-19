@@ -44,7 +44,8 @@ include '../Compartido/header.php';
         <div class="form-group image-preview">
             <label>Imagen Actual:</label><br>
             <img src="../images/<?= basename($producto->getImagenUrl()); ?>" alt="Imagen Actual">
-            <input type="hidden" name="imagenAntigua" value="<?= basename($producto->getImagenUrl()); ?>">
+            <?php echo basename($producto->getImagenUrl());?>
+            <input type="hidden" name="imagenAntigua" value="../images/<?= basename($producto->getImagenUrl()); ?>">
         </div>
 
         <!-- Campo para subir una nueva imagen -->
