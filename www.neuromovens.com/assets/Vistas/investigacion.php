@@ -13,7 +13,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
 <main>
     <!-- Si el usuario está logueado, mostrar enlace para insertar nuevo post -->
     <?php if ($sesion_usuario): ?>
-        <a href="../Vistas/InsertarPostInvestigacion.php?accion=insertar">Insertar</a>
+        <a href="../Vistas/InsertarPostInvestigacion.php?accion=insertar" class="btn btn-success">Insertar</a>
     <?php endif; ?>
 
     <?php
@@ -44,8 +44,8 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
 
                     <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
                     <?php if ($sesion_usuario): ?>
-                        <a href="../Controlador/ControladorPostInvestigacion.php?accion=cargar&id=<?php echo $post->getId(); ?>">Editar</a>
-                        <a href="../Controlador/ControladorPostInvestigacion.php?accion=eliminar&id=<?php echo $post->getId(); ?>">Eliminar</a>
+                        <a href="../Controlador/ControladorPostInvestigacion.php?accion=cargar&id=<?php echo $post->getId(); ?>" class="btn btn-info">Editar</a>
+                        <a href="../Controlador/ControladorPostInvestigacion.php?accion=eliminar&id=<?php echo $post->getId(); ?>" class="btn btn-danger">Eliminar</a>
                     <?php endif; ?>
                 </section>
 

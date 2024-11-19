@@ -14,7 +14,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
     <main>
         <!-- Si el usuario está logueado, mostrar enlace para insertar nuevo producto -->
         <?php if ($sesion_usuario): ?>
-            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn-insert">Insertar Nuevo Producto</a>
+            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn btn-success">Insertar Nuevo Producto</a>
         <?php endif; ?>
 
         <?php
@@ -41,8 +41,12 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
 
                             <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
                             <?php if ($sesion_usuario): ?>
-                                <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>" class="btn-edit">Editar</a>
-                                <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>" class="btn-delete">Eliminar</a>
+                                <div>
+                                    <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>"
+                                       class="btn btn-info">Editar</a>
+                                    <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>"
+                                       class="btn btn-danger">Eliminar</a>
+                                </div>
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
