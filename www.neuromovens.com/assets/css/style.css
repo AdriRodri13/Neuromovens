@@ -82,9 +82,9 @@ ul li strong {
 header {
     background-color: var(--color-principal);
     color: var(--color-blanco);
-    padding: 1rem 2rem;
+    padding: .5rem 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     box-shadow: 0 4px 10px var(--color-sombra);
     border-bottom: 3px solid var(--color-secundario);
@@ -132,13 +132,13 @@ nav a {
     color: var(--color-blanco);
     border: var(--color-blanco) 2px solid;
     margin: 0 1.5em;
-    padding: 1em 2em;
-    border-radius: 2.5em;
+    padding: .7em 1.25em;
+    border-radius: 1.25em;
     font-weight: 500;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     letter-spacing: 0.0625em;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
