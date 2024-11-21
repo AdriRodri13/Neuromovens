@@ -50,8 +50,6 @@
         }
     </style>
 
-    <body>
-
     <div class="form-container">
         <h2>Insertar Nuevo Producto</h2>
         <form action="../Controlador/ControladorProductos.php" method="post" enctype="multipart/form-data">

@@ -47,6 +47,7 @@ class ControladorProductos {
 
             // Guardar los productos bajo el ID de la categoría
             $productosPorCategoria[$categoria->getIdCategoria()] = [
+                'id_categoria' => $categoria->getIdCategoria(),
                 'nombre_categoria' => $categoria->getNombreCategoria(),
                 'productos' => $productos
             ];
@@ -71,24 +72,26 @@ class ControladorProductos {
             $precio = $_POST['producto']['precio'];
             $categoriaId = $_POST['producto']['categoria_id'];
 
-            // Verificar y manejar imagen
-            if (isset($_FILES['imagen_url']) && $_FILES['imagen_url']['error'] === UPLOAD_ERR_OK) {
-                $fileTmpPath = $_FILES['imagen_url']['tmp_name'];
-                $newFileName = 'imagen_' . time() . '.jpg';
-                $uploadDir = '../images/';
-                $destPath = $uploadDir . $newFileName;
+            if(!$this->modeloProducto->comprobarProducto($nombre)) {
+                if (isset($_FILES['imagen_url']) && $_FILES['imagen_url']['error'] === UPLOAD_ERR_OK) {
+                    $fileTmpPath = $_FILES['imagen_url']['tmp_name'];
+                    $newFileName = 'imagen_' . time() . '.jpg';
+                    $uploadDir = '../images/';
+                    $destPath = $uploadDir . $newFileName;
 
-                if (move_uploaded_file($fileTmpPath, $destPath)) {
-                    $imagenUrl = '../images/' . $newFileName;
-                    $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
-                    $this->modeloProducto->add($producto);
-                    $this->listarProductos();
+                    if (move_uploaded_file($fileTmpPath, $destPath)) {
+                        $imagenUrl = '../images/' . $newFileName;
+                        $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
+                        $this->modeloProducto->add($producto);
+                        $this->listarProductos();
+                    } else {
+                        echo "Hubo un problema al subir la imagen.";
+                    }
                 } else {
-                    echo "Hubo un problema al subir la imagen.";
+                    echo "Por favor, selecciona una imagen válida para subir.";
                 }
-            } else {
-                echo "Por favor, selecciona una imagen válida para subir.";
             }
+            $this->listarProductos();
         }
     }
 

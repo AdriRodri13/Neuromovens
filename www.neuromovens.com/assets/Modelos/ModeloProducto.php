@@ -9,7 +9,7 @@ require 'Modelo.php';
 
 class ModeloProducto extends Modelo
 {
-    private function comprobarProducto(string $nombreProducto){
+    public function comprobarProducto(string $nombreProducto){
         $sql = "SELECT * FROM productos WHERE nombre = :nombreProducto";
         $stmt = $this->getConexion()->prepare($sql);
 

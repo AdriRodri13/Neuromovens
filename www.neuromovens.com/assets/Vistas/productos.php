@@ -12,9 +12,13 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
     <h1 class="title">Nuestros productos</h1>
 
     <main>
-        <!-- Si el usuario está logueado, mostrar enlace para insertar nuevo producto -->
+
         <?php if ($sesion_usuario): ?>
-            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn btn-success">Insertar Nuevo Producto</a>
+            <div>
+                <a href="insertarCategoria.php"
+                   class="btn btn-success">Insertar Nueva Categoria</a>
+                <a href="#" class="btn btn-info">Mostrar todos los Productos</a>
+            </div>
         <?php endif; ?>
 
         <?php
@@ -27,6 +31,9 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
             <?php foreach ($productosPorCategoria as $idCategoria => $categoriaData): ?>
                 <section class="category-section">
                     <h2><?php echo htmlspecialchars($categoriaData['nombre_categoria']); ?></h2>
+                    <?php if ($sesion_usuario): ?>
+                    <h2>ID CATEGORIA: <?php echo htmlspecialchars($categoriaData['id_categoria']);?></h2>
+                    <?php endif; ?>
 
                     <?php foreach ($categoriaData['productos'] as $producto): ?>
                         <div class="product-card">
@@ -50,6 +57,17 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
+                    <?php if ($sesion_usuario): ?>
+                        <div>
+                            <a href="../Controlador/ControladorCategoria.php?accion=cargar&id=<?php echo $idCategoria; ?>"
+                               class="btn btn-info">Editar Categoria</a>
+                            <a href="../Controlador/ControladorCategoria.php?accion=eliminar&id=<?php echo $idCategoria; ?>"
+                               class="btn btn-danger">Eliminar Categoria</a>
+                            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn btn-success">Insertar
+                                Nuevo Producto</a>
+                        </div>
+                    <?php endif; ?>
+
                 </section>
             <?php endforeach; ?>
         <?php else: ?>

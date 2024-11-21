@@ -5,8 +5,8 @@ namespace Entidades;
 class Categoria implements Entidad
 {
     public function __construct(
-        private int $id_categoria,
-        private string $nombre_categoria
+        private int $id_categoria = 0 ,
+        private string $nombre_categoria="provisional"
     )
     {}
 
