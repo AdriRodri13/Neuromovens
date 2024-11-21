@@ -28,6 +28,7 @@ class ControladorProductos {
             'actualizar' => $this->actualizarProducto(),
             'eliminar' => $this->eliminarProducto(),
             'cargar' => $this->cargarProducto(),
+            'mostrarTodos' => $this->mostrarTodos(),
             default => $this->listarProductos()
         };
     }
@@ -153,6 +154,13 @@ class ControladorProductos {
         } else {
             $this->listarProductos();
         }
+    }
+
+    private function mostrarTodos(){
+        $productos = $this->modeloProducto->obtener();
+        session_start();
+        $_SESSION['productos'] = serialize($productos);
+        header('Location: ../Vistas/listaProductos.php');
     }
 }
 

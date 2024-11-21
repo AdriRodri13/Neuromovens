@@ -17,7 +17,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
             <div>
                 <a href="insertarCategoria.php"
                    class="btn btn-success">Insertar Nueva Categoria</a>
-                <a href="#" class="btn btn-info">Mostrar todos los Productos</a>
+                <a href="../Controlador/ControladorProductos.php?accion=mostrarTodos" class="btn btn-info">Mostrar todos los Productos</a>
             </div>
         <?php endif; ?>
 
