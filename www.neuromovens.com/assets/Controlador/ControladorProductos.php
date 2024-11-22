@@ -80,7 +80,9 @@ class ControladorProductos {
             $precio = $_POST['producto']['precio'];
             $categoriaId = $_POST['producto']['categoria_id'];
 
-            if(!$this->modeloProducto->comprobarProducto($nombre)) {
+            if (!$this->modeloProducto->comprobarProducto($nombre)) {
+                $imagenUrl = "https://via.placeholder.com/200x200"; // Valor por defecto para la imagen
+
                 if (isset($_FILES['imagen_url']) && $_FILES['imagen_url']['error'] === UPLOAD_ERR_OK) {
                     $fileTmpPath = $_FILES['imagen_url']['tmp_name'];
                     $newFileName = 'imagen_' . time() . '.jpg';
@@ -88,22 +90,16 @@ class ControladorProductos {
                     $destPath = $uploadDir . $newFileName;
 
                     if (move_uploaded_file($fileTmpPath, $destPath)) {
-                        $imagenUrl = '../images/' . $newFileName;
-                        $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
-                        $this->modeloProducto->add($producto);
-                        $this->listarProductos();
-                    } else {
-                        $imagenUrl = "https://via.placeholder.com/200x200";
-                        $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
-                        $this->modeloProducto->add($producto);
-                        $this->listarProductos();
+                        $imagenUrl = '../images/' . $newFileName; // Actualizar si la subida fue exitosa
                     }
-                } else {
-                    $imagenUrl = "https://via.placeholder.com/200x200";
-                    $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
-                    $this->modeloProducto->add($producto);
-                    $this->listarProductos();
                 }
+
+                // Crear y guardar el producto
+                $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
+                $this->modeloProducto->add($producto);
+
+                // Redirigir a la lista de productos
+                $this->listarProductos();
             }
             $this->listarProductos();
         }
