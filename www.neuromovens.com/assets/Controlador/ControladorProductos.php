@@ -58,8 +58,15 @@ class ControladorProductos {
         session_start();
         $_SESSION['productos_por_categoria'] = serialize($productosPorCategoria);
 
-        // Redirigir a la página de productos
+        // Leer el parámetro de redirección
+        if(isset($_GET['redirect'])){
+            $this->mostrarTodos();
+            exit;
+        }
+
+        // Redirigir a la vista correspondiente
         header('Location: ../Vistas/productos.php');
+
         exit();
     }
 
@@ -86,10 +93,16 @@ class ControladorProductos {
                         $this->modeloProducto->add($producto);
                         $this->listarProductos();
                     } else {
-                        echo "Hubo un problema al subir la imagen.";
+                        $imagenUrl = "https://via.placeholder.com/200x200";
+                        $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
+                        $this->modeloProducto->add($producto);
+                        $this->listarProductos();
                     }
                 } else {
-                    echo "Por favor, selecciona una imagen válida para subir.";
+                    $imagenUrl = "https://via.placeholder.com/200x200";
+                    $producto = new Producto($nombre, $descripcion, $precio, $categoriaId, $imagenUrl);
+                    $this->modeloProducto->add($producto);
+                    $this->listarProductos();
                 }
             }
             $this->listarProductos();

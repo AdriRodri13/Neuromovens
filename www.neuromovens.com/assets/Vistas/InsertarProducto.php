@@ -83,7 +83,7 @@
             <!-- Campo para la imagen del producto -->
             <div class="form-group">
                 <label for="imagen_url">Selecciona una imagen:</label>
-                <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg" required>
+                <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg">
             </div>
 
             <!-- Botón de envío -->

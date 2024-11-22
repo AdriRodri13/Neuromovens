@@ -28,8 +28,8 @@ $productos = isset($_SESSION['productos']) ? unserialize($_SESSION['productos'])
 
                 <?php if ($sesion_usuario): ?>
                     <div>
-                        <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>" class="btn btn-info">Editar</a>
-                        <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>" class="btn btn-danger">Eliminar</a>
+                        <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>&redirect=listaProductos" class="btn btn-info">Editar</a>
+                        <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>&redirect=listaProductos" class="btn btn-danger">Eliminar</a>
                     </div>
                 <?php endif; ?>
             </div>
