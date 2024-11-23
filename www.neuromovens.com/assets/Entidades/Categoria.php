@@ -1,7 +1,6 @@
 <?php
 
 namespace Entidades;
-
 class Categoria implements Entidad
 {
     public function __construct(

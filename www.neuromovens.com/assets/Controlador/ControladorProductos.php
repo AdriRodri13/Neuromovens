@@ -1,6 +1,7 @@
 <?php
 
 namespace Controlador;
+use Entidades\Categoria;
 use Modelos\ModeloCategoria;
 use Modelos\ModeloProducto;
 use Entidades\Producto;
@@ -29,6 +30,7 @@ class ControladorProductos {
             'eliminar' => $this->eliminarProducto(),
             'cargar' => $this->cargarProducto(),
             'mostrarTodos' => $this->mostrarTodos(),
+            'cargarInserccion' => $this->cargarInserccion(),
             default => $this->listarProductos()
         };
     }
@@ -170,6 +172,16 @@ class ControladorProductos {
         session_start();
         $_SESSION['productos'] = serialize($productos);
         header('Location: ../Vistas/listaProductos.php');
+    }
+
+    private function cargarInserccion()
+    {
+        $categorias = $this->modeloCategoria->obtener();
+        session_start();
+        $_SESSION['categorias'] = serialize($categorias);
+
+        header('Location: ../Vistas/insertarProducto.php');
+        exit();
     }
 }
 

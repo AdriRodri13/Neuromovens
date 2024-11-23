@@ -63,7 +63,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
                                class="btn btn-info">Editar Categoria</a>
                             <a href="../Controlador/ControladorCategoria.php?accion=eliminar&id=<?php echo $idCategoria; ?>"
                                class="btn btn-danger">Eliminar Categoria</a>
-                            <a href="../Vistas/InsertarProducto.php?accion=insertar" class="btn btn-success">Insertar
+                            <a href="../Controlador/ControladorProductos.php?accion=cargarInserccion" class="btn btn-success">Insertar
                                 Nuevo Producto</a>
                         </div>
                     <?php endif; ?>

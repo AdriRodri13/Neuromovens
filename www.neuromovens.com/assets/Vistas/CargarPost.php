@@ -4,9 +4,6 @@ include '../Compartido/header.php';
 
 ?>
 
-
-
-
 <?php if (isset($post) && $post instanceof PostInvestigacion): ?>
 
 <body>
