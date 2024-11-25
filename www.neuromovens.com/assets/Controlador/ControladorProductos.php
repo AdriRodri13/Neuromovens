@@ -180,7 +180,7 @@ class ControladorProductos {
         session_start();
         $_SESSION['categorias'] = serialize($categorias);
 
-        header('Location: ../Vistas/insertarProducto.php');
+        header('Location: ../Vistas/InsertarProducto.php');
         exit();
     }
 }

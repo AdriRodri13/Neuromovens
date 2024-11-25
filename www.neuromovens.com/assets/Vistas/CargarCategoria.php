@@ -1,5 +1,5 @@
 <?php
-
+use Entidades\Categoria;
 include '../Compartido/header.php'; ?>
 
 
