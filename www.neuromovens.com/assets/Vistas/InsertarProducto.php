@@ -57,7 +57,7 @@ include '../Compartido/header.php';
             <!-- Campo para la imagen del producto -->
             <div class="form-group">
                 <label for="imagen_url">Selecciona una imagen:</label>
-                <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg">
+                <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg, image/png">
             </div>
 
             <!-- Botón de envío -->
