@@ -26,6 +26,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <script src="assets/js/cambioTexto.js"></script>
 </head>
 
 <body>
@@ -55,7 +56,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
                 echo '<a href="assets/Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesion
                         <i class="fa-solid fa-user"></i></a>';
             } else {
-                echo '<a href="assets/Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">' . $nombre_usuario . '<i class="fa-solid fa-user"></i></a>';
+                echo '<a  id="cerrarSesion" href="assets/Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . $nombre_usuario . '</span><i class="fa-solid fa-user"></i></a>';
             }
 
             ?>

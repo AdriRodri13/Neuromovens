@@ -37,6 +37,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <script src="../js/cambioTexto.js"></script>
 </head>
 
 <body>
@@ -54,13 +55,14 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
         <a href="contacto.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Contacto' ? 'active' : ''); ?>">Contacto<i class="fa-solid fa-phone"></i></a>
         <?php
         if(!$sesion_usuario){
-        echo '<a href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesion
+        echo '<a id="iniciarSesion"  href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesion
             <i class="fa-solid fa-user"></i></a>';
         } else {
-        echo '<a href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">' . $nombre_usuario . '<i class="fa-solid fa-user"></i></a>';
+        echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . $nombre_usuario . '</span><i class="fa-solid fa-user"></i></a>';
         }
         ?>
     </nav>
+
 </header>
 
 

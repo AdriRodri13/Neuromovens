@@ -1,6 +1,8 @@
 <?php
 
 namespace Entidades;
+use Entidades\Rol;
+require 'Rol.php';
 
 class Usuario implements Entidad
 {
@@ -9,6 +11,7 @@ class Usuario implements Entidad
         private string $nombre_usuario,
         private string $contra,
         private string $email = "pordefecto@gmail.com",
+        private Rol $rol = Rol::visitante
     )
     {}
 
@@ -42,8 +45,14 @@ class Usuario implements Entidad
         $this->contra = $contra;
     }
 
+    public function getRol(): Rol
+    {
+        return $this->rol;
+    }
 
-
-
+    public function setRol(Rol $rol): void
+    {
+        $this->rol = $rol;
+    }
 
 }
