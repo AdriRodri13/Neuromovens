@@ -13,26 +13,40 @@ class ModeloUsuario extends Modelo
 {
 
 
-    public function comprobarUsuario(Usuario $usuario): bool {
+    public function comprobarUsuario(Usuario $usuario): bool
+    {
         // Consulta SQL con los parámetros marcados correctamente
-        $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :nombre AND contraseña = :contra";
+        $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :nombre";
 
         // Preparar la consulta
         $stmt = $this->getConexion()->prepare($sql);
 
         // Vincular los parámetros a las variables
         $stmt->bindValue(':nombre', $usuario->getNombreUsuario(), PDO::PARAM_STR);
-        $stmt->bindValue(':contra', $usuario->getContra(), PDO::PARAM_STR);
 
         // Ejecutar la consulta
         $stmt->execute();
 
-        // Verificar si hay resultados
-        if ($stmt->rowCount() > 0) {
-            return true; // Usuario encontrado
+        // Obtener toda la fila como un array asociativo
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verificar si se encontró la fila
+        if (!$fila) {
+            return false;
         }
 
-        return false; // Usuario no encontrado
+        // Acceder a la contraseña cifrada
+        $contraCifrada = $fila['contraseña'];
+
+        if(password_verify($usuario->getContra(), $contraCifrada)){
+            $_SESSION['usuario'] = true;
+            $_SESSION['nombre_usuario'] = $usuario->getNombreUsuario();
+            $_SESSION['rol'] = $fila['rol'];
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     public function add(Entidad $entidad)
@@ -52,7 +66,10 @@ class ModeloUsuario extends Modelo
 
     public function obtener()
     {
-        // Sin funcionalidad todavia
+        //Obtener un usuario usando el metodo de cifrado de contraseña,
+        //Objetivo, recoger nombre y rol para manejar el resto.
+
+
     }
 
     public function obtenerPorId(string $id)

@@ -42,11 +42,7 @@ class ControladorUsuario{
         }
 
         $usuario = new Usuario($nombre, $contra);
-        if($this->modeloUsuario->comprobarUsuario($usuario)){
-            $_SESSION['usuario'] = true;
-            $_SESSION['nombre_usuario'] = $usuario->getNombreUsuario();
-        }
-
+        $this->modeloUsuario->comprobarUsuario($usuario);
         header('location: ../../index.php');
         die;
 
