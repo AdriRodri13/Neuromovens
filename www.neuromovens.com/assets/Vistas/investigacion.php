@@ -5,6 +5,11 @@ include '../Compartido/header.php';
 require '../Entidades/PostInvestigacion.php';
 // Verificación de sesión de usuario
 $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
+if($sesion_usuario){
+    $rol_usuario = $_SESSION['rol'];
+}else{
+    $rol_usuario = 'visitante';
+}
 
 ?>
 
@@ -12,7 +17,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
 
 <main>
     <!-- Si el usuario está logueado, mostrar enlace para insertar nuevo post -->
-    <?php if ($sesion_usuario): ?>
+    <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
         <a href="../Vistas/InsertarPostInvestigacion.php?accion=insertar" class="btn btn-success">Insertar</a>
     <?php endif; ?>
 
@@ -43,7 +48,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
                     </div>
 
                     <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
-                    <?php if ($sesion_usuario): ?>
+                    <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
                         <a href="../Controlador/ControladorPostInvestigacion.php?accion=cargar&id=<?php echo $post->getId(); ?>" class="btn btn-info">Editar</a>
                         <a href="../Controlador/ControladorPostInvestigacion.php?accion=eliminar&id=<?php echo $post->getId(); ?>" class="btn btn-danger">Eliminar</a>
                     <?php endif; ?>

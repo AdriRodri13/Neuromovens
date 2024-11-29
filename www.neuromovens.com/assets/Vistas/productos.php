@@ -7,13 +7,18 @@ require '../Entidades/Categoria.php';
 
 // Verificación de sesión de usuario
 $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
+if($sesion_usuario){
+    $rol_usuario = $_SESSION['rol'];
+}else{
+    $rol_usuario = 'visitante';
+}
 ?>
 
     <h1 class="title">Nuestros productos</h1>
 
     <main>
 
-        <?php if ($sesion_usuario): ?>
+        <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
             <div>
                 <a href="insertarCategoria.php"
                    class="btn btn-success">Insertar Nueva Categoria</a>
@@ -47,7 +52,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
                             </div>
 
                             <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
-                            <?php if ($sesion_usuario): ?>
+                            <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
                                 <div>
                                     <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>"
                                        class="btn btn-info">Editar</a>
@@ -57,7 +62,7 @@ $sesion_usuario = isset($_SESSION['usuario']) && $_SESSION['usuario'] === true;
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
-                    <?php if ($sesion_usuario): ?>
+                    <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
                         <div>
                             <a href="../Controlador/ControladorCategoria.php?accion=cargar&id=<?php echo $idCategoria; ?>"
                                class="btn btn-info">Editar Categoria</a>
