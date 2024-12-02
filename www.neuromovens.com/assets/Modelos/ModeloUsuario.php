@@ -13,7 +13,7 @@ class ModeloUsuario extends Modelo
 {
 
 
-    public function comprobarUsuario(Usuario $usuario): bool
+    public function comprobarUsuario(Entidad $usuario): bool
     {
         // Consulta SQL con los parámetros marcados correctamente
         $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :nombre";
@@ -37,11 +37,9 @@ class ModeloUsuario extends Modelo
 
         // Acceder a la contraseña cifrada
         $contraCifrada = $fila['contraseña'];
+        $_SESSION['rol'] = $fila['rol'];
 
         if(password_verify($usuario->getContra(), $contraCifrada)){
-            $_SESSION['usuario'] = true;
-            $_SESSION['nombre_usuario'] = $usuario->getNombreUsuario();
-            $_SESSION['rol'] = $fila['rol'];
             return true;
         }else{
             return false;
@@ -49,9 +47,23 @@ class ModeloUsuario extends Modelo
 
     }
 
-    public function add(Entidad $entidad)
+    public function add(Entidad $usuario)
     {
-        // Sin funcionalidad todavia
+        if($usuario instanceof Usuario){
+            if(!$this->comprobarUsuario($usuario)){
+                $contraHash = password_hash($usuario->getContra(), PASSWORD_DEFAULT);
+                $sql = "INSERT INTO usuarios (nombre_usuario, email, contraseña) VALUES (:nombre, :email, :contra)";
+                $stmt = $this->getConexion()->prepare($sql);
+                $stmt->bindValue(':nombre', $usuario->getNombreUsuario(), PDO::PARAM_STR);
+                $stmt->bindValue(':email', $usuario->getEmail(), PDO::PARAM_STR);
+                $stmt->bindValue(':contra', $contraHash, PDO::PARAM_STR);
+                $stmt->execute();
+                header('Location: ../../index.php');
+            }else{
+                //usuario ya existe
+            }
+        }
+
     }
 
     public function modificar(Entidad $entidad)

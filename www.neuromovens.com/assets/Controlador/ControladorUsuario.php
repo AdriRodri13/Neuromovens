@@ -19,34 +19,62 @@ class ControladorUsuario{
     }
 
     public function manejarPeticion(string $accion){
-        if($accion=='iniciarSesion'){
-            $this->abrirSesion();
-        }else{
-            $this->cerrarSesion();
-        }
+        match ($accion) {
+            'iniciarSesion' => $this->abrirSesion(),
+            'registro' => $this->registroUsuario(),
+            default => $this->error()
+        };
     }
 
     private function abrirSesion(){
         if(isset($_POST['nombre_usuario'])){
             $nombre = $_POST['nombre_usuario'];
         }else{
-            header('location: ../index.php');
-            die;
+            $this->error();
         }
 
         if(isset($_POST['contra'])){
             $contra = $_POST['contra'];
         }else{
-            header('location: ../index.php');
-            die;
+            $this->error();
         }
 
         $usuario = new Usuario($nombre, $contra);
-        $this->modeloUsuario->comprobarUsuario($usuario);
+        if($this->modeloUsuario->comprobarUsuario($usuario)){
+            $_SESSION['usuario'] = true;
+            $_SESSION['nombre_usuario'] = $usuario->getNombreUsuario();
+        }
         header('location: ../../index.php');
         die;
 
 
+    }
+
+    private function registroUsuario(){
+        if(isset($_POST['nombre_usuario'])){
+            $nombre = $_POST['nombre_usuario'];
+        }else{
+            $this->error();
+        }
+
+        if(isset($_POST['email'])){
+            $email = $_POST['email'];
+        }else{
+            $this->error();
+        }
+
+        if(isset($_POST['contra'])){
+            $contra = $_POST['contra'];
+        }else{
+            $this->error();
+        }
+
+        $usuario = new Usuario($nombre, $contra, $email);
+        $this->modeloUsuario->add($usuario);
+    }
+
+    private function error(){
+        header('location: ../../index.php');
     }
 
 }
