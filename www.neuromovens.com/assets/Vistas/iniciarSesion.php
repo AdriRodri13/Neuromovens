@@ -4,9 +4,6 @@
     <div class="login-container">
         <div class="login-header">Iniciar Sesión</div>
 
-        <!-- Mensaje de error opcional -->
-        <div class="error-message" id="errorMessage">Nombre de usuario o contraseña incorrectos</div>
-
         <form  action="../Controlador/ControladorUsuario.php" method="post">
             <input type="hidden" name="accion" value="iniciarSesion">
             <div class="form-group">
