@@ -1,7 +1,6 @@
 <?php
 
 namespace Controlador;
-use AllowDynamicProperties;
 use Entidades\Usuario;
 
 use Modelos\ModeloUsuario;
