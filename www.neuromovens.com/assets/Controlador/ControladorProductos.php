@@ -163,6 +163,7 @@ class ControladorProductos {
             $categorias = $this->modeloCategoria->obtener();
             $_SESSION['categorias'] = serialize($categorias);
             $producto = $this->modeloProducto->obtenerPorId($id);
+
             View::render('../Vistas/CargarProducto.php', ['producto' => $producto]);
         } else {
             $this->listarProductos();
