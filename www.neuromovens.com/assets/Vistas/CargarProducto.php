@@ -1,5 +1,6 @@
 <?php
 use Entidades\Producto;
+use Entidades\Categoria;
 include '../Compartido/header.php';
 ?>
 
@@ -36,8 +37,25 @@ include '../Compartido/header.php';
 
         <!-- Campo para la categoría del producto -->
         <div class="form-group">
-            <label for="categoria_id">Categoría ID:</label>
-            <input type="number" id="categoria_id" name="producto[categoria_id]" value="<?= $producto->getCategoriaId(); ?>" required>
+            <label for="categoria_id">Categoría:</label>
+            <select id="categoria_id" name="producto[categoria_id]" required>
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <?php if (isset($_SESSION['categorias'])): ?>
+                    <?php
+                    // Deserializa las categorías de la sesión
+                    $categorias = unserialize($_SESSION['categorias']);
+                    ?>
+                    <?php foreach ($categorias as $categoria): ?>
+                        <?php if($categoria instanceof Categoria) :?>
+                            <option value="<?= htmlspecialchars($categoria->getIdCategoria()); ?>">
+                                <?= htmlspecialchars($categoria->getNombreCategoria()); ?> - ID:<?= htmlspecialchars($categoria->getIdCategoria()); ?>
+                            </option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <option value="" disabled>No hay categorías disponibles</option>
+                <?php endif; ?>
+            </select>
         </div>
 
         <!-- Mostrar la imagen actual -->

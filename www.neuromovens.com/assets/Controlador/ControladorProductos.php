@@ -160,6 +160,8 @@ class ControladorProductos {
     private function cargarProducto() {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+            $categorias = $this->modeloCategoria->obtener();
+            $_SESSION['categorias'] = serialize($categorias);
             $producto = $this->modeloProducto->obtenerPorId($id);
             View::render('../Vistas/CargarProducto.php', ['producto' => $producto]);
         } else {
