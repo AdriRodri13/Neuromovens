@@ -29,7 +29,7 @@
     <section class="contact-form">
         <h2>Formulario de Contacto</h2>
         
-        <form action="#" method="post">
+        <form action="../correo/gestion.php" method="post">
             <!-- Campo Nombre -->
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
