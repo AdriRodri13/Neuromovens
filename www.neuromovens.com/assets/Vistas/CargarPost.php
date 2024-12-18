@@ -40,7 +40,7 @@ include '../Compartido/header.php';
         <!-- Campo para subir una nueva imagen -->
         <div class="form-group">
             <label for="imagen_url">Seleccionar nueva imagen (si desea cambiarla):</label>
-            <input type="file" id="imagen_url" name="imagen_url">
+            <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg, image/png">
         </div>
 
         <!-- Botón de envío -->

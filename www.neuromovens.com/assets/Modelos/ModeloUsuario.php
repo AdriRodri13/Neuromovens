@@ -67,9 +67,20 @@ class ModeloUsuario extends Modelo
 
     }
 
-    public function modificar(Entidad $entidad)
+    public function modificar(Entidad $usuario)
     {
-        // Sin funcionalidad todavia
+        if($usuario instanceof Usuario){
+            $sql = "UPDATE usuarios SET nombre_usuario = :nombre_usuario, email = :email, rol = :rol  WHERE id = :id";
+            $stmt = $this->getConexion()->prepare($sql);
+
+            $stmt->bindValue(':nombre_usuario', $usuario->getNombreUsuario());
+            $stmt->bindValue(':email', $usuario->getEmail());
+            $stmt->bindValue(':rol', $usuario->getRol()->name);
+            $stmt->bindValue(':id', $usuario->getId());
+
+
+            return $stmt->execute();
+        }
     }
 
     public function eliminar(string $id)
@@ -89,15 +100,29 @@ class ModeloUsuario extends Modelo
                 $fila['nombre_usuario'],
                 $fila['contraseña'],
                 $fila['email'],
-                Rol::tryFrom($fila['rol']) ?? Rol::visitante
+                Rol::tryFrom($fila['rol']) ?? Rol::visitante,
+                 $fila['id']
             );
         }
         return $usuarios;
 
     }
 
+    //En este caso obtenemos el usuario por NOMBRE no por id
     public function obtenerPorId(string $id)
     {
-        // Sin funcionalidad todavia
+        $sql = "SELECT * FROM usuarios WHERE id = :id";
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        $usuario = new Usuario(
+            $fila['nombre_usuario'],
+            $fila['contraseña'],
+            $fila['email'],
+            Rol::tryFrom($fila['rol']) ?? Rol::visitante,
+            $fila['id']
+        );
+        return $usuario;
     }
 }

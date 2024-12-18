@@ -600,6 +600,18 @@ nav a.active {
     margin-bottom: 20px;
 }
 
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
+.botones a{
+    width:5em;
+}
+
 
 
 /* Moviles y pantallas pequeñas */

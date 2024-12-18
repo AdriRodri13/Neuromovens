@@ -16,7 +16,8 @@ class Usuario implements Entidad
         private string $nombre_usuario,
         private string $contra,
         private string $email = "pordefecto@gmail.com",
-        private Rol $rol = Rol::visitante
+        private Rol $rol = Rol::visitante,
+        private string $id = '999'
     )
     {}
 
@@ -59,5 +60,17 @@ class Usuario implements Entidad
     {
         $this->rol = $rol;
     }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
+
 
 }

@@ -23,7 +23,7 @@
         <!-- Campo para la URL de la imagen -->
         <div class="form-group">
             <label for="imagen_url">Selecciona una imagen:</label>
-            <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg" required>
+            <input type="file" id="imagen_url" name="imagen_url" accept="image/jpeg, image/png" required>
         </div>
 
         <!-- Botón de envío -->

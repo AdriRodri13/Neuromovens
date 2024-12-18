@@ -1,6 +1,7 @@
 <?php
 
 namespace Controlador;
+use Entidades\Rol;
 use Entidades\Usuario;
 use Modelos\ModeloUsuario;
 session_start();
@@ -23,6 +24,8 @@ class ControladorUsuario{
             'iniciarSesion' => $this->abrirSesion(),
             'registro' => $this->registroUsuario(),
             'listar' => $this->listarUsuario(),
+            'cargar' => $this->cargarUsuario(),
+            'actualizar' => $this->actualizarUsuario(),
             default => $this->error()
         };
     }
@@ -76,14 +79,34 @@ class ControladorUsuario{
 
     private function listarUsuario(){
         $usuarios = $this->modeloUsuario->obtener();
-        session_start();
         $_SESSION['usuarios'] = serialize($usuarios);
         header('location: ../Vistas/listaUsuarios.php');
         exit();
     }
 
+    private function cargarUsuario(){
+        $id = $_GET['id'];
+        $usuario = $this->modeloUsuario->obtenerPorId($id);
+        $_SESSION['usuarioUpdate'] = serialize($usuario);
+        header('location: ../Vistas/cargarUsuario.php');
+        exit();
+    }
+
+    private function actualizarUsuario(){
+        $rol = Rol::tryFrom($_POST['usuario']['rol']);
+        $usuario = new Usuario(
+            $_POST['usuario']['nombre_usuario'],
+            $_POST['usuario']['contra'],
+            $_POST['usuario']['email'],
+            $rol,
+            $_POST['usuario']['id']
+        );
+        $this->modeloUsuario->modificar($usuario);
+        $this->listarUsuario();
+
+    }
+
     private function error(){
-        die;
         header('location: ../../index.php');
     }
 

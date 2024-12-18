@@ -53,7 +53,7 @@ if($sesion_usuario){
 
                             <!-- Mostrar botones de editar y eliminar si el usuario está logueado -->
                             <?php if ($sesion_usuario && $rol_usuario !== 'visitante'): ?>
-                                <div>
+                                <div class="botones">
                                     <a href="../Controlador/ControladorProductos.php?accion=cargar&id=<?php echo $producto->getId(); ?>"
                                        class="btn btn-info">Editar</a>
                                     <a href="../Controlador/ControladorProductos.php?accion=eliminar&id=<?php echo $producto->getId(); ?>"
