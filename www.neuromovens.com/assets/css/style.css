@@ -600,6 +600,8 @@ nav a.active {
     margin-bottom: 20px;
 }
 
+/*Centrar botones DIV */
+
 .botones{
     display: flex;
     flex-direction: row;

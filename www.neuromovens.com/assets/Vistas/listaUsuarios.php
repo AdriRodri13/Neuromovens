@@ -24,7 +24,7 @@ $usuarios = unserialize($_SESSION['usuarios']);
             gap: 10px;  /* Espacio entre las celdas */
             background-color: var(--color-blanco);
             border-radius: 8px;
-            box-shadow: 0 2px 8px var(--color-sombra);
+            box-shadow: 0 4px 8px var(--color-sombra);
             margin: 16px 0;
             padding: 20px;
             width: 80%;
@@ -89,6 +89,36 @@ $usuarios = unserialize($_SESSION['usuarios']);
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .usuario-tarjeta {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+            }
+
+            .usuario-info {
+                width: 100%;
+                text-align: center; /* Opcional, alinea el texto */
+            }
+
+            .usuario-info > div {
+                width: 100%; /* Asegura que cada campo dentro de usuario-info ocupe todo el ancho */
+                box-sizing: border-box; /* Previene problemas de padding y ancho */
+            }
+
+            .usuario-info .usuario-contra {
+                font-size: 8px;
+            }
+
+            .usuario-tarjeta > div a.btn {
+                display: block; /* Asegura que el botón ocupe el ancho completo */
+                width: 100%;
+                text-align: center; /* Centra el texto del botón */
+            }
         }
 
 

@@ -11,6 +11,16 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
 <?php
 if ($usuario instanceof Usuario):
     ?>
+
+<style>
+
+    @media screen and (max-width: 768px){
+        #contrasena{
+            font-size: 11px;
+        }
+    }
+
+</style>
     <body>
 
     <div class="form-container">
