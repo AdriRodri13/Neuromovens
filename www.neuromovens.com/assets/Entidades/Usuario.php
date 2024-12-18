@@ -1,8 +1,13 @@
 <?php
 
 namespace Entidades;
+require_once 'Rol.php';      // Evita cargar este archivo más de una vez
+require_once 'Entidad.php';  // Evita la redeclaración de la interfaz
 use Entidades\Rol;
-require 'Rol.php';
+
+
+
+
 
 class Usuario implements Entidad
 {

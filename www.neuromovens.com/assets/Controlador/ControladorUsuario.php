@@ -2,13 +2,13 @@
 
 namespace Controlador;
 use Entidades\Usuario;
-
 use Modelos\ModeloUsuario;
 session_start();
 
 require'../connection.php';
-require '../Modelos/ModeloUsuario.php';
-require '../Entidades/Usuario.php';
+require_once '../Entidades/Usuario.php'; // Esto ya incluye indirectamente Entidad.php
+require_once '../Modelos/ModeloUsuario.php'; // Esto también puede incluir Entidad.php
+
 class ControladorUsuario{
 
     private $modeloUsuario;
@@ -22,6 +22,7 @@ class ControladorUsuario{
         match ($accion) {
             'iniciarSesion' => $this->abrirSesion(),
             'registro' => $this->registroUsuario(),
+            'listar' => $this->listarUsuario(),
             default => $this->error()
         };
     }
@@ -73,7 +74,16 @@ class ControladorUsuario{
         $this->modeloUsuario->add($usuario);
     }
 
+    private function listarUsuario(){
+        $usuarios = $this->modeloUsuario->obtener();
+        session_start();
+        $_SESSION['usuarios'] = serialize($usuarios);
+        header('location: ../Vistas/listaUsuarios.php');
+        exit();
+    }
+
     private function error(){
+        die;
         header('location: ../../index.php');
     }
 
@@ -81,11 +91,7 @@ class ControladorUsuario{
 
 $controladorUsuario = new ControladorUsuario();
 
-if(isset($_POST['accion'])){
-    $accion = $_POST['accion'];
-}else{
-    header('location: ../index.php');
-}
+$accion = $_POST['accion'] ?? $_GET['accion'] ?? 'error';
 
 $controladorUsuario->manejarPeticion($accion);
 

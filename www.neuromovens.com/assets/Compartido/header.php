@@ -59,6 +59,10 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
             <i class="fa-solid fa-user"></i></a>';
         } else {
         echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . $nombre_usuario . '</span><i class="fa-solid fa-user"></i></a>';
+            if($_SESSION['rol'] == 'jefe'){
+                echo '<a id="listaUsuarios"  href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administracion
+                <i class="fa-regular fa-note-sticky"></i></a>';
+            }
         }
         ?>
     </nav>

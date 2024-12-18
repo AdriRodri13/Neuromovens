@@ -3,11 +3,12 @@
 namespace Modelos;
 
 use Entidades\Entidad;
+use Entidades\Rol;
 use Entidades\Usuario;
 use PDO;
 
 require 'Modelo.php';
-require '../Entidades/Entidad.php';
+require_once '../Entidades/Entidad.php';
 
 class ModeloUsuario extends Modelo
 {
@@ -78,9 +79,20 @@ class ModeloUsuario extends Modelo
 
     public function obtener()
     {
-        //Obtener un usuario usando el metodo de cifrado de contraseña,
-        //Objetivo, recoger nombre y rol para manejar el resto.
-
+        $sql = "SELECT * FROM usuarios";
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->execute();
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = [];
+        foreach ($filas as $fila) {
+            $usuarios[] = new Usuario(
+                $fila['nombre_usuario'],
+                $fila['contraseña'],
+                $fila['email'],
+                Rol::tryFrom($fila['rol']) ?? Rol::visitante
+            );
+        }
+        return $usuarios;
 
     }
 
