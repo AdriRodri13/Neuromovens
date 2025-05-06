@@ -26,6 +26,13 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Slick Carousel (para slideshow) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <script src="assets/js/cambioTexto.js"></script>
 </head>
 
@@ -78,10 +85,15 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
                 <div class="row align-items-center p-4 shadow-lg equipo">
                     <!-- Imagen a la izquierda en pantallas grandes -->
                     <div class="col-md-5 mb-4 mb-md-0">
-                        <img src="assets/images/imagen_personal.jpg" alt="Foto Equipo Neuromuvens"
-                            class="img-fluid rounded shadow-sm imagen_equipo">
+                        <!-- Contenedor del slideshow -->
+                        <div class="equipo-slideshow">
+                            <div><img src="assets/images/imagen_personal.jpg" alt="Equipo NeuroMovens" class="img-fluid rounded shadow-sm"></div>
+                            <div><img src="assets/images/imagen_personal2.jpg" alt="Equipo NeuroMovens" class="img-fluid rounded shadow-sm"></div>
+                            <div><img src="assets/images/imagen_personal3.jpg" alt="Equipo NeuroMovens" class="img-fluid rounded shadow-sm"></div>
+                            <div><img src="assets/images/imagen_personal4.jpg" alt="Equipo NeuroMovens" class="img-fluid rounded shadow-sm"></div>
+                        </div>
                     </div>
-                    <!-- Texto a la derecha en pantallas grandes, ocupa el 80% en pantallas medianas y el 100% en móviles -->
+                    <!-- Texto a la derecha en pantallas grandes -->
                     <div class="col-12 col-md-7">
                         <div class="p-4 bg-white rounded">
                             <h2 class="mb-3 text-dark font-weight-bold">Equipo NeuroMovens</h2>
@@ -100,6 +112,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
                 </div>
             </div>
         </section>
+
 
         <!-- Sección de tarjetas -->
         <section class="row justify-content-center">
@@ -208,7 +221,20 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Inicializar el slideshow con jQuery Slick
+            $('.equipo-slideshow').slick({
+                dots: true,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                fade: true,
+                cssEase: 'linear',
+                speed: 500
+            });
+        });
+    </script>
 </body>
 
 </html>

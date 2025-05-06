@@ -9,7 +9,9 @@ $current_page = match ($current_page) {
     default => "Pruebas"
 };
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $sesion_usuario = false;
 
 if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
@@ -32,11 +34,38 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- jQuery (necesario para Bootstrap y jQuery UI) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- jQuery UI (para widgets interactivos) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+
+    <!-- jQuery Validate (para validación de formularios) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+
+    <!-- Slick Carousel (para slideshows) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <!-- Bootstrap JS Bundle (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SweetAlert2 para alertas mejoradas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.css">
+
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+
+    <!-- JavaScript personalizado -->
     <script src="../js/cambioTexto.js"></script>
 </head>
 
