@@ -20,7 +20,7 @@
             <div class="form-group mb-3">
                 <label>Fecha de modificación:</label>
                 <div id="fecha-modificacion" class="form-control-plaintext">
-                    <!-- Se rellenará con JavaScript -->
+                    <!-- Se rellenará con jQuery -->
                 </div>
             </div>
 
@@ -32,72 +32,88 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. Uso del objeto Date para mostrar la fecha actual
-            const fechaActual = new Date();
-            const opciones = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            document.getElementById('fecha-modificacion').textContent = fechaActual.toLocaleDateString('es-ES', opciones);
+        $(document).ready(function() {
+            // 1. Configuración inicial y variables jQuery
+            const $form = $('#form-actualizar-categoria');
+            const $nombreInput = $('#nombre');
+            const $nombreFeedback = $('#nombre-feedback');
+            const $nombreContador = $('#nombre-contador');
+            const $btnCancelar = $('#btn-cancelar');
+            const $fechaModificacion = $('#fecha-modificacion');
 
-            // 2. Validación del formulario y eventos
-            const form = document.getElementById('form-actualizar-categoria');
-            const nombreInput = document.getElementById('nombre');
-            const nombreFeedback = document.getElementById('nombre-feedback');
-            const nombreContador = document.getElementById('nombre-contador');
-            const btnCancelar = document.getElementById('btn-cancelar');
+            // 2. Mostrar fecha actual usando jQuery y Date
+            function mostrarFechaActual() {
+                const fechaActual = new Date();
+                const opciones = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
 
-            // 3. Validación en tiempo real con evento input
-            nombreInput.addEventListener('input', function() {
-                const valor = this.value.trim();
+                // Usar jQuery para establecer el texto
+                $fechaModificacion.text(fechaActual.toLocaleDateString('es-ES', opciones));
+            }
+
+            // 3. Funciones auxiliares para la validación
+            function setInvalid($input, $feedback, message) {
+                $input.addClass('is-invalid').removeClass('is-valid');
+                $feedback.text(message);
+            }
+
+            function setValid($input, $feedback) {
+                $input.removeClass('is-invalid').addClass('is-valid');
+                $feedback.text('');
+            }
+
+            function isFormValid() {
+                // Usar jQuery para buscar elementos inválidos
+                return $('.is-invalid').length === 0;
+            }
+
+            // 4. Validación en tiempo real con evento input (jQuery)
+            $nombreInput.on('input', function() {
+                const valor = $(this).val().trim();
                 const longitud = valor.length;
 
-                // Actualizar contador
-                nombreContador.textContent = `${longitud}/50 caracteres`;
+                // Actualizar contador usando jQuery
+                $nombreContador.text(`${longitud}/50 caracteres`);
 
-                // Cambiar color según longitud
+                // Cambiar clases CSS usando jQuery para el color según longitud
+                $nombreContador.removeClass('text-muted text-success text-danger');
+
                 if (longitud > 40) {
-                    nombreContador.classList.remove('text-muted', 'text-success');
-                    nombreContador.classList.add('text-danger');
+                    $nombreContador.addClass('text-danger');
                 } else if (longitud > 0) {
-                    nombreContador.classList.remove('text-muted', 'text-danger');
-                    nombreContador.classList.add('text-success');
+                    $nombreContador.addClass('text-success');
                 } else {
-                    nombreContador.classList.remove('text-success', 'text-danger');
-                    nombreContador.classList.add('text-muted');
+                    $nombreContador.addClass('text-muted');
                 }
 
-                // Validar longitud
+                // Validar longitud usando las funciones auxiliares
                 if (longitud === 0) {
-                    setInvalid(nombreInput, nombreFeedback, 'El nombre de la categoría es obligatorio');
+                    setInvalid($nombreInput, $nombreFeedback, 'El nombre de la categoría es obligatorio');
                 } else if (longitud < 3) {
-                    setInvalid(nombreInput, nombreFeedback, 'El nombre debe tener al menos 3 caracteres');
+                    setInvalid($nombreInput, $nombreFeedback, 'El nombre debe tener al menos 3 caracteres');
                 } else if (longitud > 50) {
-                    setInvalid(nombreInput, nombreFeedback, 'El nombre no puede exceder los 50 caracteres');
+                    setInvalid($nombreInput, $nombreFeedback, 'El nombre no puede exceder los 50 caracteres');
                 } else {
-                    setValid(nombreInput, nombreFeedback);
+                    setValid($nombreInput, $nombreFeedback);
                 }
             });
 
-            // 4. Validación al enviar el formulario
-            form.addEventListener('submit', function(event) {
-                // Trigger de la validación
-                const inputEvent = new Event('input', {
-                    bubbles: true,
-                    cancelable: true,
-                });
-                nombreInput.dispatchEvent(inputEvent);
+            // 5. Validación al enviar el formulario (jQuery)
+            $form.on('submit', function(event) {
+                // Disparar validación usando jQuery
+                $nombreInput.trigger('input');
 
                 // Comprobar si hay errores
                 if (!isFormValid()) {
                     event.preventDefault();
 
-                    // Usar SweetAlert2 si está disponible
+                    // Usar SweetAlert2 con jQuery si está disponible
                     if (typeof Swal !== 'undefined') {
                         Swal.fire({
                             icon: 'error',
@@ -108,7 +124,7 @@
                         alert('Por favor, corrija los errores antes de continuar');
                     }
                 } else if (typeof Swal !== 'undefined') {
-                    // Mostrar mensaje de éxito/carga
+                    // Mostrar mensaje de éxito/carga con SweetAlert2
                     Swal.fire({
                         title: 'Guardando cambios',
                         text: 'Procesando su solicitud...',
@@ -121,8 +137,8 @@
                 }
             });
 
-            // 5. Botón cancelar con confirmación
-            btnCancelar.addEventListener('click', function() {
+            // 6. Botón cancelar con confirmación (jQuery)
+            $btnCancelar.on('click', function() {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         title: '¿Está seguro?',
@@ -135,6 +151,7 @@
                         cancelButtonText: 'No, continuar editando'
                     }).then((result) => {
                         if (result.isConfirmed) {
+                            // Usar location de JavaScript (no hay equivalente jQuery directo)
                             window.location.href = '../Controlador/ControladorCategoria.php';
                         }
                     });
@@ -145,25 +162,19 @@
                 }
             });
 
-            // 6. Trigger inicial para actualizar el contador
-            nombreInput.dispatchEvent(new Event('input'));
+            // 7. Inicialización al cargar la página
+            function inicializar() {
+                // Mostrar fecha actual
+                mostrarFechaActual();
 
-            // Funciones auxiliares para la validación
-            function setInvalid(input, feedback, message) {
-                input.classList.add('is-invalid');
-                input.classList.remove('is-valid');
-                feedback.textContent = message;
+                // Disparar validación inicial para actualizar el contador
+                $nombreInput.trigger('input');
             }
 
-            function setValid(input, feedback) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-                feedback.textContent = '';
-            }
+            // 8. Ejecutar inicialización
+            inicializar();
 
-            function isFormValid() {
-                return !document.querySelectorAll('.is-invalid').length;
-            }
+
         });
     </script>
     </body>

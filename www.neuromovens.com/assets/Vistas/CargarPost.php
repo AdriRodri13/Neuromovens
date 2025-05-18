@@ -79,101 +79,124 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Referencias a elementos del DOM
-            const form = document.getElementById('form-actualizar-post');
-            const tituloInput = document.getElementById('titulo');
-            const tituloFeedback = document.getElementById('titulo-feedback');
-            const tituloContador = document.getElementById('titulo-contador');
-            const descripcionInput = document.getElementById('descripcion');
-            const descripcionFeedback = document.getElementById('descripcion-feedback');
-            const descripcionContador = document.getElementById('descripcion-contador');
-            const tiempoLectura = document.getElementById('tiempo-lectura');
-            const imagenInput = document.getElementById('imagen_url');
-            const imagenFeedback = document.getElementById('imagen-feedback');
-            const nuevaImagenPreview = document.getElementById('nueva-imagen-preview');
-            const previewImg = document.getElementById('preview-img');
-            const cancelarImagen = document.getElementById('cancelar-imagen');
-            const btnCancelar = document.getElementById('btn-cancelar');
-            const fechaActualizacion = document.getElementById('fecha-actualizacion');
+        $(document).ready(function() {
+            // 1. Variables jQuery - Referencias cacheadas para mejor rendimiento
+            const $form = $('#form-actualizar-post');
+            const $tituloInput = $('#titulo');
+            const $tituloFeedback = $('#titulo-feedback');
+            const $tituloContador = $('#titulo-contador');
+            const $descripcionInput = $('#descripcion');
+            const $descripcionFeedback = $('#descripcion-feedback');
+            const $descripcionContador = $('#descripcion-contador');
+            const $tiempoLectura = $('#tiempo-lectura');
+            const $imagenInput = $('#imagen_url');
+            const $imagenFeedback = $('#imagen-feedback');
+            const $nuevaImagenPreview = $('#nueva-imagen-preview');
+            const $previewImg = $('#preview-img');
+            const $cancelarImagen = $('#cancelar-imagen');
+            const $btnCancelar = $('#btn-cancelar');
+            const $fechaActualizacion = $('#fecha-actualizacion');
 
-            // 1. Uso del objeto Date para mostrar la fecha actual formateada
-            const fechaActual = new Date();
-            const opciones = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            fechaActualizacion.textContent = fechaActual.toLocaleDateString('es-ES', opciones);
+            // 2. Funciones auxiliares para la validación
+            function setInvalid($input, $feedback, message) {
+                $input.addClass('is-invalid').removeClass('is-valid');
+                $feedback.text(message);
+            }
 
-            // 2. Validación del título con eventos
-            tituloInput.addEventListener('input', function() {
-                const valor = this.value.trim();
+            function setValid($input, $feedback) {
+                $input.removeClass('is-invalid').addClass('is-valid');
+                $feedback.text('');
+            }
+
+            function isFormValid() {
+                return $('.is-invalid').length === 0;
+            }
+
+            // 3. Mostrar fecha actual usando jQuery y Date
+            function mostrarFechaActualizacion() {
+                const fechaActual = new Date();
+                const opciones = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                $fechaActualizacion.text(fechaActual.toLocaleDateString('es-ES', opciones));
+            }
+
+            // 4. Validación del título con jQuery
+            $tituloInput.on('input', function() {
+                const valor = $(this).val().trim();
                 const longitud = valor.length;
 
-                // Actualizar contador
-                tituloContador.textContent = `${longitud}/100 caracteres`;
+                // Actualizar contador usando jQuery
+                $tituloContador.text(`${longitud}/100 caracteres`);
 
-                // Cambiar color según longitud
+                // Cambiar clases CSS usando jQuery según longitud
+                $tituloContador.removeClass('form-text text-muted text-success text-warning');
+
                 if (longitud > 80) {
-                    tituloContador.className = 'form-text text-warning';
+                    $tituloContador.addClass('form-text text-warning');
                 } else if (longitud > 0) {
-                    tituloContador.className = 'form-text text-success';
+                    $tituloContador.addClass('form-text text-success');
                 } else {
-                    tituloContador.className = 'form-text text-muted';
+                    $tituloContador.addClass('form-text text-muted');
                 }
 
-                // Validar
+                // Validación usando las funciones auxiliares
                 if (longitud === 0) {
-                    setInvalid(tituloInput, tituloFeedback, 'El título es obligatorio');
+                    setInvalid($tituloInput, $tituloFeedback, 'El título es obligatorio');
                 } else if (longitud < 5) {
-                    setInvalid(tituloInput, tituloFeedback, 'El título debe tener al menos 5 caracteres');
+                    setInvalid($tituloInput, $tituloFeedback, 'El título debe tener al menos 5 caracteres');
                 } else if (longitud > 100) {
-                    setInvalid(tituloInput, tituloFeedback, 'El título no puede exceder los 100 caracteres');
+                    setInvalid($tituloInput, $tituloFeedback, 'El título no puede exceder los 100 caracteres');
                 } else {
-                    setValid(tituloInput, tituloFeedback);
+                    setValid($tituloInput, $tituloFeedback);
                 }
             });
 
-            // 3. Validación de la descripción/contenido
-            descripcionInput.addEventListener('input', function() {
-                const valor = this.value.trim();
+            // 5. Validación de la descripción/contenido con jQuery
+            $descripcionInput.on('input', function() {
+                const valor = $(this).val().trim();
                 const longitud = valor.length;
+
+                // Calcular palabras usando split y filter con jQuery
                 const palabras = valor.split(/\s+/).filter(Boolean).length;
 
                 // Actualizar contador de caracteres
-                descripcionContador.textContent = `${longitud}/2000 caracteres`;
+                $descripcionContador.text(`${longitud}/2000 caracteres`);
 
-                // Cambiar color según longitud
+                // Cambiar color según longitud usando jQuery
+                $descripcionContador.removeClass('form-text text-muted text-success text-warning');
+
                 if (longitud > 1500) {
-                    descripcionContador.className = 'form-text text-warning';
+                    $descripcionContador.addClass('form-text text-warning');
                 } else if (longitud > 0) {
-                    descripcionContador.className = 'form-text text-success';
+                    $descripcionContador.addClass('form-text text-success');
                 } else {
-                    descripcionContador.className = 'form-text text-muted';
+                    $descripcionContador.addClass('form-text text-muted');
                 }
 
                 // Calcular tiempo de lectura (promedio de 200 palabras por minuto)
                 const minutos = Math.max(1, Math.ceil(palabras / 200));
-                tiempoLectura.textContent = `Tiempo de lectura: ${minutos} min`;
+                $tiempoLectura.text(`Tiempo de lectura: ${minutos} min`);
 
-                // Validar
+                // Validación
                 if (longitud === 0) {
-                    setInvalid(descripcionInput, descripcionFeedback, 'El contenido es obligatorio');
+                    setInvalid($descripcionInput, $descripcionFeedback, 'El contenido es obligatorio');
                 } else if (longitud < 20) {
-                    setInvalid(descripcionInput, descripcionFeedback, 'El contenido debe tener al menos 20 caracteres');
+                    setInvalid($descripcionInput, $descripcionFeedback, 'El contenido debe tener al menos 20 caracteres');
                 } else if (longitud > 2000) {
-                    setInvalid(descripcionInput, descripcionFeedback, 'El contenido no puede exceder los 2000 caracteres');
+                    setInvalid($descripcionInput, $descripcionFeedback, 'El contenido no puede exceder los 2000 caracteres');
                 } else {
-                    setValid(descripcionInput, descripcionFeedback);
+                    setValid($descripcionInput, $descripcionFeedback);
                 }
             });
 
-            // 4. Vista previa de imagen con FileReader API
-            imagenInput.addEventListener('change', function() {
+            // 6. Vista previa de imagen con FileReader API (jQuery)
+            $imagenInput.on('change', function() {
                 const file = this.files[0];
 
                 if (file) {
@@ -182,41 +205,40 @@
                     const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
                     if (!validTypes.includes(fileType)) {
-                        setInvalid(imagenInput, imagenFeedback, 'Solo se permiten imágenes en formato JPG o PNG');
-                        this.value = ''; // Limpiar input
+                        setInvalid($imagenInput, $imagenFeedback, 'Solo se permiten imágenes en formato JPG o PNG');
+                        $(this).val(''); // Limpiar input con jQuery
                         return;
                     }
 
                     // Validar tamaño (5MB máximo)
                     if (file.size > 5 * 1024 * 1024) {
-                        setInvalid(imagenInput, imagenFeedback, 'La imagen no puede superar los 5MB');
-                        this.value = ''; // Limpiar input
+                        setInvalid($imagenInput, $imagenFeedback, 'La imagen no puede superar los 5MB');
+                        $(this).val(''); // Limpiar input con jQuery
                         return;
                     }
 
-                    // Mostrar vista previa
+                    // Mostrar vista previa usando FileReader
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        previewImg.src = e.target.result;
-                        nuevaImagenPreview.style.display = 'block';
-                        setValid(imagenInput, imagenFeedback);
+                        $previewImg.attr('src', e.target.result);
+                        $nuevaImagenPreview.show(); // jQuery show() instead of style.display
+                        setValid($imagenInput, $imagenFeedback);
                     };
                     reader.readAsDataURL(file);
                 } else {
-                    nuevaImagenPreview.style.display = 'none';
+                    $nuevaImagenPreview.hide(); // jQuery hide() instead of style.display
                 }
             });
 
-            // 5. Botón para cancelar la selección de imagen
-            cancelarImagen.addEventListener('click', function() {
-                imagenInput.value = '';
-                nuevaImagenPreview.style.display = 'none';
-                setValid(imagenInput, imagenFeedback);
+            // 7. Botón para cancelar la selección de imagen (jQuery)
+            $cancelarImagen.on('click', function() {
+                $imagenInput.val('');
+                $nuevaImagenPreview.hide();
+                setValid($imagenInput, $imagenFeedback);
             });
 
-            // 6. Botón cancelar con confirmación
-            btnCancelar.addEventListener('click', function() {
-                // Usar SweetAlert2 si está disponible
+            // 8. Botón cancelar con confirmación (jQuery)
+            $btnCancelar.on('click', function() {
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         title: '¿Estás seguro?',
@@ -233,24 +255,23 @@
                         }
                     });
                 } else {
-                    // Alternativa con confirm básico
                     if (confirm('¿Estás seguro? Los cambios no guardados se perderán')) {
                         window.location.href = '../Controlador/ControladorPostInvestigacion.php';
                     }
                 }
             });
 
-            // 7. Validación del formulario al enviar
-            form.addEventListener('submit', function(event) {
-                // Trigger de validación para todos los campos
-                tituloInput.dispatchEvent(new Event('input'));
-                descripcionInput.dispatchEvent(new Event('input'));
+            // 9. Validación del formulario al enviar (jQuery)
+            $form.on('submit', function(event) {
+                // Disparar validación para todos los campos usando jQuery
+                $tituloInput.trigger('input');
+                $descripcionInput.trigger('input');
 
                 // Verificar si hay errores
-                if (document.querySelectorAll('.is-invalid').length > 0) {
+                if (!isFormValid()) {
                     event.preventDefault();
 
-                    // Mostrar mensaje de error
+                    // Mostrar mensaje de error con SweetAlert2
                     if (typeof Swal !== 'undefined') {
                         Swal.fire({
                             icon: 'error',
@@ -261,11 +282,13 @@
                         alert('Por favor, corrija los errores antes de continuar');
                     }
 
-                    // Hacer scroll al primer error
-                    document.querySelector('.is-invalid').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
+                    // Hacer scroll al primer error usando jQuery
+                    const $firstError = $('.is-invalid').first();
+                    if ($firstError.length) {
+                        $('html, body').animate({
+                            scrollTop: $firstError.offset().top - 100
+                        }, 500);
+                    }
                 } else {
                     // Mostrar indicador de carga si SweetAlert2 está disponible
                     if (typeof Swal !== 'undefined') {
@@ -282,22 +305,19 @@
                 }
             });
 
-            // 8. Trigger inicial para mostrar los contadores y validaciones iniciales
-            tituloInput.dispatchEvent(new Event('input'));
-            descripcionInput.dispatchEvent(new Event('input'));
+            // 10. Función de inicialización
+            function inicializar() {
+                // Mostrar fecha actual
+                mostrarFechaActualizacion();
 
-            // Funciones auxiliares
-            function setInvalid(input, feedback, message) {
-                input.classList.add('is-invalid');
-                input.classList.remove('is-valid');
-                feedback.textContent = message;
+                // Disparar validaciones iniciales para mostrar contadores
+                $tituloInput.trigger('input');
+                $descripcionInput.trigger('input');
             }
 
-            function setValid(input, feedback) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-                feedback.textContent = '';
-            }
+            // 11. Ejecutar inicialización
+            inicializar();
+
         });
     </script>
     </body>

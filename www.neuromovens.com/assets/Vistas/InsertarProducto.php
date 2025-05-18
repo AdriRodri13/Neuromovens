@@ -78,140 +78,140 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Referencias a elementos del DOM
-            const form = document.getElementById('form-insertar-producto');
-            const nombreInput = document.getElementById('nombre');
-            const descripcionInput = document.getElementById('descripcion');
-            const precioInput = document.getElementById('precio');
-            const categoriaSelect = document.getElementById('categoria_id');
-            const imagenInput = document.getElementById('imagen_url');
-            const imagenPreview = document.getElementById('imagen-preview');
-            const previewImg = document.getElementById('preview-img');
-            const btnCancelar = document.getElementById('btn-cancelar');
-            const contadorCaracteres = document.getElementById('contador-caracteres');
-            const mensajeRespuesta = document.getElementById('mensaje-respuesta');
+        $(document).ready(function() {
+            // Referencias a elementos del DOM usando jQuery
+            const $form = $('#form-insertar-producto');
+            const $nombreInput = $('#nombre');
+            const $descripcionInput = $('#descripcion');
+            const $precioInput = $('#precio');
+            const $categoriaSelect = $('#categoria_id');
+            const $imagenInput = $('#imagen_url');
+            const $imagenPreview = $('#imagen-preview');
+            const $previewImg = $('#preview-img');
+            const $btnCancelar = $('#btn-cancelar');
+            const $contadorCaracteres = $('#contador-caracteres');
+            const $mensajeRespuesta = $('#mensaje-respuesta');
 
             // Vista previa de imagen
-            imagenInput.addEventListener('change', function() {
+            $imagenInput.on('change', function() {
                 const file = this.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        previewImg.src = e.target.result;
-                        imagenPreview.style.display = 'block';
+                        $previewImg.attr('src', e.target.result);
+                        $imagenPreview.show();
                     }
                     reader.readAsDataURL(file);
                 } else {
-                    imagenPreview.style.display = 'none';
+                    $imagenPreview.hide();
                 }
             });
 
             // Contador de caracteres para la descripción
-            descripcionInput.addEventListener('input', function() {
-                const longitud = this.value.length;
-                contadorCaracteres.textContent = longitud + '/500 caracteres';
+            $descripcionInput.on('input', function() {
+                const longitud = $(this).val().length;
+                $contadorCaracteres.text(longitud + '/500 caracteres');
 
                 // Cambiar color según longitud
-                contadorCaracteres.className = 'form-text';
+                $contadorCaracteres.removeClass('text-warning text-success text-muted').addClass('form-text');
                 if (longitud > 400) {
-                    contadorCaracteres.classList.add('text-warning');
+                    $contadorCaracteres.addClass('text-warning');
                 } else if (longitud > 0) {
-                    contadorCaracteres.classList.add('text-success');
+                    $contadorCaracteres.addClass('text-success');
                 } else {
-                    contadorCaracteres.classList.add('text-muted');
+                    $contadorCaracteres.addClass('text-muted');
                 }
             });
 
             // Botón cancelar
-            btnCancelar.addEventListener('click', function() {
+            $btnCancelar.on('click', function() {
                 if (confirm('¿Estás seguro de cancelar? Los datos no se guardarán.')) {
                     window.location.href = '../Controlador/ControladorProductos.php';
                 }
             });
 
-            // Comprobar disponibilidad de nombre producto con fetch
-            nombreInput.addEventListener('blur', function() {
-                const nombre = this.value.trim();
+            // Comprobar disponibilidad de nombre producto con fetch (compatible con jQuery Slim)
+            $nombreInput.on('blur', function() {
+                const nombre = $(this).val().trim();
                 if (nombre.length >= 3) {
                     fetch('../Controlador/ajax_productos.php?accion=comprobar_nombre&nombre=' + encodeURIComponent(nombre))
                         .then(response => response.json())
                         .then(data => {
                             if (data.disponible === false) {
-                                mostrarError(nombreInput, document.getElementById('nombre-feedback'), 'Este nombre de producto ya existe');
+                                mostrarError($nombreInput, $('#nombre-feedback'), 'Este nombre de producto ya existe');
                             }
                         })
                         .catch(error => console.error('Error:', error));
                 }
             });
 
-            // Validación del formulario con fetch
-            form.addEventListener('submit', function(e) {
+            // Validación del formulario con jQuery AJAX
+            $form.on('submit', function(e) {
                 e.preventDefault();
 
                 // Validación cliente
                 let isValid = true;
 
                 // Validar nombre
-                const nombre = nombreInput.value.trim();
+                const nombre = $nombreInput.val().trim();
                 if (nombre === '') {
-                    mostrarError(nombreInput, document.getElementById('nombre-feedback'), 'El nombre es obligatorio');
+                    mostrarError($nombreInput, $('#nombre-feedback'), 'El nombre es obligatorio');
                     isValid = false;
                 } else if (nombre.length < 3) {
-                    mostrarError(nombreInput, document.getElementById('nombre-feedback'), 'El nombre debe tener al menos 3 caracteres');
+                    mostrarError($nombreInput, $('#nombre-feedback'), 'El nombre debe tener al menos 3 caracteres');
                     isValid = false;
                 } else {
-                    quitarError(nombreInput, document.getElementById('nombre-feedback'));
+                    quitarError($nombreInput, $('#nombre-feedback'));
                 }
 
                 // Validar descripción
-                const descripcion = descripcionInput.value.trim();
+                const descripcion = $descripcionInput.val().trim();
                 if (descripcion === '') {
-                    mostrarError(descripcionInput, document.getElementById('descripcion-feedback'), 'La descripción es obligatoria');
+                    mostrarError($descripcionInput, $('#descripcion-feedback'), 'La descripción es obligatoria');
                     isValid = false;
                 } else if (descripcion.length < 10) {
-                    mostrarError(descripcionInput, document.getElementById('descripcion-feedback'), 'La descripción debe tener al menos 10 caracteres');
+                    mostrarError($descripcionInput, $('#descripcion-feedback'), 'La descripción debe tener al menos 10 caracteres');
                     isValid = false;
                 } else {
-                    quitarError(descripcionInput, document.getElementById('descripcion-feedback'));
+                    quitarError($descripcionInput, $('#descripcion-feedback'));
                 }
 
                 // Validar precio
-                const precio = precioInput.value;
+                const precio = $precioInput.val();
                 if (precio === '') {
-                    mostrarError(precioInput, document.getElementById('precio-feedback'), 'El precio es obligatorio');
+                    mostrarError($precioInput, $('#precio-feedback'), 'El precio es obligatorio');
                     isValid = false;
                 } else if (parseFloat(precio) <= 0) {
-                    mostrarError(precioInput, document.getElementById('precio-feedback'), 'El precio debe ser mayor que 0');
+                    mostrarError($precioInput, $('#precio-feedback'), 'El precio debe ser mayor que 0');
                     isValid = false;
                 } else {
-                    quitarError(precioInput, document.getElementById('precio-feedback'));
+                    quitarError($precioInput, $('#precio-feedback'));
                 }
 
                 // Validar categoría
-                const categoria = categoriaSelect.value;
+                const categoria = $categoriaSelect.val();
                 if (!categoria) {
-                    mostrarError(categoriaSelect, document.getElementById('categoria-feedback'), 'Selecciona una categoría');
+                    mostrarError($categoriaSelect, $('#categoria-feedback'), 'Selecciona una categoría');
                     isValid = false;
                 } else {
-                    quitarError(categoriaSelect, document.getElementById('categoria-feedback'));
+                    quitarError($categoriaSelect, $('#categoria-feedback'));
                 }
 
                 // Validar imagen
-                const imagen = imagenInput.files[0];
+                const imagen = $imagenInput[0].files[0];
                 if (!imagen) {
-                    mostrarError(imagenInput, document.getElementById('imagen-feedback'), 'Selecciona una imagen');
+                    mostrarError($imagenInput, $('#imagen-feedback'), 'Selecciona una imagen');
                     isValid = false;
                 } else {
                     const tipoPermitido = ['image/jpeg', 'image/png', 'image/jpg'];
                     if (!tipoPermitido.includes(imagen.type)) {
-                        mostrarError(imagenInput, document.getElementById('imagen-feedback'), 'Solo se permiten imágenes JPG y PNG');
+                        mostrarError($imagenInput, $('#imagen-feedback'), 'Solo se permiten imágenes JPG y PNG');
                         isValid = false;
                     } else if (imagen.size > 5 * 1024 * 1024) { // 5MB max
-                        mostrarError(imagenInput, document.getElementById('imagen-feedback'), 'La imagen no puede superar 5MB');
+                        mostrarError($imagenInput, $('#imagen-feedback'), 'La imagen no puede superar 5MB');
                         isValid = false;
                     } else {
-                        quitarError(imagenInput, document.getElementById('imagen-feedback'));
+                        quitarError($imagenInput, $('#imagen-feedback'));
                     }
                 }
 
@@ -223,7 +223,7 @@
                 // Mostrar indicador de carga
                 mostrarMensaje('info', 'Procesando...');
 
-                // Preparar datos para envío con fetch
+                // Preparar datos para envío con fetch (compatible con jQuery Slim)
                 const formData = new FormData(this);
 
                 fetch('../Controlador/ajax_productos.php', {
@@ -241,8 +241,8 @@
                             mostrarMensaje('success', 'Producto creado correctamente');
 
                             setTimeout(function() {
-                                form.reset();
-                                imagenPreview.style.display = 'none';
+                                $form[0].reset();
+                                $imagenPreview.hide();
                                 window.location.href = '../Controlador/ControladorProductos.php';
                             }, 1500);
                         } else {
@@ -255,22 +255,19 @@
             });
 
             // Funciones auxiliares
-            function mostrarError(campo, feedback, mensaje) {
-                campo.classList.add('is-invalid');
-                feedback.textContent = mensaje;
-                feedback.style.display = 'block';
+            function mostrarError($campo, $feedback, mensaje) {
+                $campo.addClass('is-invalid');
+                $feedback.text(mensaje).show();
             }
 
-            function quitarError(campo, feedback) {
-                campo.classList.remove('is-invalid');
-                feedback.textContent = '';
-                feedback.style.display = 'none';
+            function quitarError($campo, $feedback) {
+                $campo.removeClass('is-invalid');
+                $feedback.text('').hide();
             }
 
             function mostrarMensaje(tipo, mensaje) {
-                mensajeRespuesta.className = 'alert alert-' + tipo;
-                mensajeRespuesta.textContent = mensaje;
-                mensajeRespuesta.style.display = 'block';
+                $mensajeRespuesta.removeClass().addClass('alert alert-' + tipo);
+                $mensajeRespuesta.text(mensaje).show();
             }
         });
     </script>
