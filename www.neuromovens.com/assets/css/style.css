@@ -67,17 +67,14 @@ ul li strong {
 
 .destacado {
     color: #ff440c;
-    /* Color de énfasis */
     font-weight: bold;
     background-color: #ffc374;
-    /* Color de fondo suave */
     padding: 1px 3px;
     border-radius: 3px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Cabecera */
-
+/* Cabecera - Mobile First */
 
 header {
     background-color: var(--color-principal);
@@ -94,7 +91,6 @@ header .logo:hover img {
     transform: rotate(5deg);
 }
 
-/* Otros estilos para la imagen */
 header img {
     max-height: 90px;
     width: auto;
@@ -102,7 +98,6 @@ header img {
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
-/* Efectos al pasar el cursor por el contenedor */
 header .logo:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px var(--color-sombra-intensa);
@@ -128,18 +123,19 @@ nav {
     justify-content: flex-end;
 }
 
+/* Navegación - Mobile First */
 nav a {
     color: var(--color-blanco);
     border: var(--color-blanco) 2px solid;
-    margin: 0 1.5em;
-    padding: .7em 1.25em;
+    margin: 0 0.75em;
+    padding: 0.5em 1em;
     border-radius: 1.25em;
     font-weight: 500;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-size: 1.25rem;
-    letter-spacing: 0.0625em;
+    font-size: 1rem;
+    letter-spacing: 0.03125em;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
@@ -167,19 +163,16 @@ nav a.active {
     transform: none;
 }
 
-/* Titulos */
+/* Títulos - Mobile First */
 
 .title {
     color: var(--color-principal);
-    font-size: 5em;
+    font-size: 3em;
     text-align: center;
     margin-bottom: 1em;
     text-transform: uppercase;
-
     letter-spacing: 2px;
-
     background: linear-gradient(45deg, var(--color-principal), #ff6f61);
-
     -webkit-background-clip: text;
     background-clip: text;
     transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.3s ease;
@@ -187,21 +180,22 @@ nav a.active {
 
 .title:hover {
     transform: scale(1.1) rotate(-2deg);
-
     color: var(--color-principal);
-
     text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8);
-
 }
 
-/* Inicio */
+/* Inicio - Mobile First */
 
+section {
+    padding: 10px;
+}
 
 .equipo {
     background-color: var(--color-principal);
     border-radius: 1em;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    padding: 20px;
 }
 
 .equipo:hover {
@@ -213,12 +207,6 @@ nav a.active {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: opacity 0.5s ease-in-out;
-}
-
-
-.equipo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .tarjeta {
@@ -264,10 +252,10 @@ nav a.active {
     box-shadow: 0 10px 20px var(--color-sombra);
 }
 
-/* Investigacion */
+/* Investigación - Mobile First */
 
 .section-container {
-    max-width: 80%;
+    max-width: 90%;
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
@@ -288,17 +276,14 @@ nav a.active {
 
 .section-container:hover h2 {
     color: var(--color-secundario);
-    /* Cambia a un color diferente al pasar el mouse */
 }
 
 .section-1 {
     background-color: #f8f9fa;
-    /* Color de fondo claro */
 }
 
 .section-2 {
     background-color: #e9ecef;
-    /* Color de fondo diferente */
 }
 
 .section-content {
@@ -319,7 +304,6 @@ nav a.active {
     transform: scale(1.05);
 }
 
-
 .section-container.slide-in-left {
     transform: translateX(-100%);
 }
@@ -337,10 +321,10 @@ nav a.active {
     padding: 20px;
 }
 
-/* Productos */
+/* Productos - Mobile First */
 
 .category-section {
-    max-width: 80%;
+    max-width: 95%;
     margin: 30px auto;
     padding: 20px;
     border-radius: 8px;
@@ -353,7 +337,9 @@ nav a.active {
 
 .product-card {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ddd;
@@ -370,7 +356,8 @@ nav a.active {
 .product-image {
     max-width: 200px;
     width: 100%;
-    margin-right: 20px;
+    margin-right: 0;
+    margin-bottom: 15px;
 }
 
 .product-image img {
@@ -394,10 +381,10 @@ nav a.active {
     margin-top: 10px;
 }
 
-/* Contacto */
+/* Contacto - Mobile First */
 
 .contact-section {
-    max-width: 80%;
+    max-width: 95%;
     margin: 40px auto;
     padding: 20px;
     background-color: #f8f9fa;
@@ -441,11 +428,10 @@ nav a.active {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-
 .contact-form {
-    max-width: 80%;
+    max-width: 95%;
     margin: 40px auto;
-    padding: 20px;
+    padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -469,7 +455,7 @@ nav a.active {
     font-size: 1.1em;
 }
 
-/* Iniciar sesion */
+/* Iniciar sesión */
 
 .login-container {
     max-width: 40em;
@@ -539,7 +525,7 @@ nav a.active {
     background-color: var(--color-suave);
 }
 
-/* Formulario para actualizar post*/
+/* Formulario para actualizar post */
 
 .form-container {
     background-color: var(--color-blanco);
@@ -600,73 +586,63 @@ nav a.active {
     margin-bottom: 20px;
 }
 
-/*Centrar botones DIV */
+/* Centrar botones DIV */
 
-.botones{
+.botones {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:5px;
+    gap: 5px;
 }
 
-.botones a{
-    width:5em;
+.botones a {
+    width: 5em;
 }
 
+/* Media Queries - Tablet y pantallas medianas (768px y arriba) */
 
-
-/* Moviles y pantallas pequeñas */
-
-@media screen and (max-width: 768px) {
-    section {
-        padding: 10px;
+@media screen and (min-width: 768px) {
+    /* Títulos */
+    .title {
+        font-size: 5em;
     }
 
-    .equipo {
+    /* Navegación */
+    nav a {
+        margin: 0 1.5em;
+        padding: .7em 1.25em;
+        font-size: 1.25rem;
+        letter-spacing: 0.0625em;
+    }
+
+    /* Inicio */
+    section {
         padding: 20px;
     }
 
+    /* Investigación */
     .section-container {
-        max-width: 90%;
+        max-width: 80%;
     }
 
+    /* Productos */
     .category-section {
-        max-width: 95%;
-
+        max-width: 80%;
     }
 
     .product-card {
-        flex-direction: column;
-        /* Vuelve a fila en pantallas grandes */
-        align-items: center;
-        text-align: center;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
     }
 
-    .title {
-        font-size: 3em;
+    .product-image {
+        margin-right: 20px;
+        margin-bottom: 0;
     }
 
-    nav a {
-        margin: 0 0.75em;
-        padding: 0.5em 1em;
-        border-radius: 1.25em;
-        font-size: 1rem;
-        letter-spacing: 0.03125em;
-    }
-
-    .contact-form {
-        max-width: 95%;
-        padding: 15px;
-    }
-
-    .contact-section {
-        max-width: 95%;
-    }
-}
-
-
-@media (min-width: 768px) {
+    /* Contacto */
     .contact-content {
         display: flex;
         align-items: center;
@@ -682,10 +658,13 @@ nav a.active {
     .contact-map iframe {
         height: 400px;
     }
+
+    .contact-form {
+        max-width: 80%;
+        padding: 20px;
+    }
+
+    .contact-section {
+        max-width: 80%;
+    }
 }
-
-
-
-
-
-
