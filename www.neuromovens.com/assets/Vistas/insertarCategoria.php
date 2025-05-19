@@ -1,6 +1,6 @@
 <?php include '../Compartido/header.php'; ?>
 
-    <body class="bg-light">
+    <body class="bg-light ">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">

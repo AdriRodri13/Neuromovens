@@ -1,6 +1,6 @@
 <?php include '../Compartido/header.php';?>
 
-    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center vh-100 gap-4">
+    <div class="  d-flex flex-column flex-sm-row justify-content-center align-items-center vh-100 gap-4">
         <div class="login-container">
             <div class="login-header">Iniciar Sesión</div>
 

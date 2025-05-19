@@ -502,27 +502,7 @@ $(document).ready(function() {
         }
     }
 
-    /**
-     * ===============================================
-     * SECCIÓN 8: MANEJO DE ERRORES GLOBALES
-     * ===============================================
-     */
 
-    /**
-     * Manejador de errores globales no capturados
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en InsertarProducto.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-        }
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
 
     /**
      * ===============================================
@@ -533,22 +513,6 @@ $(document).ready(function() {
     // Ejecutar inicialización cuando el DOM esté completamente listo
     inicializarFormulario();
 
-    /**
-     * ===============================================
-     * SECCIÓN 10: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
 
-    // Exponer algunas funciones al scope global para testing
-    window.InsertarProductoValidator = {
-        validarNombre: validarNombre,
-        validarDescripcion: validarDescripcion,
-        validarPrecio: validarPrecio,
-        validarCategoria: validarCategoria,
-        validarImagen: validarImagen,
-        limpiarFormulario: limpiarFormulario,
-        verificarDisponibilidadNombre: verificarDisponibilidadNombre,
-        config: VALIDACION_CONFIG
-    };
 
 });

@@ -253,21 +253,6 @@ $(document).ready(function() {
      */
     inicializar();
 
-    /**
-     * ===============================================
-     * SECCIÓN 6: MANEJO DE ERRORES GLOBALES (OPCIONAL)
-     * ===============================================
-     */
 
-    /**
-     * Manejador opcional para errores no capturados
-     * Útil para debugging en desarrollo
-     */
-    $(window).on('error', function(event) {
-        console.error('Error en CargarCategoria.js:', event.originalEvent.error);
-
-        // En producción, esto podría enviar el error a un servicio de logging
-        // Por ejemplo: enviarErrorAServidor(event.originalEvent.error);
-    });
 
 });

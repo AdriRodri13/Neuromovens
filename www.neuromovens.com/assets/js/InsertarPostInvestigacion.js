@@ -370,27 +370,7 @@ $(document).ready(function() {
         $tituloInput.focus();
     }
 
-    /**
-     * ===============================================
-     * SECCIÓN 7: MANEJO DE ERRORES GLOBALES
-     * ===============================================
-     */
 
-    /**
-     * Manejador de errores globales no capturados
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en InsertarPostInvestigacion.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-        }
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
 
     /**
      * ===============================================
@@ -401,20 +381,6 @@ $(document).ready(function() {
     // Ejecutar inicialización cuando el DOM esté completamente listo
     inicializarFormulario();
 
-    /**
-     * ===============================================
-     * SECCIÓN 9: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
 
-    // Exponer algunas funciones al scope global para testing
-    window.InsertarPostValidator = {
-        validarTitulo: validarTitulo,
-        validarDescripcion: validarDescripcion,
-        validarImagen: validarImagen,
-        calcularTiempoLectura: calcularTiempoLectura,
-        limpiarFormulario: limpiarFormulario,
-        config: VALIDACION_CONFIG
-    };
 
 });

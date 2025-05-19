@@ -172,7 +172,7 @@ $(document).ready(function() {
         // Todo válido - mostrar loading y simular envío
         $btnEnviar.prop('disabled', true).text('Enviando...');
 
-        // Simular envío (aquí iría la petición AJAX real)
+
         setTimeout(() => {
             alert('¡Consulta enviada correctamente!');
 

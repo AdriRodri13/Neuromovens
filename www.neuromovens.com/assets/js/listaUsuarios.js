@@ -528,31 +528,6 @@ $(document).ready(function() {
     }
 
     /**
-     * ===============================================
-     * SECCIÓN 8: MANEJO DE ERRORES GLOBALES
-     * ===============================================
-     */
-
-    /**
-     * Manejador de errores globales no capturados
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en ListarUsuarios.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-        }
-
-        // Limpiar estado en caso de error
-        limpiarEstado();
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
-
-    /**
      * Manejo de errores de red específicos
      */
     $(window).on('offline', function() {

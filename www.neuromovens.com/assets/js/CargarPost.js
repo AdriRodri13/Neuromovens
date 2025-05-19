@@ -457,45 +457,12 @@ $(document).ready(function() {
         }
     }
 
-    /**
-     * ===============================================
-     * SECCIÓN 8: MANEJO DE ERRORES Y DEBUGGING
-     * ===============================================
-     */
 
-    /**
-     * Manejador de errores globales para debugging
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en CargarPost.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-        }
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
 
     /**
      * Ejecutar inicialización cuando el DOM esté completamente listo
      */
     inicializarFormulario();
 
-    /**
-     * ===============================================
-     * SECCIÓN 9: FUNCIONES PÚBLICAS (OPCIONAL)
-     * ===============================================
-     */
-
-    // Exposer algunas funciones al scope global si es necesario para testing
-    window.PostFormValidator = {
-        validarTitulo: validarTitulo,
-        validarDescripcion: validarDescripcion,
-        calcularTiempoLectura: calcularTiempoLectura,
-        isFormValid: isFormValid
-    };
 
 });

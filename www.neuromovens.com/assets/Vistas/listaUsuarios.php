@@ -201,9 +201,6 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
 
     <!-- Botones de acción -->
     <div class="mt-4 d-flex flex-column flex-md-row gap-2">
-        <a href="../Controlador/ControladorUsuario.php?accion=crear" class="btn btn-success">
-            <i class="fas fa-plus me-2"></i> Añadir Usuario
-        </a>
         <button onclick="window.print()" class="btn btn-outline-secondary">
             <i class="fas fa-print me-2"></i> Imprimir Lista
         </button>
