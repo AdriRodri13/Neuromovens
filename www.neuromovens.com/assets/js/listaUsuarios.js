@@ -43,7 +43,7 @@ $(document).ready(function() {
     // Configuración
     const CONFIG = {
         debounceDelay: 500, // Tiempo de espera antes de buscar (ms)
-        usuariosPorPagina: 10,
+        usuariosPorPagina: 5,
         endpoints: {
             buscar: '../Controlador/ControladorUsuario.php',
             listar: '../Controlador/ControladorUsuario.php?accion=listar_paginado'
@@ -528,31 +528,6 @@ $(document).ready(function() {
     }
 
     /**
-     * ===============================================
-     * SECCIÓN 8: MANEJO DE ERRORES GLOBALES
-     * ===============================================
-     */
-
-    /**
-     * Manejador de errores globales no capturados
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en ListarUsuarios.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-        }
-
-        // Limpiar estado en caso de error
-        limpiarEstado();
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
-
-    /**
      * Manejo de errores de red específicos
      */
     $(window).on('offline', function() {
@@ -575,19 +550,5 @@ $(document).ready(function() {
     // Ejecutar inicialización cuando el DOM esté completamente listo
     inicializarLista();
 
-    /**
-     * ===============================================
-     * SECCIÓN 10: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
-
-    // Exponer algunas funciones al scope global para testing
-    window.ListarUsuariosManager = {
-        buscarUsuarios: buscarUsuarios,
-        limpiarEstado: limpiarEstado,
-        getEstadoBusqueda: getEstadoBusqueda,
-        actualizarTablaUsuarios: actualizarTablaUsuarios,
-        config: CONFIG
-    };
 
 });

@@ -517,21 +517,6 @@ $(document).ready(function() {
     // Aplicar mejoras visuales
     aplicarMejorasVisuales();
 
-    /**
-     * ===============================================
-     * SECCIÓN 10: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
 
-    // Exponer algunas funciones al scope global para testing
-    window.UsuarioFormValidator = {
-        validarNombreUsuario: validarNombreUsuario,
-        validarEmail: validarEmail,
-        validarRol: validarRol,
-        isFormValid: isFormValid,
-        detectarCambios: detectarCambios,
-        mostrarFechaModificacion: mostrarFechaModificacion,
-        config: VALIDACION_CONFIG
-    };
 
 });

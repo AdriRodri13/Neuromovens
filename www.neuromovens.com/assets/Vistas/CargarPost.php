@@ -43,15 +43,7 @@ include '../Compartido/header.php';
                                            autocomplete="off">
                                 </div>
                                 <div id="titulo-feedback" class="invalid-feedback"></div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Entre 5 y 100 caracteres
-                                    </small>
-                                    <small id="titulo-contador" class="form-text text-muted fw-bold">
-                                        0/100 caracteres
-                                    </small>
-                                </div>
+
                             </div>
 
                             <!-- Campo para la descripción/contenido -->
@@ -67,22 +59,7 @@ include '../Compartido/header.php';
                                           placeholder="Escriba aquí el contenido detallado de su investigación..."
                                           required><?= htmlspecialchars($post->getContenido()); ?></textarea>
                                 <div id="descripcion-feedback" class="invalid-feedback"></div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <div>
-                                        <small id="descripcion-contador" class="form-text text-muted fw-bold">
-                                            0/2000 caracteres
-                                        </small>
-                                        <span class="mx-2">•</span>
-                                        <small id="tiempo-lectura" class="form-text text-info">
-                                            <i class="fas fa-clock me-1"></i>
-                                            Tiempo de lectura: 0 min
-                                        </small>
-                                    </div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-lightbulb me-1"></i>
-                                        Mín. 20 caracteres
-                                    </small>
-                                </div>
+
                             </div>
 
                             <!-- Sección de gestión de imágenes -->
@@ -128,10 +105,7 @@ include '../Compartido/header.php';
                                                accept="image/jpeg,image/png,image/jpg">
                                     </div>
                                     <div id="imagen-feedback" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        JPG, PNG • Máx. 5MB
-                                    </small>
+
 
                                     <!-- Vista previa de nueva imagen -->
                                     <div id="nueva-imagen-preview" class="mt-3 border rounded p-3 bg-light" style="display: none;">
@@ -158,33 +132,7 @@ include '../Compartido/header.php';
                                 </div>
                             </div>
 
-                            <!-- Información adicional -->
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">
-                                        <i class="fas fa-clock me-1"></i>
-                                        Última Actualización
-                                    </label>
-                                    <div class="input-group">
-                                            <span class="input-group-text bg-light">
-                                                <i class="fas fa-calendar-alt"></i>
-                                            </span>
-                                        <div id="fecha-actualizacion" class="form-control bg-light text-muted">
-                                            <i class="fas fa-spinner fa-spin me-2"></i>
-                                            Actualizando fecha...
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold text-muted">
-                                        <i class="fas fa-key me-1"></i>
-                                        ID del Post
-                                    </label>
-                                    <div class="form-control-plaintext bg-light px-3 py-2 rounded border">
-                                        #<?= $post->getId(); ?>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <!-- Botones de acción -->
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
@@ -204,16 +152,7 @@ include '../Compartido/header.php';
                         </form>
                     </div>
 
-                    <!-- Footer del Card -->
-                    <div class="card-footer bg-light text-center text-muted">
-                        <small>
-                            <i class="fas fa-shield-alt me-1"></i>
-                            Sus cambios serán guardados de forma segura
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-search me-1"></i>
-                            El post estará disponible inmediatamente después de actualizar
-                        </small>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -517,28 +517,7 @@ $(document).ready(function() {
         }
     }
 
-    /**
-     * ===============================================
-     * SECCIÓN 8: MANEJO DE ERRORES GLOBALES
-     * ===============================================
-     */
 
-    /**
-     * Manejador de errores globales no capturados
-     */
-    $(window).on('error', function(event) {
-        const error = event.originalEvent.error;
-        console.error('Error no manejado en ActualizarProducto.js:', error);
-
-        // En desarrollo, mostrar más detalles
-        if (window.location.hostname === 'localhost') {
-            console.error('Stack trace:', error.stack);
-            console.error('Información del evento:', event.originalEvent);
-        }
-
-        // En producción, enviar error a servicio de logging
-        // enviarErrorAServidor(error);
-    });
 
     /**
      * ===============================================
@@ -549,22 +528,6 @@ $(document).ready(function() {
     // Ejecutar inicialización cuando el DOM esté completamente listo
     inicializarFormulario();
 
-    /**
-     * ===============================================
-     * SECCIÓN 10: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
 
-    // Exponer algunas funciones al scope global para testing
-    window.ProductoFormValidator = {
-        validarNombre: validarNombre,
-        validarDescripcion: validarDescripcion,
-        validarPrecio: validarPrecio,
-        validarCategoria: validarCategoria,
-        validarImagenArchivo: validarImagenArchivo,
-        isFormValid: isFormValid,
-        establecerFechaActual: establecerFechaActual,
-        config: VALIDACION_CONFIG
-    };
 
 });

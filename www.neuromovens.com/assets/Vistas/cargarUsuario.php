@@ -27,46 +27,48 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                             <input type="hidden" name="usuario[id]" value="<?= $usuario->getId(); ?>">
 
                             <!-- Información del usuario -->
-                            <div class="row mb-4">
-                                <div class="col-md-8">
-                                    <label class="form-label fw-semibold">
-                                        <i class="fas fa-user me-1"></i>
-                                        Usuario Actual
-                                    </label>
-                                    <div class="d-flex align-items-center">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-3 p-md-4">
+                                    <!-- Usuario -->
+                                    <div class="d-flex align-items-center mb-3">
                                         <div class="me-3">
-                                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                                <i class="fas fa-user text-white fs-4"></i>
+                                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                 style="width: 50px; height: 50px;">
+                                                <i class="fas fa-user text-white"></i>
                                             </div>
                                         </div>
-                                        <div>
-                                            <h5 class="mb-1"><?= htmlspecialchars($usuario->getNombreUsuario()); ?></h5>
-                                            <small class="text-muted">ID: #<?= $usuario->getId(); ?></small>
+                                        <div class="flex-grow-1 min-w-0">
+                                            <h5 class="mb-1 text-truncate">
+                                                <?= htmlspecialchars($usuario->getNombreUsuario()); ?>
+                                            </h5>
+                                            <span class="badge bg-light text-dark">
+                                                ID: #<?= $usuario->getId(); ?>
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label fw-semibold text-muted">
-                                        <i class="fas fa-shield-alt me-1"></i>
-                                        Rol Actual
-                                    </label>
-                                    <div class="mt-2">
-                                        <?php if ($usuario->getRol()->name == 'jefe'): ?>
-                                            <span class="badge bg-danger fs-6">
-                                                    <i class="fas fa-crown me-1"></i>
-                                                    Jefe
+
+                                    <!-- Rol -->
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                        <div class="d-flex align-items-center">
+                                            <?php if ($usuario->getRol()->name == 'jefe'): ?>
+                                                <span class="badge bg-danger">
+                                                    <i class="fas fa-crown me-1"></i> Jefe
                                                 </span>
-                                        <?php elseif ($usuario->getRol()->name == 'administrador'): ?>
-                                            <span class="badge bg-warning fs-6">
-                                                    <i class="fas fa-user-cog me-1"></i>
-                                                    Administrador
+                                            <?php elseif ($usuario->getRol()->name == 'administrador'): ?>
+                                                <span class="badge bg-warning">
+                                                    <i class="fas fa-user-cog me-1"></i> Administrador
                                                 </span>
-                                        <?php else: ?>
-                                            <span class="badge bg-secondary fs-6">
-                                                    <i class="fas fa-user me-1"></i>
-                                                    Visitante
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">
+                                                    <i class="fas fa-user me-1"></i> Visitante
                                                 </span>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-circle me-1" style="font-size: 0.5rem;"></i>
+                                            Activo
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -93,15 +95,7 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                                            autocomplete="username">
                                 </div>
                                 <div id="nombre-usuario-feedback" class="invalid-feedback"></div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Solo letras, números y guiones bajos
-                                    </small>
-                                    <small id="nombre-usuario-contador" class="form-text text-muted fw-bold">
-                                        0/30 caracteres
-                                    </small>
-                                </div>
+
                             </div>
 
                             <!-- Campo Email -->
@@ -124,10 +118,7 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                                            autocomplete="email">
                                 </div>
                                 <div id="email-feedback" class="invalid-feedback"></div>
-                                <small id="email-helper" class="form-text text-muted">
-                                    <i class="fas fa-lightbulb me-1"></i>
-                                    Formato: usuario@dominio.com
-                                </small>
+
                             </div>
 
                             <!-- Campo Contraseña (Solo lectura) -->
@@ -151,10 +142,7 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                                     </div>
                                     <input type="hidden" name="usuario[contra]" value="<?= htmlspecialchars($usuario->getContra()); ?>">
                                 </div>
-                                <small class="form-text text-muted">
-                                    <i class="fas fa-info-circle me-1"></i>
-                                    La contraseña no se puede modificar desde este formulario
-                                </small>
+
                             </div>
 
                             <!-- Campo Rol -->
@@ -184,10 +172,7 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                                         </select>
                                     </div>
                                     <div id="rol-feedback" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Seleccione el nivel de acceso para este usuario
-                                    </small>
+
                                 </div>
                             <?php else: ?>
                                 <input type="hidden" name="usuario[rol]" value="<?= $usuario->getRol()->name; ?>">
@@ -218,29 +203,10 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                                 </div>
                             <?php endif; ?>
 
-                            <!-- Fecha de Modificación -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">
-                                    <i class="fas fa-clock me-1"></i>
-                                    Última Modificación
-                                </label>
-                                <div class="input-group">
-                                        <span class="input-group-text bg-light">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
-                                    <div id="fecha-modificacion" class="form-control bg-light text-muted">
-                                        <i class="fas fa-spinner fa-spin me-2"></i>
-                                        Cargando fecha...
-                                    </div>
-                                </div>
-                                <small class="form-text text-muted">
-                                    <i class="fas fa-lightbulb me-1"></i>
-                                    Fecha automática de última actualización
-                                </small>
-                            </div>
+
 
                             <!-- Botones de Acción -->
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+                            <div class="d-grid gap-2 d-md-flex justify-content-center mt-5">
                                 <button type="button"
                                         id="btn-cancelar"
                                         class="btn btn-outline-secondary btn-lg me-md-2">
@@ -257,16 +223,7 @@ $usuario = unserialize($_SESSION['usuarioUpdate']);
                         </form>
                     </div>
 
-                    <!-- Footer del Card -->
-                    <div class="card-footer bg-light text-center text-muted">
-                        <small>
-                            <i class="fas fa-shield-alt me-1"></i>
-                            Los cambios se aplicarán inmediatamente
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-user-check me-1"></i>
-                            Usuario verificado y validado
-                        </small>
-                    </div>
+
                 </div>
             </div>
         </div>

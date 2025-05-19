@@ -12,7 +12,6 @@ $(document).ready(function() {
         }
     });
 
-    // Configura el Intersection Observer (esta API no tiene equivalente jQuery directo)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

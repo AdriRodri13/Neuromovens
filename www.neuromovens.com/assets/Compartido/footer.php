@@ -1,6 +1,9 @@
 <?php
 
-echo '<footer class="bg-secondary text-white py-4">
+echo '
+</main>
+
+<footer class="bg-secondary text-white py-4">
         <div class="container">
             <div class="row">
                 <!-- Columna de contacto ampliada a la izquierda -->

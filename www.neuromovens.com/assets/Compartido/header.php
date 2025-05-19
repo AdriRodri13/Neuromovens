@@ -64,34 +64,79 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-
-
-
 </head>
 
 <body>
-<header class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center p-3">
-    <!-- Logo y marca -->
-    <div class="logo d-flex flex-column align-items-center">
-        <img src="../images/neuronaBuena.png" alt="Logo NeuroMovens" class="mb-3 mb-md">
-        <h1 class="texto_logo">NeuroMovens</h1>
+<header class="container-fluid p-3">
+    <div class="d-flex justify-content-center justify-content-lg-between align-items-center">
+        <!-- Logo y marca -->
+        <div class="logo d-flex flex-column align-items-center">
+            <img src="../images/neuronaBuena.png" alt="Logo NeuroMovens" class="mb-3 mb-md-0">
+            <h1 class="texto_logo">NeuroMovens</h1>
+        </div>
+
+        <!-- Navegación para desktop -->
+        <nav class="d-none d-lg-flex">
+            <a href="../../index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'index.php' ? 'active' : ''); ?>">
+                Quiénes Somos <i class="fa-solid fa-magnifying-glass ms-2"></i>
+            </a>
+            <a href="../Controlador/ControladorPostInvestigacion.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Investigacion' ? 'active' : ''); ?>">
+                Investigación <i class="fa-solid fa-flask ms-2"></i>
+            </a>
+            <a href="../Controlador/ControladorProductos.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Productos' ? 'active' : ''); ?>">
+                Productos <i class="fa-solid fa-wheelchair ms-2"></i>
+            </a>
+            <a href="contacto.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Contacto' ? 'active' : ''); ?>">
+                Contacto <i class="fa-solid fa-phone ms-2"></i>
+            </a>
+            <?php
+            if(!$sesion_usuario){
+                echo '<a id="iniciarSesion" href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesión <i class="fa-solid fa-user ms-2"></i></a>';
+            } else {
+                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">Cerrar Sesion</span> <i class="fa-solid fa-user ms-2"></i></a>';
+                if($_SESSION['rol'] == 'jefe'){
+                    echo '<a id="listaUsuarios" href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administración <i class="fa-regular fa-note-sticky ms-2"></i></a>';
+                }
+            }
+            ?>
+        </nav>
     </div>
 
-    <!-- Navegación principal -->
-    <nav class="d-flex flex-column justify-content-end flex-sm-row w-100 flex-wrap mt-3 mt-sm-0">
-        <a href="../../index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'index.php' ? 'active' : ''); ?>">Quiénes Somos<i class="fa-solid fa-magnifying-glass"></i></a>
-        <a href="../Controlador/ControladorPostInvestigacion.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Investigacion' ? 'active' : ''); ?>">Investigación<i class="fa-solid fa-flask"></i></a>
-        <a href="../Controlador/ControladorProductos.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Productos' ? 'active' : ''); ?>">Productos<i class="fa-solid fa-wheelchair"></i></a>
-        <a href="contacto.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Contacto' ? 'active' : ''); ?>">Contacto<i class="fa-solid fa-phone"></i></a>
-        <?php
-        if(!$sesion_usuario){
-            echo '<a id="iniciarSesion" href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesión<i class="fa-solid fa-user"></i></a>';
-        } else {
-            echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . htmlspecialchars($nombre_usuario) . '</span><i class="fa-solid fa-user"></i></a>';
-            if($_SESSION['rol'] == 'jefe'){
-                echo '<a id="listaUsuarios" href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administración<i class="fa-regular fa-note-sticky"></i></a>';
+    <!-- Botón hamburguesa para móviles y tablets (debajo del logo) -->
+    <div class="d-flex justify-content-center d-lg-none mt-3">
+        <button class="navbar-toggler border-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- Navegación colapsable para móviles y tablets -->
+    <div class="collapse w-100 mt-3" id="navbarNav">
+        <nav class="d-flex flex-column">
+            <a href="../../index.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'index.php' ? 'active' : ''); ?>">
+                Quiénes Somos <i class="fa-solid fa-magnifying-glass ms-2"></i>
+            </a>
+            <a href="../Controlador/ControladorPostInvestigacion.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Investigacion' ? 'active' : ''); ?>">
+                Investigación <i class="fa-solid fa-flask ms-2"></i>
+            </a>
+            <a href="../Controlador/ControladorProductos.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Productos' ? 'active' : ''); ?>">
+                Productos <i class="fa-solid fa-wheelchair ms-2"></i>
+            </a>
+            <a href="contacto.php" class="d-flex align-items-center justify-content-center mx-2 my-1 <?php echo ($current_page == 'Contacto' ? 'active' : ''); ?>">
+                Contacto <i class="fa-solid fa-phone ms-2"></i>
+            </a>
+            <?php
+            if(!$sesion_usuario){
+                echo '<a id="iniciarSesion" href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesión <i class="fa-solid fa-user ms-2"></i></a>';
+            } else {
+                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">Cerrar Sesion</span> <i class="fa-solid fa-user ms-2"></i></a>';
+                if($_SESSION['rol'] == 'jefe'){
+                    echo '<a id="listaUsuarios" href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administración <i class="fa-regular fa-note-sticky ms-2"></i></a>';
+                }
             }
-        }
-        ?>
-    </nav>
+            ?>
+        </nav>
+    </div>
 </header>
+
+<main class="container my-4">
+

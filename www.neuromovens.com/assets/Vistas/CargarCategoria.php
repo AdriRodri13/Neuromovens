@@ -41,15 +41,7 @@ include '../Compartido/header.php';
                                            autocomplete="off">
                                 </div>
                                 <div id="nombre-feedback" class="invalid-feedback"></div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Mínimo 3 caracteres, máximo 50
-                                    </small>
-                                    <small id="nombre-contador" class="form-text text-muted fw-bold">
-                                        0/50 caracteres
-                                    </small>
-                                </div>
+
                             </div>
 
                             <!-- Información de Modificación -->
@@ -67,10 +59,7 @@ include '../Compartido/header.php';
                                         Cargando fecha...
                                     </div>
                                 </div>
-                                <small class="form-text text-muted">
-                                    <i class="fas fa-lightbulb me-1"></i>
-                                    Esta fecha se actualizará automáticamente al guardar
-                                </small>
+
                             </div>
 
                             <!-- Información Adicional (Solo lectura) -->
@@ -85,18 +74,7 @@ include '../Compartido/header.php';
                                             #<?= $categoria->getIdCategoria(); ?>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label fw-semibold text-muted">
-                                            <i class="fas fa-info me-1"></i>
-                                            Estado
-                                        </label>
-                                        <div class="form-control-plaintext px-3 py-2">
-                                                <span class="badge bg-success">
-                                                    <i class="fas fa-check-circle me-1"></i>
-                                                    Activa
-                                                </span>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
 
@@ -118,13 +96,6 @@ include '../Compartido/header.php';
                         </form>
                     </div>
 
-                    <!-- Footer del Card con información adicional -->
-                    <div class="card-footer bg-light text-center text-muted">
-                        <small>
-                            <i class="fas fa-shield-alt me-1"></i>
-                            Los cambios serán aplicados inmediatamente tras la confirmación
-                        </small>
-                    </div>
                 </div>
             </div>
         </div>

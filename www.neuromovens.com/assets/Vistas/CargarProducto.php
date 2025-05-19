@@ -24,8 +24,8 @@ include '../Compartido/header.php';
                             <input type="hidden" name="producto[id]" value="<?= $producto->getId(); ?>">
 
                             <!-- Campo Nombre del Producto -->
-                            <div class="row mb-4">
-                                <div class="col-md-8">
+                            <div class="row mb-4 justify-content-center">
+                                <div class="col-md-12">
                                     <label for="nombre" class="form-label fw-semibold">
                                         <i class="fas fa-box me-1"></i>
                                         Nombre del Producto
@@ -44,20 +44,9 @@ include '../Compartido/header.php';
                                                autocomplete="off">
                                     </div>
                                     <div id="nombre-error" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Entre 3 y 100 caracteres
-                                    </small>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label fw-semibold text-muted">
-                                        <i class="fas fa-key me-1"></i>
-                                        ID del Producto
-                                    </label>
-                                    <div class="form-control-plaintext bg-light px-3 py-2 rounded border text-center">
-                                        <strong>#<?= $producto->getId(); ?></strong>
-                                    </div>
-                                </div>
+
                             </div>
 
                             <!-- Campo Descripción -->
@@ -73,15 +62,7 @@ include '../Compartido/header.php';
                                           placeholder="Describa las características y detalles del producto..."
                                           required><?= htmlspecialchars($producto->getDescripcion()); ?></textarea>
                                 <div id="descripcion-error" class="invalid-feedback"></div>
-                                <div class="d-flex justify-content-between mt-2">
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-lightbulb me-1"></i>
-                                        Mínimo 10 caracteres
-                                    </small>
-                                    <small id="contador-caracteres" class="form-text text-muted fw-bold">
-                                        0 caracteres
-                                    </small>
-                                </div>
+
                             </div>
 
                             <!-- Precio y Categoría -->
@@ -107,11 +88,8 @@ include '../Compartido/header.php';
                                         <span class="input-group-text">€</span>
                                     </div>
                                     <div id="precio-error" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Precio mayor que 0
-                                    </small>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label for="categoria_id" class="form-label fw-semibold">
                                         <i class="fas fa-folder me-1"></i>
@@ -142,10 +120,7 @@ include '../Compartido/header.php';
                                         </select>
                                     </div>
                                     <div id="categoria-error" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Seleccione una categoría
-                                    </small>
+
                                 </div>
                             </div>
 
@@ -176,7 +151,7 @@ include '../Compartido/header.php';
                                 </div>
 
                                 <!-- Nueva Imagen -->
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 ">
                                     <label for="imagen_url" class="form-label fw-semibold">
                                         <i class="fas fa-upload me-1"></i>
                                         Nueva Imagen (Opcional)
@@ -192,10 +167,7 @@ include '../Compartido/header.php';
                                                accept="image/jpeg,image/png,image/jpg">
                                     </div>
                                     <div id="imagen-error" class="invalid-feedback"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        JPG, JPEG, PNG • Máx. 5MB
-                                    </small>
+
 
                                     <!-- Vista previa de nueva imagen -->
                                     <div id="nueva-imagen-preview" class="mt-3 border rounded p-3 bg-light" style="display: none;">
@@ -222,26 +194,7 @@ include '../Compartido/header.php';
                                 </div>
                             </div>
 
-                            <!-- Fecha de Actualización -->
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold">
-                                    <i class="fas fa-clock me-1"></i>
-                                    Fecha de Actualización
-                                </label>
-                                <div class="input-group">
-                                        <span class="input-group-text bg-light">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
-                                    <input type="text"
-                                           id="fecha_actualizacion"
-                                           class="form-control bg-light"
-                                           readonly>
-                                </div>
-                                <small class="form-text text-muted">
-                                    <i class="fas fa-lightbulb me-1"></i>
-                                    Esta fecha es solo informativa y se establece automáticamente
-                                </small>
-                            </div>
+
 
                             <!-- Botones de Acción -->
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
@@ -261,16 +214,7 @@ include '../Compartido/header.php';
                         </form>
                     </div>
 
-                    <!-- Footer del Card -->
-                    <div class="card-footer bg-light text-center text-muted">
-                        <small>
-                            <i class="fas fa-shield-alt me-1"></i>
-                            Todos los cambios se aplicarán inmediatamente tras la confirmación
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-check-circle me-1"></i>
-                            Información validada automáticamente
-                        </small>
-                    </div>
+
                 </div>
             </div>
         </div>

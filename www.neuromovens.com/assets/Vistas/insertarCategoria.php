@@ -1,6 +1,6 @@
 <?php include '../Compartido/header.php'; ?>
 
-    <body class="bg-light">
+    <body class="bg-light ">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
@@ -36,10 +36,6 @@
                                            autocomplete="off">
                                 </div>
                                 <div id="categoria-feedback" class="invalid-feedback"></div>
-                                <small class="form-text text-muted">
-                                    <i class="fas fa-info-circle me-1"></i>
-                                    Ejemplo: Electrónicos, Ropa, Hogar, etc.
-                                </small>
                             </div>
 
                             <!-- Botón de envío -->
@@ -52,13 +48,7 @@
                         </form>
                     </div>
 
-                    <!-- Footer del Card -->
-                    <div class="card-footer bg-light text-center text-muted">
-                        <small>
-                            <i class="fas fa-lightbulb me-1"></i>
-                            Las categorías organizan mejor sus productos
-                        </small>
-                    </div>
+
                 </div>
             </div>
         </div>
