@@ -16,8 +16,8 @@
                             <div class="col-12 col-md-4">
                                 <div class="mb-3">
                                     <h6 class="text-muted mb-2">Email</h6>
-                                    <a href="mailto:contacto@empresa.com" class="text-decoration-none">
-                                        contacto@empresa.com
+                                    <a href="mailto:info@neuromovens.es" class="text-decoration-none">
+                                        info@neuromovens.es
                                     </a>
                                 </div>
                                 <div class="mb-3">
@@ -26,10 +26,7 @@
                                         +34 123 456 789
                                     </a>
                                 </div>
-                                <div>
-                                    <h6 class="text-muted mb-2">Dirección</h6>
-                                    <p class="mb-0">C. San Ignacio Loyola, 30<br>03013 Alicante, España</p>
-                                </div>
+
                             </div>
 
                             <!-- Mapa -->

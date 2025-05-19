@@ -216,46 +216,44 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
 </main>
 
 <!-- Footer -->
-<footer class="bg-secondary text-white py-4">
+<footer class="bg-secondary text-white py-3 py-md-4">
     <div class="container">
-        <div class="row g-3">
-            <!-- Columna de contacto -->
-            <div class="col-12 col-md-8">
-                <h3 class="mb-3">Contacto</h3>
-                <div class="row g-2">
-                    <div class="col-12 col-sm-6">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-phone-alt me-2"></i>
-                            <a href="tel:+123456789" class="text-white text-decoration-none">+1 234 567 89</a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-envelope me-2"></i>
-                            <a href="mailto:contacto@ejemplo.com" class="text-white text-decoration-none">contacto@ejemplo.com</a>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-flex align-items-start">
-                            <i class="fas fa-map-marker-alt me-2 mt-1"></i>
-                            <span class="text-white">Calle San Ignacio de Loyola 30, 03013 Alicante, España</span>
-                        </div>
+        <div class="row g-3 g-md-4">
+            <!-- Columna de teléfono -->
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-phone-alt me-2 me-md-3"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold">Teléfono</h6>
+                        <a href="tel:+123456789" class="text-white text-decoration-none">+1 234 567 89</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Columna de enlaces legales -->
-            <div class="col-12 col-md-4 text-md-end">
-                <h3 class="mb-3">Información Legal</h3>
-                <div class="d-flex flex-column gap-2">
-                    <a href="#" class="text-white text-decoration-none">Términos y Condiciones</a>
-                    <a href="#" class="text-white text-decoration-none">Política de Privacidad</a>
-                    <a href="#" class="text-white text-decoration-none">Aviso Legal</a>
+            <!-- Columna de email -->
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-envelope me-2 me-md-3"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold">Email</h6>
+                        <a href="mailto:info@neuromovens.es" class="text-white text-decoration-none">info@neuromovens.es</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna de dirección -->
+            <div class="col-12 col-md-4">
+                <div class="d-flex align-items-start">
+                    <i class="fas fa-map-marker-alt me-2 me-md-3 mt-1"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold">Dirección</h6>
+                        <span class="text-white">Calle San Ignacio de Loyola 30, 03013 Alicante, España</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </footer>
+</footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
