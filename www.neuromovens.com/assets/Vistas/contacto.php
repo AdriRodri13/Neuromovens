@@ -115,7 +115,7 @@
                                     <input type="text"
                                            id="nombre"
                                            name="nombre"
-                                           class="form-control form-control-lg"
+                                           class="form-control form-control-sm form-control-lg-lg"
                                            placeholder="Ingrese su nombre completo..."
                                            maxlength="50"
                                            required
@@ -146,7 +146,7 @@
                                     <input type="email"
                                            id="email"
                                            name="email"
-                                           class="form-control form-control-lg"
+                                           class="form-control form-control-sm form-control-lg-lg"
                                            placeholder="su-email@ejemplo.com"
                                            required
                                            autocomplete="email">
@@ -171,7 +171,7 @@
                                     <input type="tel"
                                            id="telefono"
                                            name="telefono"
-                                           class="form-control form-control-lg"
+                                           class="form-control form-control-sm form-control-lg-lg"
                                            placeholder="+34 123 456 789"
                                            required
                                            autocomplete="tel">
