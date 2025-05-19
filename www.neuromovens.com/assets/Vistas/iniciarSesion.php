@@ -4,6 +4,13 @@
         <div class="login-container">
             <div class="login-header">Iniciar Sesión</div>
 
+            <?php if(isset($_GET['mensaje']) && $_GET['mensaje'] == 'registro_exitoso'): ?>
+                <div class="alert alert-success">
+                    <i class="fa-solid fa-check-circle"></i>
+                    ¡Usuario registrado exitosamente! Ya puedes iniciar sesión con tus credenciales.
+                </div>
+            <?php endif; ?>
+
             <form id="form-login" action="../Controlador/ControladorUsuario.php" method="post">
                 <input type="hidden" name="accion" value="iniciarSesion">
 
@@ -29,6 +36,7 @@
         </div>
         <div class="login-container">
             <h3>Registrarse</h3>
+            <p class="text-muted mb-3">¿No tienes una cuenta? Regístrate ahora</p>
             <a href="registroUsuario.php" class="btn btn-info">Iniciar Registro</a>
         </div>
     </div>
@@ -131,7 +139,30 @@
 
             // Focus inicial en el primer campo
             $usernameInput.focus();
+
+            // Auto-ocultar mensaje de éxito después de 5 segundos
+            setTimeout(function() {
+                $('.alert-success').fadeOut('slow');
+            }, 5000);
         });
     </script>
+
+    <style>
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-success i {
+            color: #28a745;
+        }
+    </style>
 
 <?php include '../Compartido/footer.php'; ?>
