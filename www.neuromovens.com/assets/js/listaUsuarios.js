@@ -43,7 +43,7 @@ $(document).ready(function() {
     // Configuración
     const CONFIG = {
         debounceDelay: 500, // Tiempo de espera antes de buscar (ms)
-        usuariosPorPagina: 10,
+        usuariosPorPagina: 5,
         endpoints: {
             buscar: '../Controlador/ControladorUsuario.php',
             listar: '../Controlador/ControladorUsuario.php?accion=listar_paginado'
@@ -575,19 +575,5 @@ $(document).ready(function() {
     // Ejecutar inicialización cuando el DOM esté completamente listo
     inicializarLista();
 
-    /**
-     * ===============================================
-     * SECCIÓN 10: API PÚBLICA PARA TESTING (OPCIONAL)
-     * ===============================================
-     */
-
-    // Exponer algunas funciones al scope global para testing
-    window.ListarUsuariosManager = {
-        buscarUsuarios: buscarUsuarios,
-        limpiarEstado: limpiarEstado,
-        getEstadoBusqueda: getEstadoBusqueda,
-        actualizarTablaUsuarios: actualizarTablaUsuarios,
-        config: CONFIG
-    };
 
 });
