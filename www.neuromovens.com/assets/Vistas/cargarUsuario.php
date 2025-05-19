@@ -1,5 +1,4 @@
 <?php
-
 include '../Compartido/header.php';
 use Entidades\Rol;
 use Entidades\Usuario;
@@ -8,321 +7,302 @@ require '../Entidades/Usuario.php';
 $usuario = unserialize($_SESSION['usuarioUpdate']);
 ?>
 
-<?php
-if ($usuario instanceof Usuario):
-    ?>
+<?php if ($usuario instanceof Usuario): ?>
+    <body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2 class="card-title mb-0">
+                            <i class="fas fa-user-edit me-2"></i>
+                            Actualizar Usuario
+                        </h2>
+                    </div>
 
-    <style>
-        @media screen and (max-width: 768px){
-            #contrasena{
-                font-size: 11px;
-            }
-        }
-    </style>
+                    <div class="card-body p-4">
+                        <form id="form-actualizar-usuario" action="../Controlador/ControladorUsuario.php" method="post">
+                            <!-- Campos ocultos -->
+                            <input type="hidden" name="accion" value="actualizar">
+                            <input type="hidden" name="usuario[id]" value="<?= $usuario->getId(); ?>">
 
-    <body>
+                            <!-- Información del usuario -->
+                            <div class="row mb-4">
+                                <div class="col-md-8">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fas fa-user me-1"></i>
+                                        Usuario Actual
+                                    </label>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                                <i class="fas fa-user text-white fs-4"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1"><?= htmlspecialchars($usuario->getNombreUsuario()); ?></h5>
+                                            <small class="text-muted">ID: #<?= $usuario->getId(); ?></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold text-muted">
+                                        <i class="fas fa-shield-alt me-1"></i>
+                                        Rol Actual
+                                    </label>
+                                    <div class="mt-2">
+                                        <?php if ($usuario->getRol()->name == 'jefe'): ?>
+                                            <span class="badge bg-danger fs-6">
+                                                    <i class="fas fa-crown me-1"></i>
+                                                    Jefe
+                                                </span>
+                                        <?php elseif ($usuario->getRol()->name == 'administrador'): ?>
+                                            <span class="badge bg-warning fs-6">
+                                                    <i class="fas fa-user-cog me-1"></i>
+                                                    Administrador
+                                                </span>
+                                        <?php else: ?>
+                                            <span class="badge bg-secondary fs-6">
+                                                    <i class="fas fa-user me-1"></i>
+                                                    Visitante
+                                                </span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
 
-    <div class="form-container">
-        <h2>Actualizar Usuario</h2>
-        <form id="form-actualizar-usuario" action="../Controlador/ControladorUsuario.php" method="post">
-            <!-- Campo oculto para indicar la acción de actualización -->
-            <input type="hidden" name="accion" value="actualizar">
+                            <hr class="my-4">
 
-            <!-- Campo oculto para el ID del usuario -->
-            <input type="hidden" name="usuario[id]" value="<?= $usuario->getId(); ?>">
+                            <!-- Campo Nombre de Usuario -->
+                            <div class="mb-4">
+                                <label for="nombre_usuario" class="form-label fw-semibold">
+                                    <i class="fas fa-at me-1"></i>
+                                    Nombre de Usuario
+                                </label>
+                                <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-tag"></i>
+                                        </span>
+                                    <input type="text"
+                                           id="nombre_usuario"
+                                           name="usuario[nombre_usuario]"
+                                           class="form-control form-control-lg"
+                                           value="<?= htmlspecialchars($usuario->getNombreUsuario()); ?>"
+                                           placeholder="Ingrese el nombre de usuario..."
+                                           required
+                                           autocomplete="username">
+                                </div>
+                                <div id="nombre-usuario-feedback" class="invalid-feedback"></div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Solo letras, números y guiones bajos
+                                    </small>
+                                    <small id="nombre-usuario-contador" class="form-text text-muted fw-bold">
+                                        0/30 caracteres
+                                    </small>
+                                </div>
+                            </div>
 
-            <!-- Campo para el nombre de usuario -->
-            <div class="form-group">
-                <label for="nombre_usuario">Nombre de Usuario:</label>
-                <input type="text" id="nombre_usuario" name="usuario[nombre_usuario]"
-                       class="form-control" value="<?= $usuario->getNombreUsuario(); ?>" required>
-                <div id="nombre-usuario-feedback" class="invalid-feedback"></div>
-                <small id="nombre-usuario-contador" class="form-text text-muted">0/30 caracteres</small>
-            </div>
+                            <!-- Campo Email -->
+                            <div class="mb-4">
+                                <label for="email" class="form-label fw-semibold">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    Correo Electrónico
+                                </label>
+                                <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-at"></i>
+                                        </span>
+                                    <input type="email"
+                                           id="email"
+                                           name="usuario[email]"
+                                           class="form-control form-control-lg"
+                                           value="<?= htmlspecialchars($usuario->getEmail()); ?>"
+                                           placeholder="usuario@dominio.com"
+                                           required
+                                           autocomplete="email">
+                                </div>
+                                <div id="email-feedback" class="invalid-feedback"></div>
+                                <small id="email-helper" class="form-text text-muted">
+                                    <i class="fas fa-lightbulb me-1"></i>
+                                    Formato: usuario@dominio.com
+                                </small>
+                            </div>
 
-            <!-- Campo para el email -->
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="usuario[email]"
-                       class="form-control" value="<?= $usuario->getEmail(); ?>" required>
-                <div id="email-feedback" class="invalid-feedback"></div>
-                <small id="email-helper" class="form-text text-muted">Formato: usuario@dominio.com</small>
-            </div>
+                            <!-- Campo Contraseña (Solo lectura) -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">
+                                    <i class="fas fa-lock me-1"></i>
+                                    Contraseña Actual
+                                </label>
+                                <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-key"></i>
+                                        </span>
+                                    <div class="form-control bg-light d-flex align-items-center">
+                                            <span class="text-muted font-monospace" style="letter-spacing: 2px;">
+                                                <?= str_repeat('•', min(strlen($usuario->getContra()), 12)); ?>
+                                            </span>
+                                        <span class="badge bg-info ms-auto">
+                                                <i class="fas fa-eye-slash me-1"></i>
+                                                Oculta
+                                            </span>
+                                    </div>
+                                    <input type="hidden" name="usuario[contra]" value="<?= htmlspecialchars($usuario->getContra()); ?>">
+                                </div>
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    La contraseña no se puede modificar desde este formulario
+                                </small>
+                            </div>
 
-            <!-- Campo para la contraseña (no es un input, sino un párrafo) -->
-            <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <p id="contrasena" class="form-control-plaintext"><?= $usuario->getContra(); ?></p>
-                <input type="hidden" name="usuario[contra]" value="<?= $usuario->getContra(); ?>">
-            </div>
+                            <!-- Campo Rol -->
+                            <?php if ($usuario->getRol()->name != 'jefe'): ?>
+                                <div class="mb-4">
+                                    <label for="rol" class="form-label fw-semibold">
+                                        <i class="fas fa-user-shield me-1"></i>
+                                        Rol del Usuario
+                                    </label>
+                                    <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-list"></i>
+                                            </span>
+                                        <select id="rol"
+                                                name="usuario[rol]"
+                                                class="form-select form-select-lg"
+                                                required>
+                                            <option value="">Seleccione un rol</option>
+                                            <option value="administrador" <?= ($usuario->getRol()->name == 'administrador') ? 'selected' : ''; ?>>
+                                                <i class="fas fa-user-cog me-1"></i>
+                                                Administrador
+                                            </option>
+                                            <option value="visitante" <?= ($usuario->getRol()->name == 'visitante') ? 'selected' : ''; ?>>
+                                                <i class="fas fa-user me-1"></i>
+                                                Visitante
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div id="rol-feedback" class="invalid-feedback"></div>
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Seleccione el nivel de acceso para este usuario
+                                    </small>
+                                </div>
+                            <?php else: ?>
+                                <input type="hidden" name="usuario[rol]" value="<?= $usuario->getRol()->name; ?>">
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fas fa-user-shield me-1"></i>
+                                        Rol del Usuario
+                                    </label>
+                                    <div class="input-group">
+                                            <span class="input-group-text bg-light">
+                                                <i class="fas fa-crown text-warning"></i>
+                                            </span>
+                                        <div class="form-control bg-light d-flex align-items-center">
+                                                <span class="badge bg-danger me-2">
+                                                    <i class="fas fa-crown me-1"></i>
+                                                    Jefe
+                                                </span>
+                                            <small class="text-muted">
+                                                <i class="fas fa-lock me-1"></i>
+                                                No modificable
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        <i class="fas fa-shield-alt me-1"></i>
+                                        El rol de Jefe tiene permisos especiales y no puede ser modificado
+                                    </small>
+                                </div>
+                            <?php endif; ?>
 
-            <!-- Mostrar el campo para el rol solo si el usuario no es jefe -->
-            <?php if ($usuario->getRol()->name != 'jefe'): ?>
-                <!-- Campo para el rol -->
-                <div class="form-group">
-                    <label for="rol">Rol:</label>
-                    <select id="rol" name="usuario[rol]" class="form-control" required>
-                        <option value="">Seleccione un rol</option>
-                        <option value="administrador" <?= ($usuario->getRol()->name == 'administrador') ? 'selected' : ''; ?>>Administrador</option>
-                        <option value="visitante" <?= ($usuario->getRol()->name == 'visitante') ? 'selected' : ''; ?>>Visitante</option>
-                    </select>
-                    <div id="rol-feedback" class="invalid-feedback"></div>
+                            <!-- Fecha de Modificación -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">
+                                    <i class="fas fa-clock me-1"></i>
+                                    Última Modificación
+                                </label>
+                                <div class="input-group">
+                                        <span class="input-group-text bg-light">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    <div id="fecha-modificacion" class="form-control bg-light text-muted">
+                                        <i class="fas fa-spinner fa-spin me-2"></i>
+                                        Cargando fecha...
+                                    </div>
+                                </div>
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-lightbulb me-1"></i>
+                                    Fecha automática de última actualización
+                                </small>
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+                                <button type="button"
+                                        id="btn-cancelar"
+                                        class="btn btn-outline-secondary btn-lg me-md-2">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Cancelar
+                                </button>
+                                <button type="submit"
+                                        id="btn-actualizar"
+                                        class="btn btn-primary btn-lg">
+                                    <i class="fas fa-save me-2"></i>
+                                    Actualizar Usuario
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Footer del Card -->
+                    <div class="card-footer bg-light text-center text-muted">
+                        <small>
+                            <i class="fas fa-shield-alt me-1"></i>
+                            Los cambios se aplicarán inmediatamente
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-user-check me-1"></i>
+                            Usuario verificado y validado
+                        </small>
+                    </div>
                 </div>
-            <?php else : ?>
-                <input type="hidden" name="usuario[rol]" value="<?= ($usuario->getRol()->name); ?>">
-                <div class="form-group">
-                    <label>Rol:</label>
-                    <p class="form-control-plaintext">
-                        <span class="badge bg-primary">Jefe</span>
-                        <small class="text-muted">(No modificable)</small>
-                    </p>
-                </div>
-            <?php endif; ?>
-
-            <!-- Fecha de última modificación -->
-            <div class="form-group">
-                <label>Última modificación:</label>
-                <div id="fecha-modificacion" class="form-control-plaintext"></div>
             </div>
-
-            <!-- Botones de acción -->
-            <div class="d-flex justify-content-between mt-4">
-                <button type="button" id="btn-cancelar" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Cancelar
-                </button>
-                <button type="submit" id="btn-actualizar" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Actualizar Usuario
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            // 1. Variables jQuery - Referencias cacheadas
-            const $form = $('#form-actualizar-usuario');
-            const $nombreUsuarioInput = $('#nombre_usuario');
-            const $nombreUsuarioFeedback = $('#nombre-usuario-feedback');
-            const $nombreUsuarioContador = $('#nombre-usuario-contador');
-            const $emailInput = $('#email');
-            const $emailFeedback = $('#email-feedback');
-            const $emailHelper = $('#email-helper');
-            const $rolSelect = $('#rol');
-            const $rolFeedback = $('#rol-feedback');
-            const $btnCancelar = $('#btn-cancelar');
-            const $fechaModificacion = $('#fecha-modificacion');
-
-            // 2. Funciones auxiliares para validación
-            function setInvalid($input, $feedback, message) {
-                $input.addClass('is-invalid').removeClass('is-valid');
-                $feedback.text(message);
-            }
-
-            function setValid($input, $feedback) {
-                $input.removeClass('is-invalid').addClass('is-valid');
-                $feedback.text('');
-            }
-
-            function isFormValid() {
-                return $('.is-invalid').length === 0;
-            }
-
-            // 3. Mostrar fecha de modificación actual
-            function mostrarFechaModificacion() {
-                const fechaActual = new Date();
-                const opciones = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                };
-                $fechaModificacion.text(fechaActual.toLocaleDateString('es-ES', opciones));
-            }
-
-            // 4. Validación del nombre de usuario
-            $nombreUsuarioInput.on('input', function() {
-                const valor = $(this).val().trim();
-                const longitud = valor.length;
-
-                // Actualizar contador
-                $nombreUsuarioContador.text(`${longitud}/30 caracteres`);
-
-                // Cambiar color del contador según longitud
-                $nombreUsuarioContador.removeClass('text-muted text-success text-warning text-danger');
-
-                if (longitud > 25) {
-                    $nombreUsuarioContador.addClass('text-warning');
-                } else if (longitud > 0) {
-                    $nombreUsuarioContador.addClass('text-success');
-                } else {
-                    $nombreUsuarioContador.addClass('text-muted');
-                }
-
-                // Validaciones
-                if (longitud === 0) {
-                    setInvalid($nombreUsuarioInput, $nombreUsuarioFeedback, 'El nombre de usuario es obligatorio');
-                } else if (longitud < 3) {
-                    setInvalid($nombreUsuarioInput, $nombreUsuarioFeedback, 'El nombre debe tener al menos 3 caracteres');
-                } else if (longitud > 30) {
-                    setInvalid($nombreUsuarioInput, $nombreUsuarioFeedback, 'El nombre no puede exceder los 30 caracteres');
-                } else if (!/^[a-zA-Z0-9_]+$/.test(valor)) {
-                    setInvalid($nombreUsuarioInput, $nombreUsuarioFeedback, 'Solo se permiten letras, números y guiones bajos');
-                } else {
-                    setValid($nombreUsuarioInput, $nombreUsuarioFeedback);
-                }
-            });
-
-            // 5. Validación del email
-            $emailInput.on('input blur', function() {
-                const valor = $(this).val().trim();
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                // Cambiar color del helper según validez
-                $emailHelper.removeClass('text-muted text-success text-danger');
-
-                if (valor === '') {
-                    setInvalid($emailInput, $emailFeedback, 'El email es obligatorio');
-                    $emailHelper.addClass('text-muted');
-                } else if (!emailRegex.test(valor)) {
-                    setInvalid($emailInput, $emailFeedback, 'Por favor, introduce un email válido');
-                    $emailHelper.addClass('text-danger');
-                } else if (valor.length > 100) {
-                    setInvalid($emailInput, $emailFeedback, 'El email no puede exceder los 100 caracteres');
-                    $emailHelper.addClass('text-danger');
-                } else {
-                    setValid($emailInput, $emailFeedback);
-                    $emailHelper.addClass('text-success');
-                }
-            });
-
-            // 6. Validación del rol (solo si existe el select)
-            if ($rolSelect.length > 0) {
-                $rolSelect.on('change', function() {
-                    const valor = $(this).val();
-
-                    if (valor === '') {
-                        setInvalid($rolSelect, $rolFeedback, 'Debe seleccionar un rol');
-                    } else if (!['administrador', 'visitante'].includes(valor)) {
-                        setInvalid($rolSelect, $rolFeedback, 'Rol no válido');
-                    } else {
-                        setValid($rolSelect, $rolFeedback);
-                    }
-                });
-            }
-
-            // 7. Validación del formulario al enviar
-            $form.on('submit', function(event) {
-                // Disparar todas las validaciones
-                $nombreUsuarioInput.trigger('input');
-                $emailInput.trigger('blur');
-                if ($rolSelect.length > 0) {
-                    $rolSelect.trigger('change');
-                }
-
-                // Verificar si hay errores
-                if (!isFormValid()) {
-                    event.preventDefault();
-
-                    // Mostrar mensaje de error
-                    if (typeof Swal !== 'undefined') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error de validación',
-                            text: 'Por favor, corrija los errores antes de continuar',
-                            confirmButtonText: 'Entendido'
-                        });
-                    } else {
-                        alert('Por favor, corrija los errores antes de continuar');
-                    }
-
-                    // Hacer scroll al primer error
-                    const $firstError = $('.is-invalid').first();
-                    if ($firstError.length) {
-                        $('html, body').animate({
-                            scrollTop: $firstError.offset().top - 100
-                        }, 500);
-                    }
-                } else {
-                    // Mostrar indicador de carga
-                    if (typeof Swal !== 'undefined') {
-                        Swal.fire({
-                            title: 'Actualizando usuario',
-                            text: 'Procesando los cambios...',
-                            didOpen: () => {
-                                Swal.showLoading();
-                            },
-                            allowOutsideClick: false,
-                            allowEscapeKey: false
-                        });
-                    }
-                }
-            });
-
-            // 8. Botón cancelar con confirmación
-            $btnCancelar.on('click', function() {
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        title: '¿Estás seguro?',
-                        text: "Los cambios no guardados se perderán",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Sí, salir',
-                        cancelButtonText: 'No, continuar editando'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = '../Controlador/ControladorUsuario.php';
-                        }
-                    });
-                } else {
-                    if (confirm('¿Estás seguro? Los cambios no guardados se perderán')) {
-                        window.location.href = '../Controlador/ControladorUsuario.php';
-                    }
-                }
-            });
-
-            // 9. Validación en tiempo real mientras escribe (debounced)
-            let emailTimeout;
-            $emailInput.on('input', function() {
-                clearTimeout(emailTimeout);
-                emailTimeout = setTimeout(() => {
-                    $(this).trigger('blur');
-                }, 500);
-            });
-
-            // 10. Función de inicialización
-            function inicializar() {
-                // Mostrar fecha actual
-                mostrarFechaModificacion();
-
-                // Disparar validaciones iniciales
-                $nombreUsuarioInput.trigger('input');
-                $emailInput.trigger('blur');
-                if ($rolSelect.length > 0) {
-                    $rolSelect.trigger('change');
-                }
-
-                // Focus en el primer campo
-                $nombreUsuarioInput.focus();
-            }
-
-            // 11. Ejecutar inicialización
-            inicializar();
-
-        });
-    </script>
-
+    <!-- Incluir archivo JavaScript separado -->
+    <script src="../js/CargarUsuario.js"></script>
     </body>
-<?php
-else:
-    // Si $usuario no es una instancia de Usuario, mostrar un mensaje de error o redirigir
-    echo "El usuario no es válido.";
-endif;
-?>
+<?php else: ?>
+    <body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-danger">
+                    <div class="card-header bg-danger text-white text-center">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Error de Usuario
+                        </h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-user-times text-danger" style="font-size: 4rem;"></i>
+                        </div>
+                        <h4 class="text-danger">Usuario no válido</h4>
+                        <p class="text-muted">No se pudo cargar la información del usuario.</p>
+                        <a href="../Controlador/ControladorUsuario.php" class="btn btn-primary">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            Volver a la lista
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+<?php endif; ?>
 
-<?php
-include '../Compartido/footer.php';
-?>
+<?php include '../Compartido/footer.php'; ?>

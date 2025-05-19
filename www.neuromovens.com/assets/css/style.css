@@ -27,8 +27,9 @@ html {
 }
 
 body {
-    font-family: 'Etna', serif;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 h2 {
     font-size: 2rem;
@@ -550,7 +551,7 @@ section {
 .form-container textarea,
 .form-container input[type="file"] {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     margin: 10px 0 20px 0;
     border-radius: 5px;
     border: 1px solid var(--color-gris-suave);
@@ -667,4 +668,20 @@ section {
     .contact-section {
         max-width: 80%;
     }
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-success i {
+    color: #28a745;
 }
