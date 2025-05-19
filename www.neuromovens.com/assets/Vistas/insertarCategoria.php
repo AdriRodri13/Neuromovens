@@ -1,97 +1,71 @@
 <?php include '../Compartido/header.php'; ?>
 
-    <div class="form-container">
-        <h2>Insertar Nueva Categoría</h2>
-        <form id="form-categoria" action="../Controlador/ControladorCategoria.php" method="post">
-            <!-- Campo oculto para indicar la acción de inserción -->
-            <input type="hidden" name="accion" value="insertar">
+    <body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white text-center">
+                        <h2 class="card-title mb-0">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            Insertar Nueva Categoría
+                        </h2>
+                    </div>
 
-            <!-- Campo para el nombre de la categoría -->
-            <div class="form-group">
-                <label for="nombre_categoria">Nombre de la Categoría:</label>
-                <input type="text" id="nombre_categoria" name="nombreCategoria"
-                       class="form-control" required>
-                <div id="categoria-feedback" class="invalid-feedback"></div>
+                    <div class="card-body p-4">
+                        <form id="form-categoria" action="../Controlador/ControladorCategoria.php" method="post">
+                            <!-- Campo oculto para indicar la acción de inserción -->
+                            <input type="hidden" name="accion" value="insertar">
+
+                            <!-- Campo para el nombre de la categoría -->
+                            <div class="mb-4">
+                                <label for="nombre_categoria" class="form-label fw-semibold">
+                                    <i class="fas fa-folder me-1"></i>
+                                    Nombre de la Categoría
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+                                    <input type="text"
+                                           id="nombre_categoria"
+                                           name="nombreCategoria"
+                                           class="form-control form-control-lg"
+                                           placeholder="Ingrese el nombre de la categoría..."
+                                           required
+                                           autocomplete="off">
+                                </div>
+                                <div id="categoria-feedback" class="invalid-feedback"></div>
+                                <small class="form-text text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Ejemplo: Electrónicos, Ropa, Hogar, etc.
+                                </small>
+                            </div>
+
+                            <!-- Botón de envío -->
+                            <div class="d-grid">
+                                <button type="submit" id="btn-insertar" class="btn btn-success btn-lg">
+                                    <i class="fas fa-save me-2"></i>
+                                    Insertar Categoría
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Footer del Card -->
+                    <div class="card-footer bg-light text-center text-muted">
+                        <small>
+                            <i class="fas fa-lightbulb me-1"></i>
+                            Las categorías organizan mejor sus productos
+                        </small>
+                    </div>
+                </div>
             </div>
-
-            <!-- Botón de envío -->
-            <input type="submit" id="btn-insertar" value="Insertar Categoría" class="btn">
-        </form>
+        </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            // Referencias a los elementos
-            const $form = $('#form-categoria');
-            const $nombreInput = $('#nombre_categoria');
-            const $feedback = $('#categoria-feedback');
-            const $btnInsertar = $('#btn-insertar');
-
-            // Función para mostrar error
-            function setInvalid($input, $feedback, message) {
-                $input.addClass('is-invalid').removeClass('is-valid');
-                $feedback.text(message);
-            }
-
-            // Función para mostrar válido
-            function setValid($input, $feedback) {
-                $input.removeClass('is-invalid').addClass('is-valid');
-                $feedback.text('');
-            }
-
-            // Función para limpiar validación
-            function clearValidation($input, $feedback) {
-                $input.removeClass('is-valid is-invalid');
-                $feedback.text('');
-            }
-
-            // Validación del formulario al enviar
-            $form.on('submit', function(event) {
-                const nombre = $nombreInput.val().trim();
-
-                // Comprobar que el campo no esté vacío
-                if (nombre === '') {
-                    event.preventDefault();
-                    setInvalid($nombreInput, $feedback, 'El nombre de la categoría es obligatorio');
-                    $nombreInput.focus();
-
-                    // Opcional: mostrar alerta si SweetAlert2 está disponible
-                    if (typeof Swal !== 'undefined') {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Campo requerido',
-                            text: 'Por favor, ingrese el nombre de la categoría',
-                            confirmButtonText: 'Entendido'
-                        });
-                    }
-                } else {
-                    setValid($nombreInput, $feedback);
-
-                    // Opcional: mostrar carga si SweetAlert2 está disponible
-                    if (typeof Swal !== 'undefined') {
-                        $btnInsertar.prop('disabled', true).val('Insertando...');
-                        Swal.fire({
-                            title: 'Insertando categoría...',
-                            didOpen: () => {
-                                Swal.showLoading();
-                            },
-                            allowOutsideClick: false,
-                            allowEscapeKey: false
-                        });
-                    }
-                }
-            });
-
-            // Limpiar validación cuando el usuario comience a escribir
-            $nombreInput.on('input', function() {
-                if ($(this).hasClass('is-invalid') && $(this).val().trim() !== '') {
-                    clearValidation($(this), $feedback);
-                }
-            });
-
-            // Focus inicial en el campo
-            $nombreInput.focus();
-        });
-    </script>
+    <!-- Incluir archivo JavaScript separado -->
+    <script src="../js/InsertarCategoria.js"></script>
+    </body>
 
 <?php include '../Compartido/footer.php'; ?>
