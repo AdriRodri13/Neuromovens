@@ -48,6 +48,7 @@ main {
 
 p{
     font-size: .8rem;
+    text-align: justify;
 }
 
 p.lead {
@@ -502,6 +503,7 @@ section {
 
 .form-control {
     padding: 1em;
+    font-size: 12px;
 }
 
 .form-control:focus {
@@ -605,7 +607,6 @@ section {
     /* Títulos */
     p{
         font-size: 1rem;
-        text-align: justify;
     }
 
     .title {

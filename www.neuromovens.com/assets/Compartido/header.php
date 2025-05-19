@@ -93,7 +93,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
             if(!$sesion_usuario){
                 echo '<a id="iniciarSesion" href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesión <i class="fa-solid fa-user ms-2"></i></a>';
             } else {
-                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . htmlspecialchars($nombre_usuario) . '</span> <i class="fa-solid fa-user ms-2"></i></a>';
+                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">Cerrar Sesion</span> <i class="fa-solid fa-user ms-2"></i></a>';
                 if($_SESSION['rol'] == 'jefe'){
                     echo '<a id="listaUsuarios" href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administración <i class="fa-regular fa-note-sticky ms-2"></i></a>';
                 }
@@ -128,7 +128,7 @@ if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === true){
             if(!$sesion_usuario){
                 echo '<a id="iniciarSesion" href="../Vistas/iniciarSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1">Iniciar Sesión <i class="fa-solid fa-user ms-2"></i></a>';
             } else {
-                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">' . htmlspecialchars($nombre_usuario) . '</span> <i class="fa-solid fa-user ms-2"></i></a>';
+                echo '<a id="cerrarSesion" href="../Vistas/cerraSesion.php" class="d-flex align-items-center justify-content-center mx-2 my-1"><span id="nombreUsuario">Cerrar Sesion</span> <i class="fa-solid fa-user ms-2"></i></a>';
                 if($_SESSION['rol'] == 'jefe'){
                     echo '<a id="listaUsuarios" href="../Controlador/ControladorUsuario.php?accion=listar" class="d-flex align-items-center justify-content-center mx-2 my-1">Administración <i class="fa-regular fa-note-sticky ms-2"></i></a>';
                 }

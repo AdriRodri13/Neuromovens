@@ -25,7 +25,7 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
                     <input type="text"
                            id="buscarUsuario"
                            class="form-control"
-                           placeholder="Buscar por nombre de usuario o email..."
+                           placeholder="Buscar por nombre de usuario"
                            autocomplete="off">
                 </div>
                 <div class="col-12 col-md-4 d-flex gap-2 align-items-end">
@@ -138,63 +138,89 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
     </div>
 
     <!-- Paginación -->
+    <!-- Paginación Responsive -->
     <nav aria-label="Paginación de usuarios" id="paginacionContainer" class="mt-4">
         <?php if ($totalPaginas > 1): ?>
-            <ul class="pagination justify-content-center flex-wrap">
-                <li class="page-item <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>">
-                    <a class="page-link" href="<?php echo ($paginaActual > 1) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=1' : '#'; ?>" title="Primera página">
-                        <i class="fas fa-angle-double-left"></i>
-                    </a>
-                </li>
+            <!-- Paginación para móviles (compacta) -->
+            <div class="d-block d-md-none">
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Botón Anterior -->
+                    <button class="btn btn-outline-primary btn-sm <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>"
+                            onclick="<?php echo ($paginaActual > 1) ? "window.location='../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=" . ($paginaActual - 1) . "'" : ''; ?>">
+                        <i class="fas fa-chevron-left me-1"></i> Anterior
+                    </button>
 
-                <li class="page-item <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>">
-                    <a class="page-link" href="<?php echo ($paginaActual > 1) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . ($paginaActual - 1) : '#'; ?>" title="Anterior">
-                        <i class="fas fa-chevron-left"></i>
-                    </a>
-                </li>
+                    <!-- Indicador de página actual -->
+                    <div class="text-center">
+                        <span class="badge bg-primary fs-6"><?php echo $paginaActual; ?> / <?php echo $totalPaginas; ?></span>
+                    </div>
 
-                <?php
-                $inicio = max(1, $paginaActual - 2);
-                $fin = min($totalPaginas, $paginaActual + 2);
+                    <!-- Botón Siguiente -->
+                    <button class="btn btn-outline-primary btn-sm <?php echo ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>"
+                            onclick="<?php echo ($paginaActual < $totalPaginas) ? "window.location='../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=" . ($paginaActual + 1) . "'" : ''; ?>">
+                        Siguiente <i class="fas fa-chevron-right ms-1"></i>
+                    </button>
+                </div>
 
-                if ($inicio > 1): ?>
-                    <li class="page-item"><a class="page-link" href="../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=1">1</a></li>
-                    <?php if ($inicio > 2): ?>
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
-                    <?php endif; ?>
-                <?php endif; ?>
+            </div>
 
-                <?php for ($i = $inicio; $i <= $fin; $i++): ?>
-                    <li class="page-item <?php echo ($i == $paginaActual) ? 'active' : ''; ?>">
-                        <a class="page-link" href="<?php echo ($i == $paginaActual) ? '#' : '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . $i; ?>"><?php echo $i; ?></a>
+            <!-- Paginación para tablets y desktop (completa) -->
+            <div class="d-none d-md-block">
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li class="page-item <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?php echo ($paginaActual > 1) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=1' : '#'; ?>" title="Primera página">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
                     </li>
-                <?php endfor; ?>
 
-                <?php if ($fin < $totalPaginas): ?>
-                    <?php if ($fin < $totalPaginas - 1): ?>
-                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?php echo ($paginaActual > 1) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . ($paginaActual - 1) : '#'; ?>" title="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    <?php
+                    // En tablets, mostramos menos páginas que en desktop
+                    $rangoMovil = 1; // Para tablets (md)
+                    $rangoDesktop = 2; // Para desktop (lg+)
+
+                    $inicio = max(1, $paginaActual - $rangoDesktop);
+                    $fin = min($totalPaginas, $paginaActual + $rangoDesktop);
+
+                    if ($inicio > 1): ?>
+                        <li class="page-item"><a class="page-link" href="../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=1">1</a></li>
+                        <?php if ($inicio > 2): ?>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        <?php endif; ?>
                     <?php endif; ?>
-                    <li class="page-item"><a class="page-link" href="../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=<?php echo $totalPaginas; ?>"><?php echo $totalPaginas; ?></a></li>
-                <?php endif; ?>
 
-                <li class="page-item <?php echo ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>">
-                    <a class="page-link" href="<?php echo ($paginaActual < $totalPaginas) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . ($paginaActual + 1) : '#'; ?>" title="Siguiente">
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </li>
+                    <?php for ($i = $inicio; $i <= $fin; $i++): ?>
+                        <li class="page-item <?php echo ($i == $paginaActual) ? 'active' : ''; ?>">
+                            <a class="page-link" href="<?php echo ($i == $paginaActual) ? '#' : '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . $i; ?>"><?php echo $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
 
-                <li class="page-item <?php echo ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>">
-                    <a class="page-link" href="<?php echo ($paginaActual < $totalPaginas) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . $totalPaginas : '#'; ?>" title="Última página">
-                        <i class="fas fa-angle-double-right"></i>
-                    </a>
-                </li>
-            </ul>
+                    <?php if ($fin < $totalPaginas): ?>
+                        <?php if ($fin < $totalPaginas - 1): ?>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        <?php endif; ?>
+                        <li class="page-item"><a class="page-link" href="../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=<?php echo $totalPaginas; ?>"><?php echo $totalPaginas; ?></a></li>
+                    <?php endif; ?>
 
-            <div class="text-center mt-3">
-                <small class="text-muted">
-                    Página <?php echo $paginaActual; ?> de <?php echo $totalPaginas; ?>
-                    (<?php echo $porPagina; ?> usuarios por página)
-                </small>
+                    <li class="page-item <?php echo ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?php echo ($paginaActual < $totalPaginas) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . ($paginaActual + 1) : '#'; ?>" title="Siguiente">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+
+                    <li class="page-item <?php echo ($paginaActual >= $totalPaginas) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?php echo ($paginaActual < $totalPaginas) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=' . $totalPaginas : '#'; ?>" title="Última página">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                </ul>
+
+
             </div>
         <?php endif; ?>
     </nav>

@@ -4,7 +4,6 @@
         <!-- Título Principal -->
         <div class="text-center mb-5">
             <h1 class="title">Contacto</h1>
-            <p class="lead text-muted">Estamos aquí para ayudarte</p>
         </div>
 
         <!-- Información de Contacto -->

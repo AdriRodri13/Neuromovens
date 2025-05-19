@@ -33,9 +33,7 @@ $rol_usuario = $sesion_usuario ? $_SESSION['rol'] : 'visitante';
                 <section class="mb-5">
                     <h2 class="mb-3"><?php echo htmlspecialchars($categoriaData['nombre_categoria']); ?></h2>
 
-                    <?php if ($sesion_usuario): ?>
-                        <p class="text-muted small">ID Categoría: <?php echo htmlspecialchars($categoriaData['id_categoria']); ?></p>
-                    <?php endif; ?>
+
 
                     <div class="row g-4">
                         <?php foreach ($categoriaData['productos'] as $producto): ?>
