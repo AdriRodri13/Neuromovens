@@ -506,6 +506,30 @@ $(document).ready(function() {
      * ===============================================
      */
 
+
+    function exportarAPDF() {
+        // Obtener el término de búsqueda actual
+        const termino = $buscarInput.val().trim();
+
+        // Construir la URL del generador de PDF con el término de búsqueda
+        let url = '../Controlador/generarPdfUsuarios.php';
+
+        // Agregar el término de búsqueda como parámetro si existe
+        if (termino !== '') {
+            url += '?termino=' + encodeURIComponent(termino);
+        }
+
+        // Redirigir a la URL (descargará el PDF)
+        window.location.href = url;
+    }
+
+// Agregar manejador de eventos al botón de imprimir
+    $(document).on('click', '#btnExportarPDF', function(e) {
+        e.preventDefault();
+        exportarAPDF();
+    });
+
+
     /**
      * Detecta el estado de la búsqueda actual
      * @returns {Object} - Estado de la búsqueda

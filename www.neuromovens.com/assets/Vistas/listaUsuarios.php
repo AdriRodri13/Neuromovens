@@ -227,8 +227,8 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
 
     <!-- Botones de acción -->
     <div class="mt-4 d-flex flex-column flex-md-row gap-2">
-        <button onclick="window.print()" class="btn btn-outline-secondary">
-            <i class="fas fa-print me-2"></i> Imprimir Lista
+        <button id="btnExportarPDF" class="btn btn-primary">
+            <i class="fas fa-file-pdf me-2"></i> Exportar a PDF
         </button>
     </div>
 </div>
