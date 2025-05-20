@@ -40,9 +40,12 @@ if($sesion_usuario){
                             <div class="row g-0">
                                 <!-- Imagen - En móvil aparece arriba, en desktop a la izquierda -->
                                 <div class="col-12 col-lg-6">
-                                    <img src="<?php echo $post->getImagenUrl(); ?>"
-                                         alt="Imagen de Post de Investigación"
-                                         class="img-fluid rounded-start w-100 h-100 object-fit-cover">
+                                    <div class="image-container p-2 p-md-3 h-100">
+                                        <img src="<?php echo $post->getImagenUrl(); ?>"
+                                             alt="Imagen de Post de Investigación"
+                                             class="img-fluid rounded d-block mx-auto h-100 object-fit-cover"
+                                             style="max-height: 400px; width: 100%;">
+                                    </div>
                                 </div>
 
                                 <!-- Texto - En móvil aparece abajo, en desktop a la derecha -->

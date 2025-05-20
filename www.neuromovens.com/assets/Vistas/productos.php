@@ -39,11 +39,13 @@ $rol_usuario = $sesion_usuario ? $_SESSION['rol'] : 'visitante';
                                 <article class="card shadow-sm producto-item">
                                     <div class="row g-0">
                                         <!-- Imagen del producto -->
-                                        <figure class="col-12 col-lg-3 m-0">
-                                            <img src="<?php echo htmlspecialchars($producto->getImagenUrl()); ?>"
-                                                 class="img-fluid w-100 h-100"
-                                                 style="object-fit: cover;"
-                                                 alt="<?php echo htmlspecialchars($producto->getNombre()); ?>">
+                                        <figure class="col-12 col-lg-3 m-0 p-2 d-flex align-items-center justify-content-center">
+                                            <div class="product-image-container bg-light p-2 rounded w-100 text-center">
+                                                <img src="<?php echo htmlspecialchars($producto->getImagenUrl()); ?>"
+                                                     class="img-fluid rounded"
+                                                     style="object-fit: cover; max-height: 220px; width: auto; max-width: 100%;"
+                                                     alt="<?php echo htmlspecialchars($producto->getNombre()); ?>">
+                                            </div>
                                         </figure>
 
                                         <!-- Contenido del producto -->
