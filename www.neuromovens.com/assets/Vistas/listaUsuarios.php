@@ -12,7 +12,7 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
 ?>
 
 <div class="container py-4">
-    <h2 class="mb-4 text-center">Lista de Usuarios</h2>
+    <h2 class="mb-4 text-center title">Lista de Usuarios</h2>
 
     <!-- Buscador -->
     <div class="card mb-4">
@@ -166,7 +166,7 @@ $porPagina = $datosPaginados['por_pagina'] ?? 10;
 
             <!-- Paginación para tablets y desktop (completa) -->
             <div class="d-none d-md-block">
-                <ul class="pagination justify-content-center flex-wrap">
+                <ul class="pagination justify-content-center gap-4 flex-wrap">
                     <li class="page-item <?php echo ($paginaActual <= 1) ? 'disabled' : ''; ?>">
                         <a class="page-link" href="<?php echo ($paginaActual > 1) ? '../Controlador/ControladorUsuario.php?accion=listar_paginado&pagina=1' : '#'; ?>" title="Primera página">
                             <i class="fas fa-angle-double-left"></i>

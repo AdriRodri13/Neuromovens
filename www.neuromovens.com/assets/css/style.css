@@ -21,52 +21,23 @@
     font-display: swap;
 }
 
-body,
-html {
-    overflow-x: hidden;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-
 h2 {
-    font-size: 1.5rem;
     color: var(--color-oscuro);
     font-weight: 600;
 }
 
-main {
-    margin: 0 auto;
-    text-align: center;
-    flex: 1;
-}
-
-p{
-    font-size: .8rem;
-    text-align: justify;
-}
-
 p.lead {
-    font-size: 1.125rem;
     color: var(--color-gris-suave);
     line-height: 1.6;
 }
 
 ul {
-    font-size: 1.125rem;
     line-height: 1.6;
     color: var(--color-oscuro);
-}
-
-ul li {
-    margin-bottom: 15px;
-    text-align: left;
-    margin-left: 3em;
 }
 
 ul li strong {
@@ -89,7 +60,6 @@ ul li strong {
 header {
     background-color: var(--color-principal);
     color: var(--color-blanco);
-    padding: .5rem 1rem;
     box-shadow: 0 4px 10px var(--color-sombra);
     border-bottom: 3px solid var(--color-secundario);
 }
@@ -99,9 +69,6 @@ header .logo:hover img {
 }
 
 header img {
-    max-height: 90px;
-    width: auto;
-    margin: 0;
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
@@ -116,25 +83,20 @@ header .logo:hover {
     border-radius: 10px;
     box-shadow: 0 4px 15px var(--color-sombra);
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    padding: 0.3em;
 }
 
 .texto_logo {
     font-family: 'Etna', serif;
     color: var(--color-principal);
-    font-size: 2em;
 }
 
 /* Navegación - Mobile First */
 nav a {
     color: var(--color-blanco);
     border: var(--color-blanco) 2px solid;
-    margin: 0 0.75em;
-    padding: 0.5em 1em;
     border-radius: 1.25em;
     font-weight: 500;
     text-decoration: none;
-    font-size: 1rem;
     letter-spacing: 0.03125em;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
@@ -147,13 +109,11 @@ nav a:hover {
 }
 
 nav a i {
-    margin-left: 1em;
     transition: transform 0.3s, margin-left 0.3s;
 }
 
 nav a:hover i {
     transform: rotate(15deg);
-    margin-left: 1.5em;
 }
 
 nav a.active {
@@ -167,9 +127,6 @@ nav a.active {
 
 .title {
     color: var(--color-principal);
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 1em;
     text-transform: uppercase;
     letter-spacing: 2px;
     background: linear-gradient(45deg, var(--color-principal), #ff6f61);
@@ -186,16 +143,11 @@ nav a.active {
 
 /* Inicio - Mobile First */
 
-section {
-    padding: 10px;
-}
-
 .equipo {
     background-color: var(--color-principal);
     border-radius: 1em;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    padding: 20px;
 }
 
 .equipo:hover {
@@ -219,18 +171,14 @@ section {
 .card-body-1 {
     background-color: var(--color-principal);
     color: var(--color-blanco);
-    padding: .5rem;
     border-radius: 1.2em 1.2em 0 0;
 }
 
 .card-body-1 i {
-    font-size: 2rem;
     color: var(--color-blanco);
-    margin-bottom: .2rem;
 }
 
 .card-body-1 h2 {
-    font-size: 1.3rem;
     letter-spacing: 2px;
     font-weight: bold;
     color: var(--color-blanco);
@@ -238,13 +186,7 @@ section {
 
 .card-body-2 {
     background-color: var(--color-gris-claro);
-    padding: 1.5rem;
     color: #495057;
-}
-
-.card-body-2 p {
-    font-size: .8rem;
-    line-height: 1.6;
 }
 
 .tarjeta:hover {
@@ -255,9 +197,6 @@ section {
 /* Investigación - Mobile First */
 
 .section-container {
-    max-width: 90%;
-    margin: 20px auto;
-    padding: 20px;
     border-radius: 8px;
     border: 2px solid var(--color-secundario);
     opacity: 0;
@@ -286,16 +225,7 @@ section {
     background-color: #e9ecef;
 }
 
-.section-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
 .section-content img {
-    width: 100%;
-    height: auto;
-    max-width: 400px;
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
@@ -317,16 +247,9 @@ section {
     transform: translateX(0);
 }
 
-.text-container {
-    padding: 20px;
-}
-
 /* Productos - Mobile First */
 
 .category-section {
-    max-width: 95%;
-    margin: 30px auto;
-    padding: 20px;
     border-radius: 8px;
     background-color: #f1f1f1;
 }
@@ -336,12 +259,6 @@ section {
 }
 
 .product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #ffffff;
@@ -353,21 +270,8 @@ section {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.product-image {
-    max-width: 200px;
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 15px;
-}
-
 .product-image img {
-    width: 100%;
-    height: auto;
     border-radius: 8px;
-}
-
-.product-info {
-    flex: 1;
 }
 
 .product-info h3 {
@@ -375,48 +279,22 @@ section {
 }
 
 .product-price {
-    font-size: 1.2em;
     font-weight: bold;
     color: #28a745;
-    margin-top: 10px;
 }
 
 /* Contacto - Mobile First */
 
 .contact-section {
-    max-width: 95%;
-    margin: 40px auto;
-    padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
 }
 
 .contact-section h2 {
-    margin-bottom: 15px;
     color: var(--color-principal);
 }
 
-.contact-info {
-    margin-bottom: 20px;
-}
-
-.contact-details {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.contact-map {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    max-width: 100%;
-}
-
 .contact-map iframe {
-    width: 100%;
-    max-width: 800px;
-    height: 450px;
     border-radius: 15px;
     border: 2px solid var(--color-principal);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -429,9 +307,6 @@ section {
 }
 
 .contact-form {
-    max-width: 95%;
-    margin: 40px auto;
-    padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -445,21 +320,9 @@ section {
     font-weight: bold;
 }
 
-.form-check-label {
-    margin-left: 5px;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.1em;
-}
-
 /* Iniciar sesión */
 
 .login-container {
-    max-width: 40em;
-    padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     background-color: var(--color-blanco);
@@ -474,14 +337,6 @@ section {
 .login-header {
     color: var(--color-principal);
     font-weight: bold;
-    font-size: 1.7rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -489,21 +344,8 @@ section {
     color: #2c3e50;
 }
 
-.form-group .form-control {
-    padding-left: 2.5rem;
-}
-
 .form-group i {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
     color: var(--color-suave);
-}
-
-.form-control {
-    padding: 1em;
-    font-size: 12px;
 }
 
 .form-control:focus {
@@ -516,8 +358,6 @@ section {
     color: var(--color-blanco);
     border: none;
     font-weight: bold;
-    width: 100%;
-    padding: 0.75rem;
     border-radius: 6px;
     transition: background-color 0.3s;
 }
@@ -530,16 +370,12 @@ section {
 
 .form-container {
     background-color: var(--color-blanco);
-    padding: 30px;
     border-radius: 8px;
     box-shadow: var(--color-sombra);
-    max-width: 600px;
-    margin: 50px auto;
 }
 
 .form-container h2 {
     color: var(--color-principal);
-    margin-bottom: 20px;
 }
 
 .form-container label {
@@ -550,18 +386,13 @@ section {
 .form-container input[type="text"],
 .form-container textarea,
 .form-container input[type="file"] {
-    width: 100%;
-    padding: 20px;
-    margin: 10px 0 20px 0;
     border-radius: 5px;
     border: 1px solid var(--color-gris-suave);
-    box-sizing: border-box;
 }
 
 .form-container input[type="submit"] {
     background-color: var(--color-principal);
     color: var(--color-blanco);
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -572,123 +403,139 @@ section {
     background-color: var(--color-suave);
 }
 
-.form-container .image-preview {
-    margin-bottom: 20px;
-}
-
 .form-container .image-preview img {
-    width: 200px;
-    height: auto;
     border-radius: 5px;
     box-shadow: var(--color-sombra-intensa);
-}
-
-.form-container .form-group {
-    margin-bottom: 20px;
-}
-
-/* Centrar botones DIV */
-
-.botones {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.botones a {
-    width: 5em;
-}
-
-/* Media Queries - Tablet y pantallas medianas (768px y arriba) */
-
-@media screen and (min-width: 768px) {
-    /* Títulos */
-    p{
-        font-size: 1rem;
-    }
-
-    .title {
-        font-size: 5em;
-    }
-
-    /* Navegación */
-    nav a {
-        margin: 0 1.5em;
-        padding: .7em 1.25em;
-        font-size: 1.25rem;
-        letter-spacing: 0.0625em;
-    }
-
-    /* Inicio */
-    section {
-        padding: 20px;
-    }
-
-    /* Investigación */
-    .section-container {
-        max-width: 80%;
-    }
-
-    /* Productos */
-    .category-section {
-        max-width: 80%;
-    }
-
-    .product-card {
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .product-image {
-        margin-right: 20px;
-        margin-bottom: 0;
-    }
-
-    /* Contacto */
-    .contact-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .contact-info,
-    .contact-map {
-        flex: 1;
-    }
-
-    .contact-map iframe {
-        height: 400px;
-    }
-
-    .contact-form {
-        max-width: 80%;
-        padding: 20px;
-    }
-
-    .contact-section {
-        max-width: 80%;
-    }
 }
 
 .alert-success {
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
     color: #155724;
-    padding: 12px;
-    margin-bottom: 20px;
     border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .alert-success i {
     color: #28a745;
 }
 
+/* Media Queries - Tablet (768px y arriba) */
+@media screen and (min-width: 768px) {
+    /* Títulos */
+    .title {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
 
+    /* Navegación */
+    nav a {
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+    }
 
+    /* Texto logo */
+    .texto_logo {
+        font-size: 2.25rem;
+    }
+
+    /* Tarjetas */
+    .card-body-1 h2 {
+        font-size: 1.4rem;
+    }
+
+    .card-body-1 i {
+        font-size: 2.25rem;
+    }
+
+    /* Contacto */
+    .contact-map iframe {
+        border-width: 3px;
+    }
+}
+
+/* Media Queries - Desktop (992px y arriba) */
+@media screen and (min-width: 992px) {
+    /* Títulos */
+    .title {
+        font-size: 3.5rem;
+        letter-spacing: 4px;
+    }
+
+    /* Navegación */
+    nav a {
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+    }
+
+    nav a:hover i {
+        margin-left: 0.5em;
+    }
+
+    /* Texto logo */
+    .texto_logo {
+        font-size: 2.5rem;
+    }
+
+    /* Elementos de equipo */
+    .equipo:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Tarjetas */
+    .tarjeta:hover {
+        transform: translateY(-8px);
+    }
+
+    .card-body-1 h2 {
+        font-size: 1.5rem;
+    }
+
+    .card-body-1 i {
+        font-size: 2.5rem;
+    }
+
+    /* Elementos de contacto */
+    .contact-map iframe:hover {
+        transform: scale(1.03);
+    }
+
+    /* Formularios */
+    .btn-login:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Investigación */
+    .section-container:hover {
+        transform: scale(1.03);
+    }
+
+    .section-content img:hover {
+        transform: scale(1.08);
+    }
+}
+
+/* Media Queries - Large Desktop (1200px y arriba) */
+@media screen and (min-width: 1200px) {
+    /* Títulos */
+    .title {
+        font-size: 4.5rem;
+    }
+
+    /* Navegación */
+    nav a {
+        font-size: 1.3rem;
+    }
+
+    /* Texto logo */
+    .texto_logo {
+        font-size: 2.75rem;
+    }
+
+    /* Tarjetas y elementos con hover */
+    .tarjeta:hover,
+    .equipo:hover,
+    .login-container:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+}

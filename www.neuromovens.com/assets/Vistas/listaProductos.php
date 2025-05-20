@@ -8,7 +8,7 @@ $productos = isset($_SESSION['productos']) ? unserialize($_SESSION['productos'])
 ?>
 
 <div class="container my-5">
-    <h1 class="mb-4 text-center">Lista de Productos</h1>
+    <h1 class="title mb-4 text-center">Lista de Productos</h1>
 
     <?php if (!empty($productos)): ?>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
