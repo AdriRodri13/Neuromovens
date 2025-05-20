@@ -1,87 +1,104 @@
 <?php include '../Compartido/header.php';?>
 
-    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center vh-100 gap-4">
-        <div class="login-container">
-            <div class="login-header">Registrarse</div>
+    <div class="container py-4 py-md-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 mb-4">
+                <div class="login-container p-4 p-md-5 mx-auto">
+                    <div class="login-header mb-4 text-center">Registrarse</div>
 
-            <?php if(isset($_GET['error'])): ?>
-                <div class="alert alert-danger">
-                    <i class="fa-solid fa-exclamation-triangle"></i>
-                    <?php
-                    switch($_GET['error']) {
-                        case 'campos_vacios':
-                            echo 'Todos los campos son obligatorios';
-                            break;
-                        case 'email_invalido':
-                            echo 'El email no tiene un formato válido';
-                            break;
-                        case 'nombre_muy_corto':
-                            echo 'El nombre de usuario debe tener al menos 3 caracteres';
-                            break;
-                        case 'contra_muy_corta':
-                            echo 'La contraseña debe tener al menos 6 caracteres';
-                            break;
-                        case 'usuario_existe':
-                            echo 'El nombre de usuario o email ya están registrados';
-                            break;
-                        case 'error_insercion':
-                            echo 'Error al registrar el usuario. Intente nuevamente';
-                            break;
-                        case 'error_interno':
-                            echo 'Error interno del servidor. Contacte al administrador';
-                            break;
-                        default:
-                            echo 'Error desconocido. Intente nuevamente';
-                    }
-                    ?>
-                </div>
-            <?php endif; ?>
+                    <?php if(isset($_GET['error'])): ?>
+                        <div class="alert alert-danger d-flex align-items-center">
+                            <i class="fa-solid fa-exclamation-triangle me-2"></i>
+                            <div>
+                                <?php
+                                switch($_GET['error']) {
+                                    case 'campos_vacios':
+                                        echo 'Todos los campos son obligatorios';
+                                        break;
+                                    case 'email_invalido':
+                                        echo 'El email no tiene un formato válido';
+                                        break;
+                                    case 'nombre_muy_corto':
+                                        echo 'El nombre de usuario debe tener al menos 3 caracteres';
+                                        break;
+                                    case 'contra_muy_corta':
+                                        echo 'La contraseña debe tener al menos 6 caracteres';
+                                        break;
+                                    case 'usuario_existe':
+                                        echo 'El nombre de usuario o email ya están registrados';
+                                        break;
+                                    case 'error_insercion':
+                                        echo 'Error al registrar el usuario. Intente nuevamente';
+                                        break;
+                                    case 'error_interno':
+                                        echo 'Error interno del servidor. Contacte al administrador';
+                                        break;
+                                    default:
+                                        echo 'Error desconocido. Intente nuevamente';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
-            <form action="../Controlador/ControladorUsuario.php" method="post" id="registroForm">
-                <input type="hidden" name="accion" value="registro">
+                    <form action="../Controlador/ControladorUsuario.php" method="post" id="registroForm">
+                        <input type="hidden" name="accion" value="registro">
 
-                <div class="form-group">
-                    <label for="username">Nombre de Usuario <span class="text-danger">*</span></label>
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="nombre_usuario" class="form-control" id="username"
-                           placeholder="Ingrese su usuario (mínimo 3 caracteres)"
-                           value="<?php echo isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : ''; ?>"
-                           required minlength="3">
-                    <div id="username-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
-                        El nombre debe tener al menos 3 caracteres
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                                <input type="text" name="nombre_usuario" class="form-control" id="username"
+                                       placeholder="Ingrese su usuario (mínimo 3 caracteres)"
+                                       value="<?php echo isset($_GET['nombre']) ? htmlspecialchars($_GET['nombre']) : ''; ?>"
+                                       required minlength="3">
+                            </div>
+                            <div id="username-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
+                                El nombre debe tener al menos 3 caracteres
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                                <input type="email" name="email" class="form-control" id="email"
+                                       placeholder="Ingrese su email"
+                                       value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>"
+                                       required>
+                            </div>
+                            <div id="email-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
+                                Por favor, ingrese un email válido
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                                <input type="password" name="contra" class="form-control" id="password"
+                                       placeholder="Ingrese su contraseña (mínimo 6 caracteres)"
+                                       required minlength="6">
+                            </div>
+                            <div id="password-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
+                                La contraseña debe tener al menos 6 caracteres
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-login w-100 py-2" id="btn-registro">Registrarse</button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0">¿Ya tienes una cuenta? <a href="IniciarSesion.php" class="text-primary">Inicia sesión aquí</a></p>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email <span class="text-danger">*</span></label>
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" name="email" class="form-control" id="email"
-                           placeholder="Ingrese su email"
-                           value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>"
-                           required>
-                    <div id="email-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
-                        Por favor, ingrese un email válido
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Contraseña <span class="text-danger">*</span></label>
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="contra" class="form-control" id="password"
-                           placeholder="Ingrese su contraseña (mínimo 6 caracteres)"
-                           required minlength="6">
-                    <div id="password-error" class="text-danger" style="display: none; font-size: 0.875em; margin-top: 5px;">
-                        La contraseña debe tener al menos 6 caracteres
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-login" id="btn-registro">Registrarse</button>
-            </form>
-
-            <div class="text-center mt-3">
-                <p>¿Ya tienes una cuenta? <a href="IniciarSesion.php" class="text-primary">Inicia sesión aquí</a></p>
             </div>
-
         </div>
     </div>
 
@@ -221,17 +238,5 @@
         });
     </script>
 
-    <style>
-        /* Estilos adicionales */
-        .form-control.is-invalid {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-        }
-
-        .form-control.is-valid {
-            border-color: #28a745;
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-        }
-    </style>
 
 <?php include '../Compartido/footer.php'; ?>
